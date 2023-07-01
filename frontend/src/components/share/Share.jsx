@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react'
 import "./Share.css"
-import { Image } from '@mui/icons-material'
+import { Cancel, Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext';
 import axios from "axios"
 
@@ -35,7 +35,7 @@ export default function Share() {
         };
 
         try {
-            await axios.post("posts", newPost);
+            await axios.post("/posts", newPost);
             window.location.reload();
         } catch (err) {
             console.log(err);
@@ -62,6 +62,12 @@ export default function Share() {
                 </div>
                 <hr className='shareHr' />
                 <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
+                    {file && (
+                        <div className="shareImgContainer">
+                            <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
+                            <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
+                        </div>
+                    )}
                     <div className="shareOptions">
                         <label className="shareOption" htmlFor='file'>
                             <Image className='shareIcon' htmlColor='blue' />

@@ -39,9 +39,9 @@
     padding-top: 3px;
 }
 
-.sidebarHr {
+/* .sidebarHr {
     margin: 20px 0;
-}
+} */
 
 .sidebarFriendImg {
     width: 32px;
@@ -51,11 +51,11 @@
     margin-right: 10px;
 }
 
-.sidebarFriendList {
+/* .sidebarFriendList {
     padding: 0;
     margin: 0;
     list-style: none;
-}
+} */
 
 .sidebarFriend {
     display:flex;

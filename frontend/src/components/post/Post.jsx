@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import "./Post.css"
-import { MoreVert } from '@mui/icons-material'
+// import { MoreVert } from '@mui/icons-material'
 // import { Users } from '../../dummyData'
 import axios from 'axios'
 // import { format } from "timeago.js"
@@ -36,6 +36,15 @@ export default function Post({ post }) {
         setIsLiked(!isLiked);
     };
 
+    const deletePost = async () => {
+        try {
+            await axios.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className='post'>
             <div className="postWrapper">
@@ -57,7 +66,8 @@ export default function Post({ post }) {
                         <span className="postDate">{post.createdAt}</span>
                     </div>
                     <div className="postTopRight">
-                        <MoreVert />
+                        {/* <MoreVert /> */}
+                        <button className='deleteButton' onClick={() => deletePost()}>削除</button>
                     </div>
                 </div>
 
@@ -73,12 +83,12 @@ export default function Post({ post }) {
                             onClick={() => handleLike()}
                         />
                         <span className="postLikeCounter">
-                            {like}人がいいねを押しました
+                            {like}
                         </span>
                     </div>
-                    <div className="postBottomRight">
+                    {/* <div className="postBottomRight">
                         <span className="postCommentText">{post.comment}:コメント</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
