@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Post.css"
-// import { MoreVert } from '@mui/icons-material'
+import { MoreVert } from '@mui/icons-material'
 // import { Users } from '../../dummyData'
 import axios from 'axios'
 // import { format } from "timeago.js"
@@ -45,6 +45,21 @@ export default function Post({ post }) {
         }
     };
 
+    const deleteMenu = () => {
+        const confirm = window.confirm('本当に削除しますか？');
+        if (confirm) {
+            deletePost();
+        }
+    };
+
+    const [showMenu, setShowMenu] = useState(false);
+    const menuRef = useRef();
+
+    useEffect(() => {
+        showMenu &&
+            menuRef.current.focus()
+    }, [showMenu])
+
     return (
         <div className='post'>
             <div className="postWrapper">
@@ -66,8 +81,20 @@ export default function Post({ post }) {
                         <span className="postDate">{post.createdAt}</span>
                     </div>
                     <div className="postTopRight">
-                        {/* <MoreVert /> */}
-                        <button className='deleteButton' onClick={() => deletePost()}>削除</button>
+                        <MoreVert onClick={() =>
+                            setShowMenu(!showMenu)
+                        } />
+                        {showMenu &&
+                            <div>
+                                <span
+                                    onBlur={() => setTimeout(() => setShowMenu(false), 100)}
+                                    ref={menuRef}
+                                    tabIndex={1}
+                                >
+                                    <button className='deleteButton' onClick={() => deleteMenu()}>Delete?</button>
+                                </span>
+                            </div>
+                        }
                     </div>
                 </div>
 
