@@ -31,6 +31,7 @@ justify-content: center;
 
 .loginDesc {
     font-size: 24px;
+    color: black;
 }
 
 .loginBox {
@@ -62,7 +63,7 @@ justify-content: center;
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: #41428b;
+    background-color: black;
     color: white;
     font-size: 20px;
     font-weight: 500;
@@ -81,7 +82,7 @@ justify-content: center;
     align-self: center;
     border-radius: 10px;
     border: none;
-    background-color: green;
+    background-color: purple;
     color: white;
     font-size: 20px;
     font-weight: 500;

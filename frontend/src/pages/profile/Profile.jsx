@@ -5,7 +5,7 @@ import TimeLine from '../../components/timeline/TimeLine'
 import "./Profile.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function Profile() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -30,7 +30,7 @@ export default function Profile() {
                     <div className="profileRightTop">
                         <div className="profileCover">
                             <img
-                                src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "/post/3.jpeg"}
+                                src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                 alt=""
                                 className='profileCoverImg'
                             />
@@ -40,9 +40,14 @@ export default function Profile() {
                                 className='profileUserImg'
                             />
                         </div>
-                        <div className="profileInfo">
-                            <h4 className='profileInfoName'>{user.username}</h4>
-                            <span className="profileInfoDesc">{user.desc}</span>
+                        <div className='profileEdit'>
+                            <div className="profileInfo">
+                                <h4 className='profileInfoName'>{user.username}</h4>
+                                <span className="profileInfoDesc">{user.desc}</span>
+                            </div>
+                            <Link to={`/editprofile/${user.username}`}>
+                                <button className='editButton'>プロフィール編集</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="profileRightBottom">

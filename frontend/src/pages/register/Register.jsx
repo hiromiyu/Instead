@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import "./Register.css"
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
     const username = useRef();
@@ -37,8 +37,8 @@ export default function Register() {
         <div className='login'>
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <h3 className='loginLogo'>DAYCE SNS</h3>
-                    <span className="loginDesc">色んないいねを、みんなの手で。</span>
+                    <h3 className='loginLogo'>Instead</h3>
+                    <span className="loginDesc">新規登録</span>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
@@ -48,7 +48,9 @@ export default function Register() {
                         <input type="password" className='loginInput' placeholder='パスワード' required minLength="6" ref={password} />
                         <input type="password" className='loginInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
                         <button className="loginButton" type='submit'>サインアップ</button>
-                        <button className="loginRegisterButton">ログイン</button>
+                        <Link to="/login">
+                            <button className="loginRegisterButton">ログイン</button>
+                        </Link>
                     </form>
                 </div>
             </div>

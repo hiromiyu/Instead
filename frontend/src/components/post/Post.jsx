@@ -3,11 +3,12 @@ import "./Post.css"
 import { MoreVert } from '@mui/icons-material'
 // import { Users } from '../../dummyData'
 import axios from 'axios'
-// import { format } from "timeago.js"
+import { format } from "timeago.js"
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 
 export default function Post({ post }) {
+
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
@@ -45,6 +46,15 @@ export default function Post({ post }) {
         }
     };
 
+    // const deletePost = async () => {
+    //     try {
+    //         await axios.delete(`/posts/${post._id}/deleteall`, { data: { userId: currentUser._id } });
+    //         window.location.reload();
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
     const deleteMenu = () => {
         const confirm = window.confirm('本当に削除しますか？');
         if (confirm) {
@@ -77,8 +87,8 @@ export default function Post({ post }) {
                         <span className="postUsername">
                             {user.username}
                         </span>
-                        {/* <span className="postDate">{format(post.createdAt)}</span> */}
-                        <span className="postDate">{post.createdAt}</span>
+                        <span className="postDate">{format(post.createdAt)}</span>
+                        {/* <span className="postDate">{post.createdAt}</span> */}
                     </div>
                     <div className="postTopRight">
                         <MoreVert onClick={() =>
@@ -91,7 +101,7 @@ export default function Post({ post }) {
                                     ref={menuRef}
                                     tabIndex={1}
                                 >
-                                    <button className='deleteButton' onClick={() => deleteMenu()}>Delete?</button>
+                                    <button className='deleteButton' onClick={() => deleteMenu()}>Delete!?</button>
                                 </span>
                             </div>
                         }

@@ -32,6 +32,8 @@
 .sidebarIcon {
     font-size: 35px !important;
     margin-right: 10px;
+            background-color: #000;
+            color: #fff;
 }
 
 .sidebarListItemText {

@@ -1,4 +1,11 @@
 .homeContainer {
     display: flex;
-    background-color: #f8fcff;
+    /* background-color: #f8fcff; */
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #fff;
+    }
 }
