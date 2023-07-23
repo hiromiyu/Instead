@@ -23,6 +23,23 @@ export default function EditPage() {
         }
     };
 
+    const logout = () => {
+        try {
+            navigate("/");
+            localStorage.clear();
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const logoutMenu = () => {
+        const confirm = window.confirm('ログアウトしますか？');
+        if (confirm) {
+            logout();
+        }
+    };
+
     const deleteMenu = () => {
         const confirm = window.confirm('OKを押すと全てのデータが削除され元には戻せません!\n本当に退会しますか？');
         if (confirm) {
@@ -43,10 +60,15 @@ export default function EditPage() {
                         <h2>利用規約</h2>
                     </Link>
                 </div>
-                <div className="editButtom">
-                    <button onClick={() => deleteMenu()}>退会</button>
-                </div>
             </div>
+            <div className="logoutButton">
+                <button onClick={() => logoutMenu()}>ログアウト</button>
+            </div>
+            <div className="editButtom">
+                <button onClick={() => deleteMenu()}>退会</button>
+            </div>
+
+
         </>
     )
 }

@@ -86,7 +86,7 @@ export default function Profile() {
                                 <span className="profileInfoDesc">{user.desc}</span>
                                 {currentUser.username === user.username &&
                                     <Link to={"/following/" + user.username}>
-                                        <span className="profileInfoFollowers">フレンド</span>
+                                        <span className="profileInfoFollowers">友達</span>
                                     </Link>
                                 }
                             </div>
