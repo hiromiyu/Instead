@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
-import { Cancel, Image } from '@mui/icons-material'
+import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext';
 import axios from "axios"
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 export default function Share() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const [use, setUser] = useState({});
+    const [user, setUser] = useState({});
     const username = useParams().username;
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function Share() {
         fetchUser();
     }, [username]);
 
-    const { user } = useContext(AuthContext);
+    const { user: currentUser } = useContext(AuthContext);
     const desc = useRef();
 
     const [file, setFile] = useState(null);
@@ -29,15 +29,17 @@ export default function Share() {
         e.preventDefault();
 
         const newPost = {
-            userId: user._id,
+            userId: currentUser._id,
             desc: desc.current.value,
         };
 
         if (file) {
             const data = new FormData();
             const fileName = Date.now() + file.name;
-            data.append("name", fileName);
-            data.append("file", file);
+            // data.append("name", fileName);
+            // data.append("file", file);
+            data.set("name", fileName);
+            data.set("file", file);
             newPost.img = fileName;
             try {
                 //画像APIを叩く
@@ -61,15 +63,16 @@ export default function Share() {
                 <div className="shareTop">
                     <img
                         src={
-                            use.profilePicture ?
-                                PUBLIC_FOLDER + use.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                            user.profilePicture ?
+                                PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                         alt=''
                         className='shareProfileImg'
                     />
-                    <input
-                        type='text'
+                    <textarea
+                        type='textarea'
                         className='shareInput'
                         placeholder='say something'
+                        rows='4'
                         ref={desc}
                     />
                 </div>
@@ -78,7 +81,8 @@ export default function Share() {
                     {file && (
                         <div className="shareImgContainer">
                             <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
-                            <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
+                            {/* <Cancel className="shareCancelImg" onClick={() => setFile(null)} /> */}
+                            <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                         </div>
                     )}
                     <div className="shareOptions">

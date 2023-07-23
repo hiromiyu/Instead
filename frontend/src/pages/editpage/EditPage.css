@@ -2,7 +2,11 @@
     display: flex;
 }
 
-.editRight {
+.editLeft {
     flex: 10.5;
     padding: 10px;
+}
+
+.editButtom {
+    margin: 10px;
 }

@@ -9,10 +9,12 @@ import { AuthContext } from "./state/AuthContext";
 import Privacy from "./pages/privacy/Privacy";
 import Termsofservice from "./pages/termsofservice/Termsofservice";
 import Editpage from "./pages/editpage/Editpage";
+import Following from "./pages/following/Following";
 
 
 function App() {
   const { user } = useContext(AuthContext);
+
   return (
     <Router>
       <Routes>
@@ -24,6 +26,7 @@ function App() {
         <Route path="/termsofservice" element={<Termsofservice />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/editpage" element={<Editpage />} />
+        <Route path="/following/:username" element={<Following />} />
       </Routes>
     </Router>
   );

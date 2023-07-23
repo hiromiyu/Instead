@@ -1,4 +1,4 @@
-import Sidebar from "../../components/sidebar/Sidebar";
+// import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import "./Privacy.css";
 
@@ -7,13 +7,13 @@ export default function Privacy() {
         <>
             <Topbar />
             <div className="editContainer">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className="editRight">
-                    <h1>プライバシーポリシー</h1>
+                    <h2>プライバシーポリシー</h2>
                     <br></br>
-                    <ol>
+                    <p>
                         Hiro（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
-                    </ol>
+                    </p>
                     <br></br>
                     <section>
                         <h2>第１条（個人情報）</h2>

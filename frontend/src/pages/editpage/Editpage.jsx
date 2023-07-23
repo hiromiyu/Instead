@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Sidebar from "../../components/sidebar/Sidebar";
+// import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import "./EditPage.css";
 import axios from "axios";
@@ -24,7 +24,7 @@ export default function EditPage() {
     };
 
     const deleteMenu = () => {
-        const confirm = window.confirm('本当に退会しますか？');
+        const confirm = window.confirm('OKを押すと全てのデータが削除され元には戻せません!\n本当に退会しますか？');
         if (confirm) {
             deleteUser();
         }
@@ -34,14 +34,16 @@ export default function EditPage() {
         <>
             <Topbar />
             <div className="editContainer">
-                <Sidebar />
-                <div className="editRight">
+                {/* <Sidebar /> */}
+                <div className="editLeft">
                     <Link to="/privacy">
-                        <h1>プライバシーポリシー</h1>
+                        <h2>プライバシーポリシー</h2>
                     </Link>
                     <Link to="/termsofservice">
-                        <h1>利用規約</h1>
+                        <h2>利用規約</h2>
                     </Link>
+                </div>
+                <div className="editButtom">
                     <button onClick={() => deleteMenu()}>退会</button>
                 </div>
             </div>

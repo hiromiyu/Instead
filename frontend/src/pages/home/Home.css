@@ -3,9 +3,17 @@
     /* background-color: #f8fcff; */
 }
 
-@media (prefers-color-scheme: dark) {
+.homeIcon {
+    font-size: 20px !important;
+    margin-right: 10px;
+    background-color: #000;    
+    color: #fff;
+    padding: 0 0 0 10px;
+}
+
+/* @media (prefers-color-scheme: dark) {
     body {
         background-color: #000;
         color: #fff;
     }
-}
+} */

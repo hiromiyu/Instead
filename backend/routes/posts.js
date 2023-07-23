@@ -79,6 +79,9 @@ router.put("/:id/like", async (req, res) => {
                     likes: req.body.userId,
                 },
             });
+            await post.updateOne({
+                isLiked: true,
+            });
             return res.status(200).json("投稿にいいねを押しました！");
             //投稿にすでにいいねが押されていたら
         } else {
@@ -88,7 +91,10 @@ router.put("/:id/like", async (req, res) => {
                     likes: req.body.userId,
                 },
             });
-            return res.status(403).json("投稿にいいねを外しました");
+            await post.updateOne({
+                isLiked: false,
+            });
+            return res.status(200).json("投稿にいいねを外しました");
         }
     } catch (err) {
         return res.status(500).json(err);

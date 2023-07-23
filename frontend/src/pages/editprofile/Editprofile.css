@@ -6,14 +6,18 @@
     flex: 10.5;
 }
 
+.profileRightTop {
+    border-bottom: 1px solid #dddddd;
+}
+
 .profileCover {
-    height: 320px;
+    height: 200px;
     position: relative;
 }
 
 .profileCoverImg {
     width: 100%;
-    height: 250px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -21,23 +25,49 @@
     position: absolute;
     left: 0;
     right: 0;
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin: auto;
-    top: 150px;
+    /* margin: auto; */
+    top: 100px;
     border: 3px solid white;
+    margin: 0 0 0 10px;
+}
+
+.shareButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.shareIconButtons {
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .profileInfo {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
 
+.profileInfoTop {
+    display: flex;
+    justify-content: space-between;
+} 
+
 .profileInfoName {
     font-size: 24px;
+}
+
+.followButton {
+    /* border: none; */
+    /* border-radius: 20px; */
+}
+
+.profileInfoDesc {
+    white-space: pre-wrap;
 }
 
 .profileRightBottom {
@@ -46,18 +76,19 @@
 
 .profileEdit {
     display: flex;
-    justify-content: space-around;
-    padding: 0 20px;
+    justify-content: space-between;
+    padding: 0 15px;
 }
 
 .editButton {
-    height: 30px;
+    height: 25px;
+    margin-right: 15px;
     font-weight: bold;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     padding: 0 10px;
-    background-color: black;
+    background-color: gray;
     color: white;
 }
 
@@ -65,11 +96,41 @@
     height: 15px;
 }
 
+.followButton {
+    font-weight: bold;
+    border: none;
+    padding: 6px 17px;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.followingButton {
+    font-weight: bold;
+    border-width: thin;
+    border: none;
+    padding: 6px 17px;
+    /* background-color: black; */
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
 /* .coverImg {
     position: relative;
 }
 
-.coverImg img {
+.shareOptions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+/* .coverImg img {
     width: 100%;
 }
 

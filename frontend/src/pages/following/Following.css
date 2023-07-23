@@ -1,0 +1,52 @@
+.homeFollowing {
+    display: flex;
+    /* margin: 10px; */
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
+}
+
+.followSidebar {
+    display: flex;
+    margin: 10px;
+}
+
+.homeFollowingImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.followWrapper {
+    width: 100%;
+    padding: 10px 10px 0 0;
+}
+
+.followTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.followTopLeft {
+    display: flex;
+    align-items: center;
+}
+
+.homeFollowingName {
+    font-size: 20px;
+    font-weight: 550;
+    margin: 0 10px;
+}
+
+.followTopRight {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.homeFollowingStatus {
+    white-space: pre-wrap;
+    margin: 0 10px;
+    width: 100%;
+}
