@@ -17,7 +17,7 @@ const initialState = {
     // },
     isFetching: false,
     error: false,
-    isLiked: false,
+    // isLiked: false,
 };
 
 //状態をグローバルに管理する
@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
         user: state.user,
         isFetching: state.isFetching,
         error: state.error,
-        isLiked: state.isLiked,
+        // isLiked: state.isLiked,
         dispatch,
     }}>
         {children}

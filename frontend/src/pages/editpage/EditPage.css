@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
-.editButtom {
+.withdrawalButton {
     margin: 10px;
+}
+
+.logoutButton {
+margin: 10px;
 }

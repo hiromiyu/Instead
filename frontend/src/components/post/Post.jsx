@@ -13,7 +13,7 @@ export default function Post({ post }) {
     const [user, setUser] = useState({});
 
     const { user: currentUser } = useContext(AuthContext);
-    const [isLiked, setIsLiked] = useState(post.isLiked);
+    const [isLiked, setIsLiked] = useState(post.likes.includes(currentUser._id));
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -23,6 +23,8 @@ export default function Post({ post }) {
         };
         fetchUser();
     }, [post.userId]);
+
+
 
     const handleLike = async () => {
         try {

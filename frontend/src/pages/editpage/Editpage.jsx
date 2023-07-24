@@ -64,7 +64,7 @@ export default function EditPage() {
             <div className="logoutButton">
                 <button onClick={() => logoutMenu()}>ログアウト</button>
             </div>
-            <div className="editButtom">
+            <div className="withdrawalButton">
                 <button onClick={() => deleteMenu()}>退会</button>
             </div>
 
