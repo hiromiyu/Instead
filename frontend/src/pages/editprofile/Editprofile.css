@@ -120,6 +120,15 @@
     margin-right: 20px;
 }
 
+.editCancelImg {
+    /* position: absolute; */
+    margin: 0 10px 0 0;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 /* .coverImg {
     position: relative;
 }
