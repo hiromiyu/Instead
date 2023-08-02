@@ -27,11 +27,17 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-})
-app.get("/users", (req, res) => {
-    res.send("users World!");
-})
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+// app.get("/", (req, res) => {
+//     res.send("Hello World!");
+// })
+// app.get("/users", (req, res) => {
+//     res.send("users World!");
+// })
 
 app.listen(PORT, () => console.log("サーバーが起動しました"));
