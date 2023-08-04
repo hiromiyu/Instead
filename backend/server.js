@@ -41,7 +41,7 @@ app.use("/api/upload", uploadRoute);
 // app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
-app.get("/", (res) => {
+app.get("/api", (res) => {
     res.send("Hello World!");
 })
 
