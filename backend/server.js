@@ -37,7 +37,7 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
 app.get("/", (res) => {
@@ -45,7 +45,7 @@ app.get("/", (res) => {
 })
 
 app.get('*', (res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    // res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 // app.use(express.static(path.join(__dirname, 'build')));
