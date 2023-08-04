@@ -31,13 +31,14 @@ mongoose.connect(process.env.MONGOURL)
 //     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
 // });
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
 
 app.get("/", (res) => {
     res.send("Hello World!");
