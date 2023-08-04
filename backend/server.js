@@ -39,6 +39,10 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
 
+app.get("/", (res) => {
+    res.send("Hello World!");
+})
+
 app.get('*', (res) => {
     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
@@ -49,9 +53,7 @@ app.get('*', (res) => {
 //     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
 
-// app.get("/", (res) => {
-//     res.json("Hello World!");
-// })
+
 // app.get("/users", (req, res) => {
 //     res.send("users World!");
 // })
