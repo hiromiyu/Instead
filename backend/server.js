@@ -5,7 +5,8 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 // const PORT = 4000;
-const PORT = 443;
+// const PORT = 443;
+const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
@@ -37,16 +38,16 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
-app.get("/", (res) => {
-    res.send("Hello World!");
-})
+// app.get("/", (res) => {
+//     res.send("Hello World!");
+// })
 
-app.get('*', (res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
+// app.get('*', (res) => {
+//     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+// });
 
 // app.use(express.static(path.join(__dirname, 'build')));
 
@@ -59,4 +60,4 @@ app.get('*', (res) => {
 //     res.send("users World!");
 // })
 
-app.listen(PORT, () => console.log("サーバーが起動しました"));
+app.listen(port, () => console.log("サーバーが起動しました"));
