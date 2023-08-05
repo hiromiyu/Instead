@@ -9,13 +9,13 @@ const port = 4000
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
-// const cors = require("cors");
+const cors = require("cors");
 
-// const corsOptions = {
-//     origin: 'https://dayce-sns-frontend.vercel.app',
-//     credentials: true,
-//     optionsSuccessStatus: 200
-// }
+const corsOptions = {
+    origin: 'https://dayce-sns-frontend.vercel.app',
+    credentials: true,
+    optionsSuccessStatus: 200
+}
 
 // データベース接続
 mongoose.connect(process.env.MONGOURL)
@@ -31,13 +31,13 @@ mongoose.connect(process.env.MONGOURL)
 //     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
 // });
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
 
-app.use("/images", express.static(path.join(__dirname, "public/images")));
-app.use(express.json());
-app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/upload", uploadRoute);
+app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
+app.use(cors(corsOptions), express.json());
+app.use("/api/users", cors(corsOptions), userRoute);
+app.use("/api/auth", cors(corsOptions), authRoute);
+app.use("/api/posts", cors(corsOptions), postRoute);
+app.use("/api/upload", cors(corsOptions), uploadRoute);
 
-app.listen(port, () => console.log("サーバーが起動しました"));
+app.listen(port, cors(corsOptions), () => console.log("サーバーが起動しました"));
