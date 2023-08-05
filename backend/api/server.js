@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
 const userRoute = require("../routes/users");
 const authRoute = require("../routes/auth");
 const postRoute = require("../routes/posts");
@@ -41,8 +42,12 @@ app.use("/api/upload", uploadRoute);
 // app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 
-app.get("/", (res) => {
-    res.send("Hello World!");
+router.get("/", (res) => {
+    try {
+        return res.send("Hello World!");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
 })
 
 // app.get('*', (res) => {
