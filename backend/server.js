@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGOURL)
 //     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
 // });
 
-app.get('/', (res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Hello World!'));
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
