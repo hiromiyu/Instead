@@ -33,6 +33,13 @@ mongoose.connect(process.env.MONGOURL)
 //     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
 // });
 
+app.use(express.static('public'));
+app.get('/', (res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, 'public')
+    });
+})
+
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use("/api/users", userRoute);
@@ -40,15 +47,6 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
 // app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-
-router.get("/", (res) => {
-    try {
-        return res.send("Hello World!");
-    } catch (err) {
-        return res.status(500).json(err);
-    }
-})
 
 // app.get('*', (res) => {
 //     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
@@ -66,3 +64,5 @@ router.get("/", (res) => {
 // })
 
 app.listen(port, () => console.log("サーバーが起動しました"));
+
+module.exports = app
