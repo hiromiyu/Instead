@@ -11,13 +11,13 @@ const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
-// const cors = require("cors");
+const cors = require("cors");
 
-// const corsOptions = {
-//     origin: 'https://dayce-sns-frontend.vercel.app',
-//     credentials: true,
-//     optionsSuccessStatus: 200
-// }
+const corsOptions = {
+    origin: 'https://dayce-sns-frontend.vercel.app',
+    credentials: true,
+    optionsSuccessStatus: 200
+}
 
 // データベース接続
 mongoose.connect(process.env.MONGOURL)
@@ -28,10 +28,10 @@ mongoose.connect(process.env.MONGOURL)
         console.log(err);
     });
 
-//ミドルウェア
-// app.get('/user/:userId', cors(corsOptions), function (res) {
-//     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
-// });
+ミドルウェア
+app.get('/', cors(corsOptions), function (res) {
+    res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
+});
 
 app.use(express.static('public'));
 app.get('/', (res) => {
