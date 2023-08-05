@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGOURL)
         console.log(err);
     });
 
-ミドルウェア
+// ミドルウェア
 app.get('/', cors(corsOptions), function (res) {
     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
 });

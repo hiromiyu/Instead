@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://dayce-sns-backend.vercel.app"
+  "proxy": "https://dayce-sns-backend.vercel.app/api"
 }
