@@ -7,7 +7,7 @@ const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 // const PORT = 4000;
 // const PORT = 443;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
