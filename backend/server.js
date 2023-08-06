@@ -12,7 +12,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const corsOptions = {
-    origin: 'https://dayce-sns-frontend.vercel.app',
+    origin: 'https://instead.vercel.app',
     credentials: true,
     optionsSuccessStatus: 200
 }
