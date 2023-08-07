@@ -47,10 +47,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         max: 50,
     },
-    // isLiked: {
-    //     type: Boolean,
-    //     default: false,
-    // },
 },
 
     { timestamps: true }
