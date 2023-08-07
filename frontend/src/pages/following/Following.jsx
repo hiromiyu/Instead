@@ -26,7 +26,7 @@ export default function Following() {
             }
         };
         getFriends();
-    }, [currentUser]);
+    }, [currentUser, instance]);
 
     return (
         <>

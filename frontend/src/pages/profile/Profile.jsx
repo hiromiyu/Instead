@@ -30,7 +30,7 @@ export default function Profile() {
             setUser(response.data);
         };
         fetchUser();
-    }, [username]);
+    }, [username, instance]);
 
     const handleClick = async () => {
         try {

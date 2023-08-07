@@ -22,7 +22,7 @@ export default function Share() {
             setUser(response.data);
         };
         fetchUser();
-    }, [username]);
+    }, [username, instance]);
 
     const { user: currentUser } = useContext(AuthContext);
     const desc = useRef();
