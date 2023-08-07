@@ -7,6 +7,10 @@ import { AuthContext } from '../../state/AuthContext'
 
 
 export default function TimeLine({ username }) {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const [posts, setPosts] = useState([]);
 
     const { user } = useContext(AuthContext);
@@ -14,8 +18,8 @@ export default function TimeLine({ username }) {
     useEffect(() => {
         const fetchPosts = async () => {
             const response = username
-                ? await axios.get(`/posts/profile/${username}`)//プロフィールの場合
-                : await axios.get(`/posts/timeline/${user._id}`);//ホームの場合
+                ? await instance.get(`/posts/profile/${username}`)//プロフィールの場合
+                : await instance.get(`/posts/timeline/${user._id}`);//ホームの場合
             setPosts(response.data.sort((post1, post2) => {
                 return new Date(post2.createdAt) - new Date(post1.createdAt);
             })

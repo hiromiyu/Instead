@@ -9,6 +9,10 @@ import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 
 export default function Profile() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const [user, setUser] = useState({});
@@ -22,7 +26,7 @@ export default function Profile() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await axios.get(`/users?username=${username}`);
+            const response = await instance.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
@@ -31,13 +35,13 @@ export default function Profile() {
     const handleClick = async () => {
         try {
             if (followed) {
-                await axios.put(`/users/${user._id}/unfollow`, {
+                await instance.put(`/users/${user._id}/unfollow`, {
                     userId: currentUser._id
                 });
                 dispatch({ type: "UNFOLLOW", payload: user._id })
 
             } else {
-                await axios.put(`/users/${user._id}/follow`, {
+                await instance.put(`/users/${user._id}/follow`, {
                     userId: currentUser._id
                 });
                 dispatch({ type: "FOLLOW", payload: user._id })

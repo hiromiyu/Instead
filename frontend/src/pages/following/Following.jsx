@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../state/AuthContext";
 
 export default function Following() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([]);
     const { user: currentUser } = useContext(AuthContext);
@@ -15,7 +19,7 @@ export default function Following() {
         // window.scrollTo(0, 0);
         const getFriends = async () => {
             try {
-                const friendList = await axios.get(`/users/friends/${currentUser._id}`);
+                const friendList = await instance.get(`/users/friends/${currentUser._id}`);
                 setFriends(friendList.data);
             } catch (err) {
                 console.log(err);

@@ -7,6 +7,10 @@ import { useParams } from 'react-router-dom';
 
 
 export default function Share() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const [user, setUser] = useState({});
@@ -14,7 +18,7 @@ export default function Share() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await axios.get(`/users?username=${username}`);
+            const response = await instance.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
@@ -43,14 +47,14 @@ export default function Share() {
             newPost.img = fileName;
             try {
                 //画像APIを叩く
-                await axios.post("/upload", data);
+                await instance.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
 
         try {
-            await axios.post("/posts", newPost);
+            await instance.post("/posts", newPost);
             window.location.reload();
         } catch (err) {
             console.log(err);

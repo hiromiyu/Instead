@@ -8,6 +8,10 @@ import { AuthContext } from '../../state/AuthContext';
 
 export default function Post({ post }) {
 
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setLike] = useState(post.likes.length);
     const [user, setUser] = useState({});
@@ -17,7 +21,7 @@ export default function Post({ post }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await axios.get(`/users?userId=${post.userId}`
+            const response = await instance.get(`/users?userId=${post.userId}`
             );
             setUser(response.data);
         };
@@ -29,7 +33,7 @@ export default function Post({ post }) {
     const handleLike = async () => {
         try {
             //いいねのAPIを叩いていく
-            await axios.put(`/posts/${post._id}/like`, { userId: currentUser._id });
+            await instance.put(`/posts/${post._id}/like`, { userId: currentUser._id });
         } catch (err) {
             console.log(err);
         }
@@ -39,7 +43,7 @@ export default function Post({ post }) {
 
     const deletePost = async () => {
         try {
-            await axios.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
+            await instance.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
             window.location.reload();
         } catch (err) {
             console.log(err);

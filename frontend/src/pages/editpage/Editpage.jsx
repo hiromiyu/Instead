@@ -7,6 +7,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../state/AuthContext";
 
 export default function EditPage() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const navigate = useNavigate();
 
     const { user: currentUser } = useContext(AuthContext);
@@ -14,8 +18,8 @@ export default function EditPage() {
     const deleteUser = async () => {
         try {
             navigate("/");
-            await axios.delete(`/posts/${currentUser.username}/deleteall`);
-            await axios.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
+            await instance.delete(`/posts/${currentUser.username}/deleteall`);
+            await instance.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
             localStorage.clear();
             window.location.reload();
         } catch (err) {

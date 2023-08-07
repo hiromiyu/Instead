@@ -7,13 +7,16 @@ import axios from 'axios';
 import { Home, Person, Settings } from '@mui/icons-material';
 
 export default function Topbar() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
 
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await axios.get(`/users?username=${currentUser.username}`);
+            const response = await instance.get(`/users?username=${currentUser.username}`);
             setUser(response.data);
         };
         fetchUser();

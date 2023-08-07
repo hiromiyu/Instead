@@ -4,6 +4,10 @@ import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
+
     const username = useRef();
     const email = useRef();
     const password = useRef();
@@ -26,7 +30,7 @@ export default function Register() {
                     password: password.current.value,
                 };
                 //registerApiを叩く
-                await axios.post("/auth/register", user)
+                await instance.post("/auth/register", user)
                 navigate("/login");
             } catch (err) {
                 console.log(err);

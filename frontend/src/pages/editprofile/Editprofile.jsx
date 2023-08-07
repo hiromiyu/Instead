@@ -8,13 +8,16 @@ import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext'
 
 export default function Editprofile() {
+    const instance = axios.create({
+        baseURL: process.env.REACT_PUBLIC_API_BASEURL
+    });
 
     const [user, setUser] = useState({});
     const username = useParams().username;
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await axios.get(`/users?username=${username}`);
+            const response = await instance.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
@@ -42,13 +45,13 @@ export default function Editprofile() {
             newUser.profilePicture = fileName;
             try {
                 // 画像APIを叩く
-                await axios.post("/upload", data);
+                await instance.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
         try {
-            await axios.put(`/users/${currentUser._id}`, newUser);
+            await instance.put(`/users/${currentUser._id}`, newUser);
             navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
@@ -71,14 +74,14 @@ export default function Editprofile() {
             newUser.coverPicture = fileName;
             try {
                 //画像APIを叩く
-                await axios.post("/upload", data);
+                await instance.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
 
         try {
-            await axios.put(`/users/${currentUser._id}`, newUser);
+            await instance.put(`/users/${currentUser._id}`, newUser);
             navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
