@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
 import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext';
-import axios from "axios"
 import { useParams } from 'react-router-dom';
+import apiClient from '../../lib/apiClient';
 
 
 export default function Share() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -18,11 +15,11 @@ export default function Share() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await instance.get(`/users?username=${username}`);
+            const response = await apiClient.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
-    }, [username, instance]);
+    }, [username, apiClient]);
 
     const { user: currentUser } = useContext(AuthContext);
     const desc = useRef();
@@ -47,14 +44,14 @@ export default function Share() {
             newPost.img = fileName;
             try {
                 //画像APIを叩く
-                await instance.post("/upload", data);
+                await apiClient.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
 
         try {
-            await instance.post("/posts", newPost);
+            await apiClient.post("/posts", newPost);
             window.location.reload();
         } catch (err) {
             console.log(err);

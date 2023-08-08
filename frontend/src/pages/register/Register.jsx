@@ -1,12 +1,9 @@
 import React, { useRef } from 'react'
 import "./Register.css"
-import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import apiClient from '../../lib/apiClient'
 
 export default function Register() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const username = useRef();
     const email = useRef();
@@ -30,7 +27,7 @@ export default function Register() {
                     password: password.current.value,
                 };
                 //registerApiを叩く
-                await instance.post("/auth/register", user)
+                await apiClient.post("/auth/register", user)
                 navigate("/login");
             } catch (err) {
                 console.log(err);

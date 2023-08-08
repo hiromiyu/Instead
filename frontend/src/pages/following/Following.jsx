@@ -1,14 +1,11 @@
 import "./Following.css";
 import Topbar from "../../components/topbar/Topbar";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../state/AuthContext";
+import apiClient from "../../lib/apiClient";
 
 export default function Following() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([]);
@@ -19,14 +16,14 @@ export default function Following() {
         // window.scrollTo(0, 0);
         const getFriends = async () => {
             try {
-                const friendList = await instance.get(`/users/friends/${currentUser._id}`);
+                const friendList = await apiClient.get(`/users/friends/${currentUser._id}`);
                 setFriends(friendList.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getFriends();
-    }, [currentUser, instance]);
+    }, [currentUser, apiClient]);
 
     return (
         <>

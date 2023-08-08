@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Post.css"
 import { MoreVert } from '@mui/icons-material'
-import axios from 'axios'
 import { format } from "timeago.js"
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
+import { apiClient } from '../../lib/apiClient'
 
 export default function Post({ post }) {
-
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setLike] = useState(post.likes.length);
@@ -21,19 +17,19 @@ export default function Post({ post }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await instance.get(`/users?userId=${post.userId}`
+            const response = await apiClient.get(`/users?userId=${post.userId}`
             );
             setUser(response.data);
         };
         fetchUser();
-    }, [post.userId, instance]);
+    }, [post.userId, apiClient]);
 
 
 
     const handleLike = async () => {
         try {
             //いいねのAPIを叩いていく
-            await instance.put(`/posts/${post._id}/like`, { userId: currentUser._id });
+            await apiClient.put(`/posts/${post._id}/like`, { userId: currentUser._id });
         } catch (err) {
             console.log(err);
         }
@@ -43,7 +39,7 @@ export default function Post({ post }) {
 
     const deletePost = async () => {
         try {
-            await instance.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
+            await apiClient.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
             window.location.reload();
         } catch (err) {
             console.log(err);

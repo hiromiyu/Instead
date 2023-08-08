@@ -2,14 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./TimeLine.css"
 import Share from '../share/Share'
 import Post from '../post/Post'
-import axios from "axios"
 import { AuthContext } from '../../state/AuthContext'
-
+import apiClient from '../../lib/apiClient'
 
 export default function TimeLine({ username }) {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const [posts, setPosts] = useState([]);
 
@@ -18,15 +14,15 @@ export default function TimeLine({ username }) {
     useEffect(() => {
         const fetchPosts = async () => {
             const response = username
-                ? await instance.get(`/posts/profile/${username}`)//プロフィールの場合
-                : await instance.get(`/posts/timeline/${user._id}`);//ホームの場合
+                ? await apiClient.get(`/posts/profile/${username}`)//プロフィールの場合
+                : await apiClient.get(`/posts/timeline/${user._id}`);//ホームの場合
             setPosts(response.data.sort((post1, post2) => {
                 return new Date(post2.createdAt) - new Date(post1.createdAt);
             })
             );
         };
         fetchPosts();
-    }, [username, user._id, instance]);
+    }, [username, user._id, apiClient]);
 
     return (
         <div className='timeline'>

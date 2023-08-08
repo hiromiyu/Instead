@@ -2,26 +2,23 @@ import Topbar from '../../components/topbar/Topbar'
 // import Sidebar from '../../components/sidebar/Sidebar'
 import "./Editprofile.css"
 import { useState, useRef, useContext, useEffect } from 'react'
-import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext'
+import apiClient from '../../lib/apiClient'
 
 export default function Editprofile() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const [user, setUser] = useState({});
     const username = useParams().username;
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await instance.get(`/users?username=${username}`);
+            const response = await apiClient.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
-    }, [username, instance]);
+    }, [username, apiClient]);
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const navigate = useNavigate();
@@ -45,13 +42,13 @@ export default function Editprofile() {
             newUser.profilePicture = fileName;
             try {
                 // 画像APIを叩く
-                await instance.post("/upload", data);
+                await apiClient.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
         try {
-            await instance.put(`/users/${currentUser._id}`, newUser);
+            await apiClient.put(`/users/${currentUser._id}`, newUser);
             navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
@@ -74,14 +71,14 @@ export default function Editprofile() {
             newUser.coverPicture = fileName;
             try {
                 //画像APIを叩く
-                await instance.post("/upload", data);
+                await apiClient.post("/upload", data);
             } catch (err) {
                 console.log(err);
             }
         };
 
         try {
-            await instance.put(`/users/${currentUser._id}`, newUser);
+            await apiClient.put(`/users/${currentUser._id}`, newUser);
             navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);

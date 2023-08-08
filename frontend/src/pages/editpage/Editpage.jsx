@@ -2,14 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 // import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import "./EditPage.css";
-import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../state/AuthContext";
+import apiClient from "../../lib/apiClient";
 
 export default function EditPage() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const navigate = useNavigate();
 
@@ -18,8 +15,8 @@ export default function EditPage() {
     const deleteUser = async () => {
         try {
             navigate("/");
-            await instance.delete(`/posts/${currentUser.username}/deleteall`);
-            await instance.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
+            await apiClient.delete(`/posts/${currentUser.username}/deleteall`);
+            await apiClient.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
             localStorage.clear();
             window.location.reload();
         } catch (err) {

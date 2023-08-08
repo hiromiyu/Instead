@@ -4,14 +4,11 @@ import Topbar from '../../components/topbar/Topbar'
 import TimeLine from '../../components/timeline/TimeLine'
 // import "./Profile.css"
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
+import apiClient from '../../lib/apiClient'
 
 export default function Profile() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -26,22 +23,22 @@ export default function Profile() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await instance.get(`/users?username=${username}`);
+            const response = await apiClient.get(`/users?username=${username}`);
             setUser(response.data);
         };
         fetchUser();
-    }, [username, instance]);
+    }, [username, apiClient]);
 
     const handleClick = async () => {
         try {
             if (followed) {
-                await instance.put(`/users/${user._id}/unfollow`, {
+                await apiClient.put(`/users/${user._id}/unfollow`, {
                     userId: currentUser._id
                 });
                 dispatch({ type: "UNFOLLOW", payload: user._id })
 
             } else {
-                await instance.put(`/users/${user._id}/follow`, {
+                await apiClient.put(`/users/${user._id}/follow`, {
                     userId: currentUser._id
                 });
                 dispatch({ type: "FOLLOW", payload: user._id })

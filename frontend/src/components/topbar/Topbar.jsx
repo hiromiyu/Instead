@@ -3,24 +3,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./Topbar.css"
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../state/AuthContext";
-import axios from 'axios';
 import { Home, Person, Settings } from '@mui/icons-material';
+import apiClient from '../../lib/apiClient';
 
 export default function Topbar() {
-    const instance = axios.create({
-        baseURL: process.env.REACT_PUBLIC_API_BASEURL
-    });
 
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await instance.get(`/users?username=${currentUser.username}`);
+            const response = await apiClient.get(`/users?username=${currentUser.username}`);
             setUser(response.data);
         };
         fetchUser();
-    }, [currentUser.username, instance]);
+    }, [currentUser.username, apiClient]);
 
 
     // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
