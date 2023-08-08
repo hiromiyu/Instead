@@ -4,7 +4,7 @@ import { MoreVert } from '@mui/icons-material'
 import { format } from "timeago.js"
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
-import { apiClient } from '../../lib/apiClient'
+import apiClient from '../../lib/apiClient'
 
 export default function Post({ post }) {
 
