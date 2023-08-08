@@ -12,7 +12,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const corsOptions = {
-    origin: process.env.NODE_PUBLIC_API_BASEURL,
+    origin: "https://instead.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 200
