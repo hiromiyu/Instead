@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: "https://instead.onrender.com/api",
     headers: {
         "Content-type": "application/json",
     },
