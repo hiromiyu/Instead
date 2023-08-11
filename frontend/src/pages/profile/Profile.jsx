@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Topbar from '../../components/topbar/Topbar'
 // import Sidebar from '../../components/sidebar/Sidebar'
 import TimeLine from '../../components/timeline/TimeLine'
-// import "./Profile.css"
+import "./Profile.css"
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
@@ -74,7 +74,7 @@ export default function Profile() {
                                     <h4 className='profileInfoName'>{user.username}</h4>
                                     {user.username !== currentUser.username && (
                                         <button className="followingButton" onClick={handleClick}
-                                            style={{ color: followed ? "gray" : "" }}>
+                                            style={{ color: followed ? "black" : "" }}>
                                             {followed ? "Following" : "Follow"}
                                         </button>
                                     )}
@@ -91,6 +91,7 @@ export default function Profile() {
                                     </Link>
                                 }
                             </div>
+
                         </div>
                     </div>
                     <div className="profileRightBottom">

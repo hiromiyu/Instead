@@ -88,22 +88,22 @@ export default function Editprofile() {
     return (
         <>
             <Topbar />
-            <div className="profile">
+            <div className="editProfile">
                 {/* <Sidebar /> */}
-                <div className="profileRight">
-                    <div className="profileRightTop">
-                        <div className="profileCover">
-                            <div className="coverImg">
+                <div className="editProfileRight">
+                    <div className="editProfileRightTop">
+                        <div className="editProfileCover">
+                            <div className="editCoverImg">
                                 {backimgfile ?
-                                    <img src={URL.createObjectURL(backimgfile)} alt='' className='profileCoverImg' />
+                                    <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
                                     :
                                     <img
                                         src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                         alt=""
-                                        className='profileCoverImg'
+                                        className='editProfileCoverImg'
                                     />
                                 }
-                                <form className="shareButtons" onSubmit={(e) => backImghandleSubmit(e)}>
+                                <form className="editShareButtons" onSubmit={(e) => backImghandleSubmit(e)}>
                                     {/* {backimgfile &&
                                         <div className="shareImgContainer">
                                             <img src={URL.createObjectURL(backimgfile)} alt='' className='shareImg' />
@@ -111,19 +111,19 @@ export default function Editprofile() {
                                             <button className="shareCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
                                         </div>
                                     } */}
-                                    <div className="shareOptions">
-                                        <label className="shareOption" htmlFor='backfile'>
-                                            <Image className='covershareIcon' htmlColor='gray' />
-                                            <span className="shareOptionText">背景</span>
+                                    <div className="editShareOptions">
+                                        <label className="editShareOption" htmlFor='backfile'>
+                                            <Image className='editCovershareIcon' htmlColor='gray' />
+                                            <span className="editShareOptionText">背景</span>
                                             <input type="file" id='backfile' accept='.png, .jpeg, .jpg'
                                                 style={{ display: "none" }}
                                                 onChange={(e) => backimgsetFile(e.target.files[0])}
                                             />
                                         </label>
                                         {backimgfile &&
-                                            <button className="editCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
+                                            <button className="editEditCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
                                         }
-                                        <button className="shareButton" type='submit'>保存</button>
+                                        <button className="editShareButton" type='submit'>保存</button>
                                     </div>
                                 </form>
                             </div>
@@ -135,38 +135,38 @@ export default function Editprofile() {
                                         <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                                     </div>
                                 } */}
-                                <div className="shareOptions">
-                                    <label className="shareOption" htmlFor='file'>
-                                        <Image className='shareIcon' htmlColor='gray' />
-                                        <span className="shareOptionText">アイコン</span>
+                                <div className="editShareOptions">
+                                    <label className="editShareOption" htmlFor='file'>
+                                        <Image className='editShareIcon' htmlColor='gray' />
+                                        <span className="editShareOptionText">アイコン</span>
                                         <input type="file" id='file' accept='.png, .jpeg, .jpg'
                                             style={{ display: "none" }}
                                             onChange={(e) => setFile(e.target.files[0])}
                                         />
                                     </label>
                                     {file &&
-                                        <button className="editCancelImg" onClick={() => setFile(null)}>キャンセル</button>
+                                        <button className="editEditCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                                     }
-                                    <button className="shareButton" type='submit'>保存</button>
+                                    <button className="editShareButton" type='submit'>保存</button>
                                 </div>
-                                <div className="userImg">
-                                    {file ? <img src={URL.createObjectURL(file)} alt='' className='profileUserImg' />
+                                <div className="editUserImg">
+                                    {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
                                         :
                                         <img
                                             src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                             alt=""
-                                            className='profileUserImg'
+                                            className='editProfileUserImg'
                                         />
                                     }
 
                                 </div>
                             </form>
                         </div>
-                        <div className="profileEdit">
-                            <div className="profileInfo">
+                        <div className="editProfileEdit">
+                            <div className="editProfileInfo">
                                 <textarea
                                     type='textarea'
-                                    className='shareInput'
+                                    className='editShareInput'
                                     placeholder='プロフィール入力'
                                     ref={desc}
                                     defaultValue={user.desc}
@@ -174,7 +174,7 @@ export default function Editprofile() {
                             </div>
                         </div>
                         <Link to={`/profile/${currentUser.username}`}>
-                            <button className='editButton'>戻る</button>
+                            <button className='editEditButton'>戻る</button>
                         </Link>
                     </div>
                 </div>

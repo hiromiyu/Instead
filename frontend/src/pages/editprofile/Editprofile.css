@@ -1,27 +1,27 @@
-.profile {
+.editProfile {
     display: flex;
 }
 
-.profileRight {
+.editProfileRight {
     flex: 10.5;
 }
 
-.profileRightTop {
+.editProfileRightTop {
     border-bottom: 1px solid #dddddd;
 }
 
-.profileCover {
+.editProfileCover {
     height: 200px;
     position: relative;
 }
 
-.profileCoverImg {
+.editProfileCoverImg {
     width: 100%;
     height: 150px;
     object-fit: cover;
 }
 
-.profileUserImg {
+.editProfileUserImg {
     position: absolute;
     left: 0;
     right: 0;
@@ -34,17 +34,32 @@
     margin: 0 0 0 10px;
 }
 
-.shareButtons {
+.editShareOptionText {
+    font-size: 14px;
+    font-weight: 550;
+}
+
+.editShareButtons {
     display: flex;
     justify-content: flex-end;
 }
 
-.shareIconButtons {
-    /* display: flex; */
-    /* justify-content: center; */
+.editShareButton {
+    border: none;
+    padding: 6px 17px;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
-.profileInfo {
+/* .editShareIconButtons {
+    display: flex;
+    justify-content: center;
+} */
+
+.editProfileInfo {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -53,35 +68,35 @@
     padding: 10px 0;
 }
 
-.profileInfoTop {
+.editProfileInfoTop {
     display: flex;
     justify-content: space-between;
 } 
 
-.profileInfoName {
+.editProfileInfoName {
     font-size: 24px;
 }
 
-.followButton {
+.editFollowButton {
     /* border: none; */
     /* border-radius: 20px; */
 }
 
-.profileInfoDesc {
+.editProfileInfoDesc {
     white-space: pre-wrap;
 }
 
-.profileRightBottom {
+.editProfileRightBottom {
     display: flex;
 }
 
-.profileEdit {
+.editProfileEdit {
     display: flex;
     justify-content: space-between;
-    padding: 0 15px;
+    padding: 20px 5px 5px 5px;
 }
 
-.editButton {
+.editEditButton {
     height: 25px;
     margin-right: 15px;
     font-weight: bold;
@@ -93,11 +108,11 @@
     color: white;
 }
 
-.shareInput {
+.editShareInput {
     height: 15px;
 }
 
-.followButton {
+.editFollowButton {
     font-weight: bold;
     border: none;
     padding: 6px 17px;
@@ -108,7 +123,7 @@
     margin-right: 20px;
 }
 
-.followingButton {
+.editFollowingButton {
     font-weight: bold;
     border-width: thin;
     border: none;
@@ -120,13 +135,24 @@
     margin-right: 20px;
 }
 
-.editCancelImg {
+.editEditCancelImg {
     /* position: absolute; */
     margin: 0 10px 0 0;
     top: 0;
     right: 20px;
     cursor: pointer;
     opacity: 0.7;
+}
+
+.editShareOption {
+    /* display: flex; */
+    /* align-items: center; */
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.editCoverShareIcon {
+padding: 10px;
 }
 
 /* .coverImg {
