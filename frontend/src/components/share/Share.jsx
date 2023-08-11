@@ -77,7 +77,7 @@ export default function Share() {
                         ref={desc}
                     />
                 </div>
-                <hr className='shareHr' />
+                {/* <hr className='shareHr' /> */}
                 <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
                     {file && (
                         <div className="shareImgContainer">

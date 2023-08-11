@@ -34,9 +34,9 @@
     margin: 0 0 0 10px;
 }
 
-.profileEdit {
+/* .profileEdit {
     width: 100%;
-}
+} */
 
 .profileInfoTop {
     display: flex;
@@ -77,7 +77,7 @@
     border-radius: 20px;
     cursor: pointer;
     padding: 0 17px;
-    margin-right: 40px;
+    margin-right: 10px;
     background-color: gray;
     color: white;
 }
@@ -89,5 +89,5 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    margin-right: 30px;
+    /* margin-right: 10px; */
 }
