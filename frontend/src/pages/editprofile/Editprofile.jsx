@@ -113,7 +113,7 @@ export default function Editprofile() {
                                     } */}
                                     <div className="editShareOptions">
                                         <label className="editShareOption" htmlFor='backfile'>
-                                            <Image className='editCovershareIcon' htmlColor='gray' />
+                                            <Image className='editCoverShareIcon' htmlColor='gray' />
                                             <span className="editShareOptionText">背景</span>
                                             <input type="file" id='backfile' accept='.png, .jpeg, .jpg'
                                                 style={{ display: "none" }}

@@ -77,7 +77,7 @@ export default function Share() {
                         ref={desc}
                     />
                 </div>
-                {/* <hr className='shareHr' /> */}
+                <hr className='shareHr' />
                 <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
                     {file && (
                         <div className="shareImgContainer">
@@ -96,7 +96,7 @@ export default function Share() {
                             />
                         </label>
                     </div>
-                    <button className="shareButton" type='submit'>投稿</button>
+                    <label className="shareButton" type='submit'>投稿</label>
                 </form>
             </div>
         </div>
