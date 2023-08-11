@@ -23,7 +23,7 @@ export default function Following() {
             }
         };
         getFriends();
-    }, [currentUser, apiClient]);
+    }, [currentUser]);
 
     return (
         <>

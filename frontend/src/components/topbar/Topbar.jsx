@@ -17,7 +17,7 @@ export default function Topbar() {
             setUser(response.data);
         };
         fetchUser();
-    }, [currentUser.username, apiClient]);
+    }, [currentUser.username]);
 
 
     // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;

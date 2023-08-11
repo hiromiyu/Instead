@@ -18,7 +18,7 @@ export default function Editprofile() {
             setUser(response.data);
         };
         fetchUser();
-    }, [username, apiClient]);
+    }, [username]);
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const navigate = useNavigate();

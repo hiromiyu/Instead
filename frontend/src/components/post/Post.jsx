@@ -22,7 +22,7 @@ export default function Post({ post }) {
             setUser(response.data);
         };
         fetchUser();
-    }, [post.userId, apiClient]);
+    }, [post.userId]);
 
 
 

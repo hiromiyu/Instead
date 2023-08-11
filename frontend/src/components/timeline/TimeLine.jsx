@@ -22,7 +22,7 @@ export default function TimeLine({ username }) {
             );
         };
         fetchPosts();
-    }, [username, user._id, apiClient]);
+    }, [username, user._id]);
 
     return (
         <div className='timeline'>

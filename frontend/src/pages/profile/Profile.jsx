@@ -27,7 +27,7 @@ export default function Profile() {
             setUser(response.data);
         };
         fetchUser();
-    }, [username, apiClient]);
+    }, [username]);
 
     const handleClick = async () => {
         try {
