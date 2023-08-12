@@ -59,48 +59,50 @@ export default function Share() {
     };
 
     return (
-        <div className='share'>
-            <div className="shareWrapper">
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="shareTop">
-                        <img
-                            src={
-                                user.profilePicture ?
-                                    PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                            alt=''
-                            className='shareProfileImg'
-                        />
-                        <textarea
-                            type='textarea'
-                            className='shareInput'
-                            placeholder='say something'
-                            rows='4'
-                            ref={desc}
-                        />
-                    </div>
-                    <hr className='shareHr' />
-                    {/* {file && (
-                        <div className="shareImgContainer">
-                            <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
-                            <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
-                            <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
+        <>
+            <div className='share'>
+                <div className="shareWrapper">
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <div className="shareTop">
+                            <img
+                                src={
+                                    user.profilePicture ?
+                                        PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                alt=''
+                                className='shareProfileImg'
+                            />
+                            <textarea
+                                type='textarea'
+                                className='shareInput'
+                                placeholder='say something'
+                                rows='4'
+                                ref={desc}
+                            />
                         </div>
-                    )} */}
-                    <div className='shareButtons'>
-                        <div className="shareOptions">
-                            <label className="shareOption" htmlFor='file'>
-                                <Image className='shareIcon' htmlColor='gray' />
-                                <span className="shareOptionText">写真</span>
-                                <input type="file" id='file' accept='.png, .jpeg, .jpg'
-                                    style={{ display: "none" }}
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                />
-                            </label>
+                        <hr className='shareHr' />
+                        {file && (
+                            <div className="shareImgContainer">
+                                <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
+                                {/* <Cancel className="shareCancelImg" onClick={() => setFile(null)} /> */}
+                                <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
+                            </div>
+                        )}
+                        <div className='shareButtons'>
+                            <div className="shareOptions">
+                                <label className="shareOption" htmlFor='file'>
+                                    <Image className='shareIcon' htmlColor='gray' />
+                                    <span className="shareOptionText">写真</span>
+                                    <input type="file" id='file' accept='.png, .jpeg, .jpg'
+                                        style={{ display: "none" }}
+                                        onChange={(e) => setFile(e.target.files[0])}
+                                    />
+                                </label>
+                            </div>
+                            <button className="shareButton" type='submit'>投稿</button>
                         </div>
-                        <button className="shareButton" type='submit'>投稿</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
