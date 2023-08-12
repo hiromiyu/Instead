@@ -61,25 +61,25 @@ export default function Share() {
     return (
         <div className='share'>
             <div className="shareWrapper">
-                <div className="shareTop">
-                    <img
-                        src={
-                            user.profilePicture ?
-                                PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                        alt=''
-                        className='shareProfileImg'
-                    />
-                    <textarea
-                        type='textarea'
-                        className='shareInput'
-                        placeholder='say something'
-                        rows='4'
-                        ref={desc}
-                    />
-                </div>
-                <hr className='shareHr' />
-                <div>
-                    <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <div className="shareTop">
+                        <img
+                            src={
+                                user.profilePicture ?
+                                    PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                            alt=''
+                            className='shareProfileImg'
+                        />
+                        <textarea
+                            type='textarea'
+                            className='shareInput'
+                            placeholder='say something'
+                            rows='4'
+                            ref={desc}
+                        />
+                    </div>
+                    <hr className='shareHr' />
+                    <div className='shareButtons'>
                         {file && (
                             <div className="shareImgContainer">
                                 <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
@@ -98,8 +98,8 @@ export default function Share() {
                             </label>
                         </div>
                         <label className="shareButton" type='submit'>投稿</label>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     )
