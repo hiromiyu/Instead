@@ -1,16 +1,3 @@
 * {
     margin: 0;
 }
-
-body {
-    background-color: white;
-    color: black;
-}
-
-@media (prefers-color-scheme: dark)
-{
-    body {
-        background-color: #lalala;
-        color: white;
-    }
-} 
