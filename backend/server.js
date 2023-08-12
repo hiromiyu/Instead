@@ -4,8 +4,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
-// const port = process.env.PORT || 3001;
-const port = 4000
+const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
@@ -29,9 +28,6 @@ mongoose.connect(process.env.MONGOURL)
     });
 
 // ミドルウェア
-// app.get('/', cors(corsOptions), function (res) {
-//     res.json({ msg: 'https://dayce-sns-frontend.vercel.appからのアクセスのみ許可' })
-// });
 
 app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
 

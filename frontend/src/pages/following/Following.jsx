@@ -12,8 +12,6 @@ export default function Following() {
     const { user: currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-        // document.title = "Following";
-        // window.scrollTo(0, 0);
         const getFriends = async () => {
             try {
                 const friendList = await apiClient.get(`/users/friends/${currentUser._id}`);
