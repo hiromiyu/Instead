@@ -29,9 +29,10 @@ export default function Following() {
         <>
             <Topbar />
             {friends.map((friend) => (
-                <Link to={"/profile/" + friend.username} key={friend._id}
-                    style={{ textDecoration: "none", color: "black" }}>
-                    <div className="homeFollowing">
+
+                <div className="homeFollowing">
+                    <Link to={"/profile/" + friend.username} key={friend._id}
+                        style={{ textDecoration: "none" }}>
                         <div className="followSidebar">
                             <div>
                                 <img
@@ -43,19 +44,20 @@ export default function Following() {
                                 />
                             </div>
                         </div>
-                        <div className="followWrapper">
-                            <div className="followTop">
-                                <div className="followTopLeft">
-                                    <span className="homeFollowingName">{friend.username}</span>
-                                </div>
-                                <div className="followTopRight">
-
-                                </div>
+                    </Link>
+                    <div className="followWrapper">
+                        <div className="followTop">
+                            <div className="followTopLeft">
+                                <span className="homeFollowingName">{friend.username}</span>
                             </div>
-                            <span className="homeFollowingStatus">{friend.desc}</span>
+                            <div className="followTopRight">
+
+                            </div>
                         </div>
+                        <span className="homeFollowingStatus">{friend.desc}</span>
                     </div>
-                </Link>
+                </div>
+
             ))
             }
         </>
