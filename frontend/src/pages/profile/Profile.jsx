@@ -91,7 +91,6 @@ export default function Profile() {
                                     </Link>
                                 }
                             </div>
-
                         </div>
                     </div>
                     <div className="profileRightBottom">
