@@ -36,14 +36,16 @@
     margin: 20px;
 }
 
-.shareButtons {
+/* .shareButtons {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+} */
 
 .shareOptions {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-left: 20px;
 }
 

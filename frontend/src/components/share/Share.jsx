@@ -63,7 +63,7 @@ export default function Share() {
             <div className='share'>
                 <div className="shareWrapper">
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        {/* <div className="shareTop">
+                        <div className="shareTop">
                             <img
                                 src={
                                     user.profilePicture ?
@@ -79,7 +79,7 @@ export default function Share() {
                                 ref={desc}
                             />
                         </div>
-                        <hr className='shareHr' /> */}
+                        <hr className='shareHr' />
                         {file && (
                             <div className="shareImgContainer">
                                 <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
@@ -87,9 +87,7 @@ export default function Share() {
                                 <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                             </div>
                         )}
-
                         {/* <div className='shareButtons'> */}
-                        <p>表示する？</p>
                         <div className="shareOptions">
                             <label className="shareOption" htmlFor='file'>
                                 <Image className='shareIcon' htmlColor='gray' />
