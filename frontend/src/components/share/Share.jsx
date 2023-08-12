@@ -63,7 +63,22 @@ export default function Share() {
             <div className='share'>
                 <div className="shareWrapper">
                     <form onSubmit={(e) => handleSubmit(e)}>
-
+                        <div className="shareTop">
+                            <img
+                                src={
+                                    user.profilePicture ?
+                                        PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                alt=''
+                                className='shareProfileImg'
+                            />
+                            <textarea
+                                type='textarea'
+                                className='shareInput'
+                                placeholder='say something'
+                                rows='4'
+                                ref={desc}
+                            />
+                        </div>
                         <hr className='shareHr' />
                         {file && (
                             <div className="shareImgContainer">
@@ -86,22 +101,6 @@ export default function Share() {
                             <button className="shareButton" type='submit'>投稿</button>
                         </div>
                     </form>
-                    <div className="shareTop">
-                        <img
-                            src={
-                                user.profilePicture ?
-                                    PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                            alt=''
-                            className='shareProfileImg'
-                        />
-                        <textarea
-                            type='textarea'
-                            className='shareInput'
-                            placeholder='say something'
-                            rows='4'
-                            ref={desc}
-                        />
-                    </div>
                 </div>
             </div>
         </>
