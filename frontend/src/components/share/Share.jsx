@@ -71,13 +71,13 @@ export default function Share() {
                                 alt=''
                                 className='shareProfileImg'
                             />
-                            <textarea
+                            {/* <textarea
                                 type='textarea'
                                 className='shareInput'
                                 placeholder='say something'
                                 rows='4'
                                 ref={desc}
-                            />
+                            /> */}
                         </div>
                         <hr className='shareHr' />
                         {file && (
