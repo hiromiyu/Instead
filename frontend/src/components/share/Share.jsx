@@ -63,7 +63,7 @@ export default function Share() {
             <div className='share'>
                 <div className="shareWrapper">
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <div className="shareTop">
+                        {/* <div className="shareTop">
                             <img
                                 src={
                                     user.profilePicture ?
@@ -71,15 +71,15 @@ export default function Share() {
                                 alt=''
                                 className='shareProfileImg'
                             />
-                            {/* <textarea
+                            <textarea
                                 type='textarea'
                                 className='shareInput'
                                 placeholder='say something'
                                 rows='4'
                                 ref={desc}
-                            /> */}
+                            />
                         </div>
-                        <hr className='shareHr' />
+                        <hr className='shareHr' /> */}
                         {file && (
                             <div className="shareImgContainer">
                                 <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
