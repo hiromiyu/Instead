@@ -87,8 +87,9 @@ export default function Share() {
                                 <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                             </div>
                         )}
-                        <p>表示する？</p>
+
                         <div className='shareButtons'>
+                            <p>表示する？</p>
                             <div className="shareOptions">
                                 <label className="shareOption" htmlFor='file'>
                                     <Image className='shareIcon' htmlColor='gray' />
