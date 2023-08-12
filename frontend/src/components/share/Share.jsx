@@ -97,7 +97,7 @@ export default function Share() {
                                 />
                             </label>
                         </div>
-                        <label className="shareButton" type='submit'>投稿</label>
+                        <button className="shareButton" type='submit'>投稿</button>
                     </div>
                 </form>
             </div>
