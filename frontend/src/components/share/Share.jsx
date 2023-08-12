@@ -97,8 +97,8 @@ export default function Share() {
                                     onChange={(e) => setFile(e.target.files[0])}
                                 />
                             </label>
+                            <button className="shareButton" type='submit'>投稿</button>
                         </div>
-                        <button className="shareButton" type='submit'>投稿</button>
                         {/* </div> */}
                     </form>
                 </div>
