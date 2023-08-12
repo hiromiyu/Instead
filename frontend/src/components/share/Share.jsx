@@ -88,20 +88,20 @@ export default function Share() {
                             </div>
                         )}
 
-                        <div className='shareButtons'>
-                            <p>表示する？</p>
-                            <div className="shareOptions">
-                                <label className="shareOption" htmlFor='file'>
-                                    <Image className='shareIcon' htmlColor='gray' />
-                                    <span className="shareOptionText">写真</span>
-                                    <input type="file" id='file' accept='.png, .jpeg, .jpg'
-                                        style={{ display: "none" }}
-                                        onChange={(e) => setFile(e.target.files[0])}
-                                    />
-                                </label>
-                            </div>
-                            <button className="shareButton" type='submit'>投稿</button>
+                        {/* <div className='shareButtons'> */}
+                        <p>表示する？</p>
+                        <div className="shareOptions">
+                            <label className="shareOption" htmlFor='file'>
+                                <Image className='shareIcon' htmlColor='gray' />
+                                <span className="shareOptionText">写真</span>
+                                <input type="file" id='file' accept='.png, .jpeg, .jpg'
+                                    style={{ display: "none" }}
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                />
+                            </label>
                         </div>
+                        <button className="shareButton" type='submit'>投稿</button>
+                        {/* </div> */}
                     </form>
                 </div>
             </div>
