@@ -44,7 +44,7 @@
 
 .shareOptions {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     margin-left: 20px;
 }
