@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config();
 const cors = require("cors");
+const helmet = require("helmet");
 
 const corsOptions = {
     origin: "https://instead.vercel.app",
@@ -31,6 +32,7 @@ mongoose.connect(process.env.MONGOURL)
 
 app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
 
+app.use(helmet());
 app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
 app.use(cors(corsOptions), express.json());
 app.use("/api/users", cors(corsOptions), userRoute);
