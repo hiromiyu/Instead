@@ -114,7 +114,7 @@ export default function Post({ post }) {
                                 onClick={() => handleLike()}
                             />
                             <span className="postLikeCounter"
-                                style={{ color: isLiked ? "red" : "" }}
+                                style={{ color: isLiked ? "red" : "gray" }}
                             >
                                 {like}
                             </span>

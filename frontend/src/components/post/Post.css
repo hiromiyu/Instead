@@ -39,12 +39,14 @@
 
 .postDate {
     font-size: 12px;
+    color: gray;
 }
 
 .postTopRight {
     display: flex;
     align-items: center;
     cursor: pointer;
+    color: gray;
 }
 
 .postText {
