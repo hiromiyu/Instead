@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
 import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../../lib/apiClient';
 
 
 export default function Share() {
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({});
     const username = useParams().username;
@@ -28,6 +30,7 @@ export default function Share() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        navigate("/loading");
 
         const newPost = {
             userId: currentUser._id,
@@ -37,10 +40,8 @@ export default function Share() {
         if (file) {
             const data = new FormData();
             const fileName = Date.now() + file.name;
-            // data.append("name", fileName);
-            // data.append("file", file);
-            data.set("name", fileName);
-            data.set("file", file);
+            data.append("name", fileName);
+            data.append("file", file);
             newPost.img = fileName;
             try {
                 //画像APIを叩く
@@ -52,7 +53,8 @@ export default function Share() {
 
         try {
             await apiClient.post("/posts", newPost);
-            window.location.reload();
+            // window.location.reload();
+            navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
         }
@@ -67,7 +69,7 @@ export default function Share() {
                             <img
                                 src={
                                     user.profilePicture ?
-                                        PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                        PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                 alt=''
                                 className='shareProfileImg'
                             />

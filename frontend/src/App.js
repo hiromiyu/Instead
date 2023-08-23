@@ -10,6 +10,7 @@ import Privacy from "./pages/privacy/Privacy";
 import Termsofservice from "./pages/termsofservice/Termsofservice";
 import Editpage from "./pages/editpage/Editpage";
 import Following from "./pages/following/Following";
+import Loading from "./components/loading/Loading";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/editpage" element={<Editpage />} />
         <Route path="/following/:username" element={<Following />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </Router>
   );

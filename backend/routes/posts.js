@@ -1,7 +1,9 @@
+require("dotenv").config();
 const router = require('express').Router();
 const e = require('express');
 const Post = require("../models/Post");
 const User = require('../models/User');
+const supabase = require('../libs/supabaseClient');
 
 
 //投稿を作成する
@@ -37,7 +39,12 @@ router.delete("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (post.userId === req.body.userId) {
+            const fileKey = post.img
+            const response = await supabase.storage
+                .from('instead')
+                .remove([fileKey]);
             await post.deleteOne();
+
             return res.status(200).json("投稿削除に成功しました！");
         } else {
             return res.status(403).json("あなたは他の人の投稿を削除できません");

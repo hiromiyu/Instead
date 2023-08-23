@@ -11,6 +11,7 @@ import apiClient from '../../lib/apiClient'
 export default function Profile() {
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
 
     const [user, setUser] = useState({});
     const username = useParams().username;
@@ -58,12 +59,12 @@ export default function Profile() {
                     <div className="profileRightTop">
                         <div className="profileCover">
                             <img
-                                src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                 alt=""
                                 className='profileCoverImg'
                             />
                             <img
-                                src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                 alt=""
                                 className='profileUserImg'
                             />

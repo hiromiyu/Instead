@@ -21,6 +21,7 @@ export default function Editprofile() {
     }, [username]);
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const navigate = useNavigate();
     const { user: currentUser } = useContext(AuthContext);
     const desc = useRef();
@@ -28,6 +29,7 @@ export default function Editprofile() {
     const [backimgfile, backimgsetFile] = useState(null);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        navigate("/loading");
 
         const newUser = {
             userId: currentUser._id,
@@ -35,6 +37,13 @@ export default function Editprofile() {
         };
 
         if (file) {
+            try {
+                //アイコン画像削除用APIを叩く
+                await apiClient.delete(`/imgdelete/${currentUser._id}/deleteIcon`);
+            } catch (err) {
+                console.log(err);
+            }
+
             const data = new FormData();
             const fileName = Date.now() + file.name;
             data.append("name", fileName);
@@ -57,6 +66,7 @@ export default function Editprofile() {
 
     const backImghandleSubmit = async (e) => {
         e.preventDefault();
+        navigate("/loading");
 
         const newUser = {
             userId: currentUser._id,
@@ -64,6 +74,13 @@ export default function Editprofile() {
         };
 
         if (backimgfile) {
+            try {
+                //カバー画像削除用APIを叩く
+                await apiClient.delete(`/imgdelete/${currentUser._id}/deleteCover`);
+            } catch (err) {
+                console.log(err);
+            }
+
             const data = new FormData();
             const fileName = Date.now() + backimgfile.name;
             data.append("name", fileName);
@@ -98,7 +115,7 @@ export default function Editprofile() {
                                     <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
                                     :
                                     <img
-                                        src={user.coverPicture ? PUBLIC_FOLDER + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                        src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                         alt=""
                                         className='editProfileCoverImg'
                                     />
@@ -153,7 +170,7 @@ export default function Editprofile() {
                                     {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
                                         :
                                         <img
-                                            src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                            src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                                             alt=""
                                             className='editProfileUserImg'
                                         />

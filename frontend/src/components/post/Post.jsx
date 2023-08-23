@@ -9,6 +9,7 @@ import apiClient from '../../lib/apiClient'
 export default function Post({ post }) {
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const [like, setLike] = useState(post.likes.length);
     const [user, setUser] = useState({});
 
@@ -69,7 +70,7 @@ export default function Post({ post }) {
                         <img
                             src={
                                 user.profilePicture ?
-                                    PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                    PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
                             alt=''
                             className='postProfileImg'
                         />
@@ -104,7 +105,7 @@ export default function Post({ post }) {
                     </div>
                     <div className="postCenter">
                         <p className="postText">{post.desc}</p>
-                        <img src={PUBLIC_FOLDER + post.img} alt='' className='postImg' />
+                        <img src={PUBLIC_FOLDER_URL + post.img} alt='' className='postImg' />
                     </div>
                     <div className="postBottom">
                         <div className="postBottomLeft">
