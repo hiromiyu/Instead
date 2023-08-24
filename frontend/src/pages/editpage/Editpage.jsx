@@ -55,10 +55,10 @@ export default function EditPage() {
                 {/* <Sidebar /> */}
                 <div className="editLeft">
                     <Link to="/privacy">
-                        <h2>プライバシーポリシー</h2>
+                        <h2 className="privacyButton">プライバシーポリシー</h2>
                     </Link>
                     <Link to="/termsofservice">
-                        <h2>利用規約</h2>
+                        <h2 className="privacyButton">利用規約</h2>
                     </Link>
                 </div>
             </div>

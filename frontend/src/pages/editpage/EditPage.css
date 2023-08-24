@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
+.privacyButton {
+    color: gray;
+}
+
 .withdrawalButton {
     margin: 10px;
 }

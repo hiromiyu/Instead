@@ -58,7 +58,16 @@ router.delete("/:id", async (req, res) => {
 router.delete("/:username/deleteall", async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.username });
+        const fileKey = user.profilePicture
+        const coverKey = user.coverPicture
+        const postfind = await Post.find({ userId: user._id });
+        const postKey = postfind.map(post => post.img)
+        const fileKeys = [fileKey, coverKey, ...postKey];
+        const response = await supabase.storage
+            .from('instead')
+            .remove(fileKeys);
         await Post.deleteMany({ userId: user._id });
+
         return res.status(200).json("全投稿削除に成功しました！");
     } catch (err) {
         return res.status(403).json(err);

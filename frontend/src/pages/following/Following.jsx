@@ -8,6 +8,7 @@ import apiClient from "../../lib/apiClient";
 export default function Following() {
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const [friends, setFriends] = useState([]);
     const { user: currentUser } = useContext(AuthContext);
 
@@ -35,7 +36,7 @@ export default function Following() {
                             <div>
                                 <img
                                     src={friend.profilePicture ?
-                                        PUBLIC_FOLDER + friend.profilePicture :
+                                        PUBLIC_FOLDER_URL + friend.profilePicture :
                                         PUBLIC_FOLDER + "person/noAvatar.png"}
                                     alt=""
                                     className="homeFollowingImg"
