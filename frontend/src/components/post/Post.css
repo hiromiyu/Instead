@@ -79,9 +79,21 @@
     align-items: center;
 }
 
+.postCommentIcon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.postCommentCounter {
+    color: gray;
+}
+
 .likeIcon {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
+    margin-left: 15px;
     margin-right: 5px;
     cursor: pointer;
 }

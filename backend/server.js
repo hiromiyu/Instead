@@ -5,6 +5,7 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 const imgdeleteRoute = require("./routes/imgdelete");
+const commentRoute = require("./routes/comment");
 require("dotenv").config();
 const port = process.env.PORT || 4000;
 const mongoose = require("mongoose");
@@ -39,5 +40,6 @@ app.use("/api/auth", cors(corsOptions), authRoute);
 app.use("/api/posts", cors(corsOptions), postRoute);
 app.use("/api/upload", cors(corsOptions), uploadRoute);
 app.use("/api/imgdelete", cors(corsOptions), imgdeleteRoute);
+app.use("/api/comment", cors(corsOptions), commentRoute);
 
 app.listen(port, cors(corsOptions), () => console.log("サーバーが起動しました"));

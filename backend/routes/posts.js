@@ -148,4 +148,19 @@ router.get("/timeline/:userId", async (req, res) => {
     }
 });
 
+//投稿にコメントする
+router.put("/:id/comment", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        await post.updateOne({
+            $push: {
+                comments: req.body.userId,
+            },
+        });
+        return res.status(200).json("コメントに成功しました");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 module.exports = router;

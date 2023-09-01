@@ -5,14 +5,15 @@ import { format } from "timeago.js"
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
 import apiClient from '../../lib/apiClient'
+import Comment from '../comment/Comment'
 
 export default function Post({ post }) {
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const [like, setLike] = useState(post.likes.length);
+    const [comment, setComment] = useState();
     const [user, setUser] = useState({});
-
     const { user: currentUser } = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(post.likes.includes(currentUser._id));
 
@@ -25,7 +26,9 @@ export default function Post({ post }) {
         fetchUser();
     }, [post.userId]);
 
-
+    const handleCommentSubmit = () => {
+        setComment(!comment);
+    }
 
     const handleLike = async () => {
         try {
@@ -83,7 +86,6 @@ export default function Post({ post }) {
                                 {user.username}
                             </span>
                             <span className="postDate">{format(post.createdAt)}</span>
-                            {/* <span className="postDate">{post.createdAt}</span> */}
                         </div>
                         <div className="postTopRight">
                             {currentUser._id === user._id &&
@@ -103,15 +105,23 @@ export default function Post({ post }) {
                             }
                         </div>
                     </div>
-                    <div className="postCenter">
+                    <div className="postCenter"
+                    >
                         <p className="postText">{post.desc}</p>
                         <img src={PUBLIC_FOLDER_URL + post.img} alt='' className='postImg' />
                     </div>
                     <div className="postBottom">
                         <div className="postBottomLeft">
                             <img
+                                src={PUBLIC_FOLDER + 'message.png'}
+                                alt='' className='postCommentIcon'
+                                onClick={() => handleCommentSubmit()}
+                            />
+                            <span className="postCommentCounter">{post.comments.length}</span>
+                            <img
                                 src={isLiked ? PUBLIC_FOLDER + 'heart.png' : PUBLIC_FOLDER + 'IMG_0625.PNG'}
                                 alt='' className='likeIcon'
+                                style={{ color: isLiked ? "red" : "gray" }}
                                 onClick={() => handleLike()}
                             />
                             <span className="postLikeCounter"
@@ -121,10 +131,10 @@ export default function Post({ post }) {
                                 {like}
                             </span>
                         </div>
-                        {/* <div className="postBottomRight">
-                        <span className="postCommentText">{post.comment}:コメント</span>
-                    </div> */}
                     </div>
+                    {comment &&
+                        <Comment post={post} key={post._id} />
+                    }
                 </div>
             </div>
         </div >
