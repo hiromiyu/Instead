@@ -26,7 +26,7 @@ export default function Topbar() {
         <div className='topbarContainer'>
             <div className="topbarLeft">
                 <Link to="/" style={{ textDecoration: "none" }}>
-                    <span className='logo'>Instead</span>
+                    <span className='logo'>HOME</span>
                     <Home className='homeIcon' />
                 </Link>
 
