@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import Topbar from '../../components/topbar/Topbar'
-// import Sidebar from '../../components/sidebar/Sidebar'
 import TimeLine from '../../components/timeline/TimeLine'
 import "./Profile.css"
 import { useState, useEffect } from 'react'

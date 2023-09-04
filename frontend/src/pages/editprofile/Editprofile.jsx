@@ -105,97 +105,84 @@ export default function Editprofile() {
     return (
         <>
             <Topbar />
-            <div className="editProfile">
-                {/* <Sidebar /> */}
-                <div className="editProfileRight">
-                    <div className="editProfileRightTop">
-                        <div className="editProfileCover">
-                            <div className="editCoverImg">
-                                {backimgfile ?
-                                    <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
-                                    :
-                                    <img
-                                        src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                                        alt=""
-                                        className='editProfileCoverImg'
-                                    />
-                                }
-                                <form className="editShareButtons" onSubmit={(e) => backImghandleSubmit(e)}>
-                                    {/* {backimgfile &&
-                                        <div className="shareImgContainer">
-                                            <img src={URL.createObjectURL(backimgfile)} alt='' className='shareImg' />
-                                            <Cancel className="shareCancelImg" onClick={() => backimgsetFile(null)} />
-                                            <button className="shareCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
+            {currentUser.username === user.username &&
+                <div className="editProfile">
+                    {/* <Sidebar /> */}
+                    <div className="editProfileRight">
+                        <div className="editProfileRightTop">
+                            <div className="editProfileCover">
+                                <div className="editCoverImg">
+                                    {backimgfile ?
+                                        <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
+                                        :
+                                        <img
+                                            src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                            alt=""
+                                            className='editProfileCoverImg'
+                                        />
+                                    }
+                                    <form className="editShareButtons" onSubmit={(e) => backImghandleSubmit(e)}>
+                                        <div className="editShareOptions">
+                                            <label className="editShareOption" htmlFor='backfile'>
+                                                <Image className='editCoverShareIcon' htmlColor='gray' />
+                                                <span className="editShareOptionText">背景</span>
+                                                <input type="file" id='backfile' accept='.png, .jpeg, .jpg'
+                                                    style={{ display: "none" }}
+                                                    onChange={(e) => backimgsetFile(e.target.files[0])}
+                                                />
+                                            </label>
+                                            {backimgfile &&
+                                                <button className="editEditCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
+                                            }
+                                            <button className="editShareButton" type='submit'>保存</button>
                                         </div>
-                                    } */}
+                                    </form>
+                                </div>
+                                <form onSubmit={(e) => handleSubmit(e)}>
                                     <div className="editShareOptions">
-                                        <label className="editShareOption" htmlFor='backfile'>
-                                            <Image className='editCoverShareIcon' htmlColor='gray' />
-                                            <span className="editShareOptionText">背景</span>
-                                            <input type="file" id='backfile' accept='.png, .jpeg, .jpg'
+                                        <label className="editShareOption" htmlFor='file'>
+                                            <Image className='editShareIcon' htmlColor='gray' />
+                                            <span className="editShareOptionText">アイコン</span>
+                                            <input type="file" id='file' accept='.png, .jpeg, .jpg'
                                                 style={{ display: "none" }}
-                                                onChange={(e) => backimgsetFile(e.target.files[0])}
+                                                onChange={(e) => setFile(e.target.files[0])}
                                             />
                                         </label>
-                                        {backimgfile &&
-                                            <button className="editEditCancelImg" onClick={() => backimgsetFile(null)}>キャンセル</button>
+                                        {file &&
+                                            <button className="editEditCancelImg" onClick={() => setFile(null)}>キャンセル</button>
                                         }
                                         <button className="editShareButton" type='submit'>保存</button>
                                     </div>
+                                    <div className="editUserImg">
+                                        {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
+                                            :
+                                            <img
+                                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                                alt=""
+                                                className='editProfileUserImg'
+                                            />
+                                        }
+                                    </div>
                                 </form>
                             </div>
-                            <form onSubmit={(e) => handleSubmit(e)}>
-                                {/* {file &&
-                                    <div className="shareImgContainer">
-                                        <img src={URL.createObjectURL(file)} alt='' className='shareImg' />
-                                        <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
-                                        <button className="shareCancelImg" onClick={() => setFile(null)}>キャンセル</button>
-                                    </div>
-                                } */}
-                                <div className="editShareOptions">
-                                    <label className="editShareOption" htmlFor='file'>
-                                        <Image className='editShareIcon' htmlColor='gray' />
-                                        <span className="editShareOptionText">アイコン</span>
-                                        <input type="file" id='file' accept='.png, .jpeg, .jpg'
-                                            style={{ display: "none" }}
-                                            onChange={(e) => setFile(e.target.files[0])}
-                                        />
-                                    </label>
-                                    {file &&
-                                        <button className="editEditCancelImg" onClick={() => setFile(null)}>キャンセル</button>
-                                    }
-                                    <button className="editShareButton" type='submit'>保存</button>
+                            <div className="editProfileEdit">
+                                <div className="editProfileInfo">
+                                    <textarea
+                                        type='textarea'
+                                        className='editShareInput'
+                                        placeholder='プロフィール入力'
+                                        ref={desc}
+                                        defaultValue={user.desc}
+                                    />
                                 </div>
-                                <div className="editUserImg">
-                                    {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
-                                        :
-                                        <img
-                                            src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
-                                            alt=""
-                                            className='editProfileUserImg'
-                                        />
-                                    }
-
-                                </div>
-                            </form>
-                        </div>
-                        <div className="editProfileEdit">
-                            <div className="editProfileInfo">
-                                <textarea
-                                    type='textarea'
-                                    className='editShareInput'
-                                    placeholder='プロフィール入力'
-                                    ref={desc}
-                                    defaultValue={user.desc}
-                                />
                             </div>
+                            <Link to={`/profile/${currentUser.username}`}>
+                                <button className='editEditButton'>戻る</button>
+                            </Link>
                         </div>
-                        <Link to={`/profile/${currentUser.username}`}>
-                            <button className='editEditButton'>戻る</button>
-                        </Link>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }
