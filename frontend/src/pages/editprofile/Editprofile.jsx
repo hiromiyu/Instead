@@ -105,10 +105,10 @@ export default function Editprofile() {
     return (
         <>
             <Topbar />
-            {currentUser.username === user.username &&
-                <div className="editProfile">
-                    {/* <Sidebar /> */}
-                    <div className="editProfileRight">
+            <div className="editProfile">
+                {/* <Sidebar /> */}
+                <div className="editProfileRight">
+                    {currentUser.username === user.username &&
                         <div className="editProfileRightTop">
                             <div className="editProfileCover">
                                 <div className="editCoverImg">
@@ -180,9 +180,9 @@ export default function Editprofile() {
                                 <button className='editEditButton'>戻る</button>
                             </Link>
                         </div>
-                    </div>
+                    }
                 </div>
-            }
+            </div>
         </>
     )
 }
