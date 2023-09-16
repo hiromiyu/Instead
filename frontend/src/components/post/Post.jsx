@@ -105,8 +105,7 @@ export default function Post({ post }) {
                             }
                         </div>
                     </div>
-                    <div className="postCenter"
-                    >
+                    <div className="postCenter">
                         <p className="postText">{post.desc}</p>
                         <img src={PUBLIC_FOLDER_URL + post.img} alt='' className='postImg' />
                     </div>
