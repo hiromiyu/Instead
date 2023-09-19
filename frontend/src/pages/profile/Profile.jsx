@@ -74,7 +74,11 @@ export default function Profile() {
                                     <h4 className='profileInfoName'>{user.username}</h4>
                                     {user.username !== currentUser.username && (
                                         <button className="followingButton" onClick={handleClick}
-                                            style={{ color: followed ? "black" : "" }}>
+                                            style={{
+                                                color: followed ? "" : "black",
+                                                backgroundColor: followed ? "" : "white",
+
+                                            }}>
                                             {followed ? "Following" : "Follow"}
                                         </button>
                                     )}
