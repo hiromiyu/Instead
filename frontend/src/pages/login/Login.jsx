@@ -25,6 +25,7 @@ export default function Login() {
             <div className="loginWrapper">
                 <div className="loginLeft">
                     <h3 className='loginLogo'>Instead</h3>
+                    <h2>An alternative to SNS app.</h2>
                     <span className="loginDesc">ログイン画面</span>
                 </div>
                 <div className="loginRight">

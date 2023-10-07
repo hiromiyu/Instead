@@ -39,6 +39,7 @@ export default function Register() {
             <div className="loginWrapper">
                 <div className="loginLeft">
                     <h3 className='loginLogo'>Instead</h3>
+                    <h2>An alternative to SNS app.</h2>
                     <span className="loginDesc">新規登録</span>
                 </div>
                 <div className="loginRight">
