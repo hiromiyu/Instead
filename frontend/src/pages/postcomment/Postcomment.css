@@ -43,6 +43,11 @@
     color: gray;
 }
 
+.postCommentTopRight {
+    cursor: pointer;
+    color: gray;
+}
+
 .postCommentText {
     white-space: pre-wrap;
     margin: 0 10px;

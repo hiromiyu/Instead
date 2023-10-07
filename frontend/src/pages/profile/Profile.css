@@ -53,11 +53,12 @@
 }
 
 .profileInfoName {
-    padding: 0 0 0 10px;
+    padding: 0 0 10px 0;
     font-size: 24px;
 }
 
 .profileInfoDesc {
+    padding: 0 0 10px 0;
     white-space: pre-wrap;
 }
 

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Login() {
     const email = useRef();
     const password = useRef();
-    const { user, dispatch } = useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();

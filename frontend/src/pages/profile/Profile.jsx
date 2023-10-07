@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 import apiClient from '../../lib/apiClient'
+import Linkify from 'linkify-react'
 
 export default function Profile() {
 
@@ -88,7 +89,11 @@ export default function Profile() {
                                         </Link>
                                     }
                                 </div>
-                                <span className="profileInfoDesc">{user.desc}</span>
+                                <span className="profileInfoDesc">
+                                    <Linkify>
+                                        {user.desc}
+                                    </Linkify>
+                                </span>
                                 {currentUser.username === user.username &&
                                     <Link to={"/following/" + user.username}>
                                         <span className="profileInfoFollowers">友達</span>

@@ -163,4 +163,19 @@ router.put("/:id/comment", async (req, res) => {
     }
 });
 
+//投稿のコメントを削除する
+router.put("/:id/commentpull", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        await post.updateOne({
+            $pull: {
+                comments: req.body.userId,
+            },
+        });
+        return res.status(200).json("コメント削除に成功しました");
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 module.exports = router;

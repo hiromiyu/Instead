@@ -25,7 +25,7 @@ export default function CommentTimeLine({ post }) {
         <div className='commenttimeline'>
             <div className="commenttimelineWrapper">
                 {comments.map((comment) => (
-                    <Postcomment comment={comment} key={comment._id} />
+                    <Postcomment comment={comment} post={post} key={comment._id} />
                 ))}
             </div>
         </div>

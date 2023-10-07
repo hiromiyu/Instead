@@ -23,4 +23,19 @@ router.get("/timeline/:id", async (req, res) => {
     }
 });
 
+//コメントの削除
+router.delete("/:id", async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id);
+        if (comment.userId === req.body.userId) {
+            await comment.deleteOne();
+            return res.status(200).json("コメント削除に成功しました！");
+        } else {
+            return res.status(403).json("あなたは他の人のコメントを削除できません");
+        }
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 module.exports = router;
