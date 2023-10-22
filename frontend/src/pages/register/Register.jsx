@@ -45,10 +45,10 @@ export default function Register() {
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
                         <p className="loginMsg">新規登録はこちら</p>
-                        <input type="text" className='loginInput' placeholder='ユーザー名' required ref={username} />
-                        <input type="email" className='loginInput' placeholder='Eメール' required ref={email} />
-                        <input type="password" className='loginInput' placeholder='パスワード' required minLength="6" ref={password} />
-                        <input type="password" className='loginInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
+                        <input type="text" id='text' name='text' className='loginInput' placeholder='ユーザー名' required ref={username} />
+                        <input type="email" id='email' name='email' className='loginInput' placeholder='Eメール' required ref={email} />
+                        <input type="password" name='password' className='loginInput' placeholder='パスワード' required minLength="6" ref={password} />
+                        <input type="password" name='password' className='loginInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
                         <button className="loginButton" type='submit'>サインアップ</button>
                         <Link to="/login">
                             <button className="loginRegisterButton">ログイン</button>

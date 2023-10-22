@@ -33,6 +33,8 @@ export default function Login() {
                         <p className="loginMsg">ログインはこちら</p>
                         <input
                             type="email"
+                            id='email'
+                            name='email'
                             className='loginInput'
                             placeholder='Eメール'
                             required
@@ -40,6 +42,8 @@ export default function Login() {
                         />
                         <input
                             type="password"
+                            id='password'
+                            name='password'
                             className='loginInput'
                             placeholder='パスワード'
                             required

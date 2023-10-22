@@ -39,6 +39,8 @@ export default function Comment({ post }) {
                 <form className='commentForm' onSubmit={(e) => handleCommentSubmit(e)}>
                     <textarea
                         type='text'
+                        id='text'
+                        name='text'
                         value={newComment || ""}
                         ref={desc}
                         onChange={(e) => setNewComment(e.target.value)}
