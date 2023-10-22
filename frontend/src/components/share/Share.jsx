@@ -74,7 +74,9 @@ export default function Share() {
                                 className='shareProfileImg'
                             />
                             <textarea
-                                type='textarea'
+                                // type='textarea'
+                                id='description'
+                                name='description'
                                 className='shareInput'
                                 placeholder='say something'
                                 rows='4'
@@ -94,7 +96,7 @@ export default function Share() {
                             <label className="shareOption" htmlFor='file'>
                                 <Image className='shareIcon' htmlColor='gray' />
                                 <span className="shareOptionText">写真</span>
-                                <input type="file" id='file' accept='.png, .jpeg, .jpg'
+                                <input type="file" id='file' name='file' accept='.png, .jpeg, .jpg'
                                     style={{ display: "none" }}
                                     onChange={(e) => setFile(e.target.files[0])}
                                 />

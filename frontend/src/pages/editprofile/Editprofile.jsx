@@ -143,7 +143,7 @@ export default function Editprofile() {
                                         <label className="editShareOption" htmlFor='file'>
                                             <Image className='editShareIcon' htmlColor='gray' />
                                             <span className="editShareOptionText">アイコン</span>
-                                            <input type="file" id='file' accept='.png, .jpeg, .jpg'
+                                            <input type="file" id='file' name='file' accept='.png, .jpeg, .jpg'
                                                 style={{ display: "none" }}
                                                 onChange={(e) => setFile(e.target.files[0])}
                                             />
@@ -168,7 +168,9 @@ export default function Editprofile() {
                             <div className="editProfileEdit">
                                 <div className="editProfileInfo">
                                     <textarea
-                                        type='textarea'
+                                        // type='textarea'
+                                        id='description'
+                                        name='description'
                                         className='editShareInput'
                                         placeholder='プロフィール入力'
                                         ref={desc}
