@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const User = require("../models/User");
 
-
 //ユーザー情報の更新
 router.put("/:id", async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -32,16 +31,27 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
-//ユーザー情報の取得
-// router.get("/:id", async (req, res) => {
-//     try {
-//         const user = await User.findById(req.params.id);
-//         const { password, updatedAt, ...other } = user._doc;
-//         return res.status(200).json(other);
-//     } catch (err) {
-//         return res.status(500).json(err);
-//     }
-// });
+//fetch
+router.get("/users", async (req, res) => {
+    try {
+        const users = await User.find({});
+        return res.send(users);
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+});
+
+// ユーザー情報の取得
+router.get("/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        // const { password, updatedAt, ...other } = user._doc;
+        // return res.status(200).json(other);
+        return res.status(200).send(user)
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
 
 //クエリでユーザー情報を取得
 router.get("/", async (req, res) => {
