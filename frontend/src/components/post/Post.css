@@ -66,6 +66,7 @@
     max-height: 700px;
     object-fit: contain;
     border-radius: 20px;
+    /* border: 1px solid gray; */
 }
 
 .postBottom {
