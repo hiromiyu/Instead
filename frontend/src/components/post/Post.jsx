@@ -16,6 +16,7 @@ export default function Post({ post }) {
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(post.likes.includes(currentUser._id));
+    const isProcessing = useRef(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -31,11 +32,17 @@ export default function Post({ post }) {
     }
 
     const handleLike = async () => {
+        if (isProcessing.current) {
+            return;
+        }
         try {
+            isProcessing.current = true;
             //いいねのAPIを叩いていく
             await apiClient.put(`/posts/${post._id}/like`, { userId: currentUser._id });
         } catch (err) {
             console.log(err);
+        } finally {
+            isProcessing.current = false;
         }
         setLike((like) => isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked);

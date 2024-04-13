@@ -1,52 +1,61 @@
-.login {
-    width: 100vw;
-    height: 100vh;
-    background-color: #f0f2f5;
+.register {
+    /* width: 100vw; */
+    /* height: 100vh; */
+    /* background-color: #f0f2f5; */
+    /* background-color: red; */
     display: flex;
     align-items:center;
     justify-content: center;
+    margin: 20px;
 }
 
-.loginWrapper {
-    width: 70%;
-    height: 70%;
+.registerWrapper {
+    /* width: 70%; */
+    /* height: 30%; */
     /* background-color: green; */
-    display: flex;
-}
-
-.loginLeft,
-.loginRight {
-flex: 1;
+    /* display: flex; */
 display: flex;
 flex-direction: column;
 justify-content: center;
+    
 }
 
-.loginLogo {
+/* .registerLeft,
+.registerRight {
+flex: 1;
+
+} */
+
+.registerLogo {
+    display: flex;
+    justify-content: center;
     font-size: 50px;
     font-weight: 800;
     color: purple;
     margin-bottom: 10px;
 }
 
-.loginDesc {
+.registerDesc {
+    display: flex;
+    justify-content: center;
     font-size: 24px;
-    color: black;
+    margin-top: 10px;
 }
 
-.loginBox {
+.registerBox {
     height: 400px;
+    margin-top: 10px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 3px 7px 13px -10px ;
-    border-radius: 10px;
+    /* box-shadow: 3px 7px 13px -10px ; */
+    /* border-radius: 10px; */
 }
 
-.loginInput {
+.registerInput {
     height: 50px;
     border-radius: 10px;
     border: 1px solid gray;
@@ -55,11 +64,11 @@ justify-content: center;
     margin-bottom: 15px;
 }
 
-.loginInput:focus {
+.registerInput:focus {
     outline: none;
 }
 
-.loginButton {
+.registerButton {
     height: 50px;
     border-radius: 10px;
     border: none;
@@ -70,7 +79,7 @@ justify-content: center;
     cursor: pointer;
 }
 
-.loginForgot {
+.registerForgot {
     text-align: center;
     color: #41428b;
     margin: 15px 0;
@@ -78,7 +87,7 @@ justify-content: center;
 
 .loginRegisterButton {
     height: 50px;
-    width: 60%;
+    width: 100%;
     align-self: center;
     border-radius: 10px;
     border: none;
@@ -90,7 +99,7 @@ justify-content: center;
     margin-top: 15px;
 }
 
-.loginMsg {
+.registerMsg {
     text-align: center;
     font-weight: 550;
     font-size: 20px;

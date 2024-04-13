@@ -26,16 +26,16 @@ export default function Login() {
                 <div className="loginLeft">
                     <h3 className='loginLogo'>Instead</h3>
                     <h2>An alternative to SNS app.</h2>
-                    <span className="loginDesc">ログイン画面</span>
+                    <h2 className="loginDesc">ログイン画面</h2>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
-                        <p className="loginMsg">ログインはこちら</p>
+                        {/* <p className="loginMsg">ログインはこちら</p> */}
                         <input
                             type="email"
                             id='email'
                             name='email'
-                            className='loginInput'
+                            className='emailInput'
                             placeholder='Eメール'
                             required
                             ref={email}
@@ -44,7 +44,7 @@ export default function Login() {
                             type="password"
                             id='password'
                             name='password'
-                            className='loginInput'
+                            className='passInput'
                             placeholder='パスワード'
                             required
                             minLength="6"
@@ -53,7 +53,7 @@ export default function Login() {
                         <button className="loginButton">ログイン</button>
                         {/* <span className="loginForgot">パスワードを忘れた方へ</span> */}
                         <Link to="/">
-                            <button className="loginRegisterButton">アカウント作成</button>
+                            <button className="registerLoginButton">新規登録画面へ</button>
                         </Link>
                     </form>
                 </div>

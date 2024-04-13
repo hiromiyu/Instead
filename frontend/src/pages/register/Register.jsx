@@ -35,23 +35,23 @@ export default function Register() {
         }
     };
     return (
-        <div className='login'>
-            <div className="loginWrapper">
-                <div className="loginLeft">
-                    <h3 className='loginLogo'>Instead</h3>
+        <div className='register'>
+            <div className="registerWrapper">
+                <div className="registerLeft">
+                    <h3 className='registerLogo'>Instead</h3>
                     <h2>An alternative to SNS app.</h2>
-                    <span className="loginDesc">新規登録</span>
+                    <h2 className="registerDesc">新規登録画面</h2>
                 </div>
-                <div className="loginRight">
-                    <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
-                        <p className="loginMsg">新規登録はこちら</p>
-                        <input type="text" id='text' name='text' className='loginInput' placeholder='ユーザー名' required ref={username} />
-                        <input type="email" id='email' name='email' className='loginInput' placeholder='Eメール' required ref={email} />
-                        <input type="password" name='password' className='loginInput' placeholder='パスワード' required minLength="6" ref={password} />
-                        <input type="password" name='password' className='loginInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
-                        <button className="loginButton" type='submit'>サインアップ</button>
+                <div className="registerRight">
+                    <form className="registerBox" onSubmit={(e) => handleSubmit(e)}>
+                        {/* <p className="registerMsg">新規登録はこちら</p> */}
+                        <input type="text" id='text' name='text' className='registerInput' placeholder='ユーザー名' required ref={username} />
+                        <input type="email" id='email' name='email' className='registerInput' placeholder='Eメール' required ref={email} />
+                        <input type="password" name='password' className='registerInput' placeholder='パスワード' required minLength="6" ref={password} />
+                        <input type="password" name='password' className='registerInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
+                        <button className="registerButton" type='submit'>新規登録</button>
                         <Link to="/login">
-                            <button className="loginRegisterButton">ログイン</button>
+                            <button className="loginRegisterButton">ログイン画面へ</button>
                         </Link>
                     </form>
                 </div>

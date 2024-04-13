@@ -10,8 +10,8 @@
 }
 
 .postProfileImg {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -33,13 +33,13 @@
 }
 
 .postUsername {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 550;
     margin: 0 10px;
 }
 
 .postDate {
-    font-size: 12px;
+    font-size: 13px;
     color: gray;
 }
 
