@@ -33,7 +33,8 @@
 }
 
 .postUsername {
-    font-size: 17px;
+    font-size: 14px;
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
     font-weight: 550;
     margin: 0 10px;
 }
@@ -51,6 +52,8 @@
 }
 
 .postText {
+    font-size: 13px;
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
     white-space: pre-wrap;
     margin: 0 10px;
     width: 100%;

@@ -44,17 +44,20 @@ export default function Following() {
                             </div>
                         </div>
                     </Link>
-                    <div className="followWrapper">
-                        <div className="followTop">
-                            <div className="followTopLeft">
-                                <span className="homeFollowingName">{friend.username}</span>
-                            </div>
-                            <div className="followTopRight">
+                    <Link to={"/profile/" + friend.username} key={friend._id}
+                        style={{ textDecoration: "none" }}>
+                        <div className="followWrapper">
+                            <div className="followTop">
+                                <div className="followTopLeft">
+                                    <span className="homeFollowingName">{friend.username}</span>
+                                </div>
+                                <div className="followTopRight">
 
+                                </div>
                             </div>
+                            <span className="homeFollowingStatus">{friend.desc}</span>
                         </div>
-                        <span className="homeFollowingStatus">{friend.desc}</span>
-                    </div>
+                    </Link>
                 </div>
 
             ))

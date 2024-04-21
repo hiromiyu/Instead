@@ -55,9 +55,10 @@
 .profileInfoName {
     padding: 0 0 10px 0;
     font-size: 24px;
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
 }
-
 .profileInfoDesc {
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
     padding: 0 0 10px 0;
     white-space: pre-wrap;
 }
@@ -96,5 +97,6 @@
 }
 
 .profileInfoFollowers {
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
     color: gray;
 }
