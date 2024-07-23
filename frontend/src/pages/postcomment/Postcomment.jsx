@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./Postcomment.css"
 import { format } from "timeago.js"
 import apiClient from "../../lib/apiClient";
-// import { AuthContext } from "../../state/AuthContext";
-// import { MoreVert } from '@mui/icons-material'
+import { AuthContext } from "../../state/AuthContext";
+import { MoreVert } from '@mui/icons-material'
 
 
-export default function Postcomment({ comment }) {
+export default function Postcomment({ comment, post }) {
 
     const [user, setUser] = useState({});
-    // const { user: currentUser } = useContext(AuthContext);
+    const { user: currentUser } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -21,37 +21,37 @@ export default function Postcomment({ comment }) {
         fetchUser();
     }, [comment.userId]);
 
-    // const deleteComment = async () => {
-    //     try {
-    //         await apiClient.delete(`/comment/${comment._id}`, { data: { userId: currentUser._id } });
-    //         await apiClient.put(`/posts/${post._id}/commentpull`, { data: { userId: currentUser._id } });
-    //         window.location.reload();
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
+    const deleteComment = async () => {
+        try {
+            await apiClient.delete(`/comment/${comment._id}`, { data: { userId: currentUser._id } });
+            await apiClient.put(`/posts/${post._id}/commentpull`, { userId: currentUser._id });
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
 
-    //     try {
-    //         await apiClient.put(`/posts/${post._id}/commentpull`, { userId: currentUser._id })
-    //         window.location.reload();
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
+        // try {
+        //     await apiClient.put(`/posts/${post._id}/commentpull`, { data: { userId: currentUser._id } })
+        //     window.location.reload();
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    };
 
-    // const deleteMenu = () => {
-    //     const confirm = window.confirm('本当に削除しますか？');
-    //     if (confirm) {
-    //         deleteComment();
-    //     }
-    // };
+    const deleteMenu = () => {
+        const confirm = window.confirm('本当に削除しますか？');
+        if (confirm) {
+            deleteComment();
+        }
+    };
 
-    // const [showMenu, setShowMenu] = useState(false);
-    // const menuRef = useRef();
+    const [showMenu, setShowMenu] = useState(false);
+    const menuRef = useRef();
 
-    // useEffect(() => {
-    //     showMenu &&
-    //         menuRef.current.focus()
-    // }, [showMenu])
+    useEffect(() => {
+        showMenu &&
+            menuRef.current.focus()
+    }, [showMenu])
 
 
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -77,7 +77,7 @@ export default function Postcomment({ comment }) {
                             </span>
                             <span className="postCommentDate">{format(comment.createdAt)}</span>
                         </div>
-                        {/* <div className="postCommentTopRight">
+                        <div className="postCommentTopRight">
                             {currentUser._id === user._id &&
                                 <MoreVert onClick={() =>
                                     setShowMenu(!showMenu)
@@ -93,7 +93,7 @@ export default function Postcomment({ comment }) {
                                     <button className='deleteButton' onClick={() => deleteMenu()}>Delete!?</button>
                                 </span>
                             </div>
-                        } */}
+                        }
 
                     </div>
                     <div className="postCommentCenter">
