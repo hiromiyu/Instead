@@ -4,13 +4,14 @@ import { format } from "timeago.js"
 import apiClient from "../../lib/apiClient";
 import { AuthContext } from "../../state/AuthContext";
 import { MoreVert } from '@mui/icons-material'
+import { useNavigate } from "react-router-dom";
 
 
 export default function Postcomment({ comment, post }) {
 
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -25,7 +26,8 @@ export default function Postcomment({ comment, post }) {
         try {
             await apiClient.delete(`/comment/${comment._id}`, { data: { userId: currentUser._id } });
             await apiClient.put(`/posts/${post._id}/commentpull`, { userId: currentUser._id });
-            window.location.reload();
+            // window.location.reload();
+            navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
         }
@@ -41,6 +43,7 @@ export default function Postcomment({ comment, post }) {
     const deleteMenu = () => {
         const confirm = window.confirm('本当に削除しますか？');
         if (confirm) {
+            navigate("/loading");
             deleteComment();
         }
     };

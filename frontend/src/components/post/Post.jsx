@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Post.css"
 import { MoreVert } from '@mui/icons-material'
 import { format } from "timeago.js"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
 import apiClient from '../../lib/apiClient'
 import Comment from '../comment/Comment'
@@ -17,6 +17,7 @@ export default function Post({ post }) {
     const { user: currentUser } = useContext(AuthContext);
     const [isLiked, setIsLiked] = useState(post.likes.includes(currentUser._id));
     const isProcessing = useRef(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -51,7 +52,8 @@ export default function Post({ post }) {
     const deletePost = async () => {
         try {
             await apiClient.delete(`/posts/${post._id}`, { data: { userId: currentUser._id } });
-            window.location.reload();
+            // window.location.reload();
+            navigate(`/profile/${currentUser.username}`);
         } catch (err) {
             console.log(err);
         }
@@ -60,6 +62,7 @@ export default function Post({ post }) {
     const deleteMenu = () => {
         const confirm = window.confirm('本当に削除しますか？');
         if (confirm) {
+            navigate("/loading");
             deletePost();
         }
     };
