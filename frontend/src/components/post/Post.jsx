@@ -83,7 +83,7 @@ export default function Post({ post }) {
                         <img
                             src={
                                 user.profilePicture ?
-                                    PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                    PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                             alt=''
                             className='postProfileImg'
                         />

@@ -122,7 +122,7 @@ export default function Editprofile() {
                                         <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
                                         :
                                         <img
-                                            src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                            src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                             alt=""
                                             className='editProfileCoverImg'
                                         />
@@ -163,7 +163,7 @@ export default function Editprofile() {
                                         {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
                                             :
                                             <img
-                                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"}
+                                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                                 alt=""
                                                 className='editProfileUserImg'
                                             />

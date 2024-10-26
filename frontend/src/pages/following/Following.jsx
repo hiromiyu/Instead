@@ -37,7 +37,7 @@ export default function Following() {
                                 <img
                                     src={friend.profilePicture ?
                                         PUBLIC_FOLDER_URL + friend.profilePicture :
-                                        PUBLIC_FOLDER + "person/noAvatar.png"}
+                                        PUBLIC_FOLDER + "person/loading02.mp4"}
                                     alt=""
                                     className="homeFollowingImg"
                                 />
