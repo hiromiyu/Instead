@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import Topbar from '../../components/topbar/Topbar'
 import TimeLine from '../../components/timeline/TimeLine'
 import "./Profile.css"
@@ -17,6 +17,7 @@ export default function Profile() {
     const username = useParams().username;
     const { user: currentUser, dispatch } = useContext(AuthContext);
     const [followed, setFollowed] = useState(currentUser.followings.includes(user?._id));
+    const isProcessing = useRef(false);
 
     useEffect(() => {
         setFollowed(currentUser.followings.includes(user?._id));
@@ -31,6 +32,13 @@ export default function Profile() {
     }, [username]);
 
     const handleClick = async () => {
+        if (isProcessing.current) {
+            return; // 連打防止
+        }
+
+        setFollowed(!followed);
+        isProcessing.current = true;
+
         try {
             if (followed) {
                 await apiClient.put(`/users/${user._id}/unfollow`, {
@@ -46,8 +54,12 @@ export default function Profile() {
             }
         } catch (err) {
             console.log(err);
+
+            // エラー時に状態を元に戻す
+            setFollowed(followed);
+        } finally {
+            isProcessing.current = false; // 処理完了後に連打防止を解除
         }
-        setFollowed(!followed);
     };
 
     return (
