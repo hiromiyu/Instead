@@ -32,7 +32,7 @@ justify-content: center;
     justify-content: center;
     font-size: 50px;
     font-weight: 800;
-    color: cyan;
+    color: purple;
     margin-bottom: 10px;
 }
 
@@ -102,7 +102,7 @@ justify-content: center;
     align-self: center;
     border-radius: 10px;
     border: none;
-    background-color: cyan;
+    background-color: purple;
     color: white;
     font-size: 20px;
     font-weight: 500;
