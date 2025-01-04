@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
 import apiClient from '../../lib/apiClient'
 import Comment from '../comment/Comment'
+import { IoMdHeart } from "react-icons/io";
 
 export default function Post({ post }) {
 
@@ -151,8 +152,7 @@ export default function Post({ post }) {
                                 onClick={() => handleCommentSubmit()}
                             />
                             <span className="postCommentCounter">{post.comments.length}</span>
-                            <img
-                                src={isLiked ? PUBLIC_FOLDER + 'f183b250.png' : PUBLIC_FOLDER + '6b83b00d.png'}
+                            <IoMdHeart
                                 alt='' className='likeIcon'
                                 style={{ color: isLiked ? "red" : "gray" }}
                                 onClick={() => handleLike()}
