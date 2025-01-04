@@ -32,21 +32,45 @@ export default function Post({ post }) {
         setComment(!comment);
     }
 
+    // const handleLike = async () => {
+    //     if (isProcessing.current) {
+    //         return;
+    //     }
+    //     try {
+    //         isProcessing.current = true;
+    //         await apiClient.put(`/posts/${post._id}/like`, { userId: currentUser._id });
+    //     } catch (err) {
+    //         console.log(err);
+
+    //     } finally {
+    //         isProcessing.current = false;
+    //     }
+    //     setLike((like) => isLiked ? like - 1 : like + 1);
+    //     setIsLiked(!isLiked);
+    // };
+
     const handleLike = async () => {
         if (isProcessing.current) {
-            return;
+            return; // 連打防止
         }
+
+        // 楽観的更新: 現在の状態を切り替え
+        setLike((like) => (isLiked ? like - 1 : like + 1));
+        setIsLiked(!isLiked);
+        isProcessing.current = true;
+
         try {
-            isProcessing.current = true;
-            //いいねのAPIを叩いていく
+            // APIリクエスト
             await apiClient.put(`/posts/${post._id}/like`, { userId: currentUser._id });
         } catch (err) {
             console.log(err);
+
+            // エラー時に状態を元に戻す
+            setLike((like) => (isLiked ? like + 1 : like - 1));
+            setIsLiked(isLiked);
         } finally {
-            isProcessing.current = false;
+            isProcessing.current = false; // 処理完了後に連打防止を解除
         }
-        setLike((like) => isLiked ? like - 1 : like + 1);
-        setIsLiked(!isLiked);
     };
 
     const deletePost = async () => {
@@ -128,7 +152,7 @@ export default function Post({ post }) {
                             />
                             <span className="postCommentCounter">{post.comments.length}</span>
                             <img
-                                src={isLiked ? PUBLIC_FOLDER + 'heart.png' : PUBLIC_FOLDER + 'IMG_0625.PNG'}
+                                src={isLiked ? PUBLIC_FOLDER + 'f183b250.png' : PUBLIC_FOLDER + '6b83b00d.png'}
                                 alt='' className='likeIcon'
                                 style={{ color: isLiked ? "red" : "gray" }}
                                 onClick={() => handleLike()}

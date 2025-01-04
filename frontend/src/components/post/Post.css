@@ -33,9 +33,10 @@
 }
 
 .postUsername {
-    font-size: 14px;
-    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
-    font-weight: 550;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* font-weight: 550; */
+    font-weight: bold;
     margin: 0 10px;
 }
 
@@ -53,7 +54,7 @@
 
 .postText {
     font-size: 14px;
-    font-family: "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     white-space: pre-wrap;
     margin: 0 10px;
     width: 100%;
