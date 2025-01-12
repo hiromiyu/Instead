@@ -6,7 +6,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
 import apiClient from '../../lib/apiClient'
 import Comment from '../comment/Comment'
-import { IoMdHeart } from "react-icons/io";
+import { PiHeartThin } from "react-icons/pi";
+import { PiHeartFill } from "react-icons/pi";
+
 
 export default function Post({ post }) {
 
@@ -152,11 +154,16 @@ export default function Post({ post }) {
                                 onClick={() => handleCommentSubmit()}
                             />
                             <span className="postCommentCounter">{post.comments.length}</span>
-                            <IoMdHeart
+                            {isLiked ? <PiHeartFill
                                 alt='' className='likeIcon'
-                                style={{ color: isLiked ? "red" : "gray" }}
+                                style={{ color: "red" }}
                                 onClick={() => handleLike()}
-                            />
+                            /> :
+                                <PiHeartThin
+                                    alt='' className='likeIcon'
+                                    style={{ color: "gray" }}
+                                    onClick={() => handleLike()}
+                                />}
                             <span className="postLikeCounter"
                                 style={{ color: isLiked ? "red" : "gray" }}
                                 onClick={() => handleLike()}
