@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 import apiClient from '../../lib/apiClient'
 import Linkify from 'linkify-react'
+import { motion } from 'framer-motion'
 
 export default function Profile() {
 
@@ -70,14 +71,20 @@ export default function Profile() {
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
-                            <img
+                            <motion.img
                                 src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                 alt=""
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
                                 className='profileCoverImg'
                             />
-                            <img
+                            <motion.img
                                 src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                 alt=""
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
                                 className='profileUserImg'
                             />
                         </div>

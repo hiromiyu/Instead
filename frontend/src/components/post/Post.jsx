@@ -8,7 +8,7 @@ import apiClient from '../../lib/apiClient'
 import Comment from '../comment/Comment'
 import { PiHeartThin } from "react-icons/pi";
 import { PiHeartFill } from "react-icons/pi";
-
+import { motion } from "framer-motion";
 
 export default function Post({ post }) {
 
@@ -107,11 +107,14 @@ export default function Post({ post }) {
             <div className='postSidebar'>
                 <div>
                     <Link to={`/profile/${user.username}`}>
-                        <img
+                        <motion.img
                             src={
                                 user.profilePicture ?
                                     PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                             alt=''
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
                             className='postProfileImg'
                         />
                     </Link>
@@ -144,7 +147,11 @@ export default function Post({ post }) {
                     </div>
                     <div className="postCenter">
                         <p className="postText">{post.desc}</p>
-                        <img style={{ border: post.img ? "1px solid #555" : "" }} src={PUBLIC_FOLDER_URL + post.img} alt='' className='postImg' />
+                        <motion.img style={{ border: post.img ? "1px solid #555" : "" }} src={PUBLIC_FOLDER_URL + post.img} alt=''
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className='postImg' />
                     </div>
                     <div className="postBottom">
                         <div className="postBottomLeft">

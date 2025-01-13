@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
+import { motion } from "framer-motion";
 
 export default function Following() {
 
@@ -34,11 +35,14 @@ export default function Following() {
                         style={{ textDecoration: "none" }}>
                         <div className="followSidebar">
                             <div>
-                                <img
+                                <motion.img
                                     src={friend.profilePicture ?
                                         PUBLIC_FOLDER_URL + friend.profilePicture :
                                         PUBLIC_FOLDER + "person/loading02.mp4"}
                                     alt=""
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.1 }}
                                     className="homeFollowingImg"
                                 />
                             </div>

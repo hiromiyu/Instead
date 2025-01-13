@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext'
 import apiClient from '../../lib/apiClient'
+import { motion } from 'framer-motion'
 
 export default function Editprofile() {
 
@@ -121,9 +122,12 @@ export default function Editprofile() {
                                     {backimgfile ?
                                         <img src={URL.createObjectURL(backimgfile)} alt='' className='editProfileCoverImg' />
                                         :
-                                        <img
+                                        <motion.img
                                             src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                             alt=""
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 0.1 }}
                                             className='editProfileCoverImg'
                                         />
                                     }
@@ -162,9 +166,12 @@ export default function Editprofile() {
                                     <div className="editUserImg">
                                         {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
                                             :
-                                            <img
+                                            <motion.img
                                                 src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                                 alt=""
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ delay: 0.1 }}
                                                 className='editProfileUserImg'
                                             />
                                         }

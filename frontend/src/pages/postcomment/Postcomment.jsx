@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Postcomment.css"
 import { format } from "timeago.js"
 import apiClient from "../../lib/apiClient";
+import { motion } from "framer-motion";
 // import { AuthContext } from "../../state/AuthContext";
 // import { MoreVert } from '@mui/icons-material'
 // import { useNavigate } from "react-router-dom";
@@ -64,11 +65,14 @@ export default function Postcomment({ comment, post }) {
         <div className='postComment'>
             <div className='postCommentSidebar'>
                 <div>
-                    <img
+                    <motion.img
                         src={
                             user.profilePicture ?
                                 PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                         alt=''
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 }}
                         className='postCommentProfileImg'
                     />
                 </div>
@@ -101,7 +105,11 @@ export default function Postcomment({ comment, post }) {
                     </div>
                     <div className="postCommentCenter">
                         <p className="postCommentText">{comment.desc}</p>
-                        <img src={PUBLIC_FOLDER_URL + comment.img} alt='' className='postCommentImg' />
+                        <motion.img src={PUBLIC_FOLDER_URL + comment.img} alt=''
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className='postCommentImg' />
                     </div>
                 </div>
             </div>

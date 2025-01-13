@@ -4,6 +4,7 @@ import { Image } from '@mui/icons-material'
 import { AuthContext } from '../../state/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../../lib/apiClient';
+import { motion } from 'framer-motion';
 
 export default function Share() {
 
@@ -74,11 +75,14 @@ export default function Share() {
                 <div className="shareWrapper">
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="shareTop">
-                            <img
+                            <motion.img
                                 src={
                                     user.profilePicture ?
                                         PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                 alt=''
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
                                 className='shareProfileImg'
                             />
                             <textarea
