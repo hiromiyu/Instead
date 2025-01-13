@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 export default function Following() {
 
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const [friends, setFriends] = useState([]);
     const { user: currentUser } = useContext(AuthContext);
@@ -36,9 +36,7 @@ export default function Following() {
                         <div className="followSidebar">
                             <div>
                                 <motion.img
-                                    src={friend.profilePicture ?
-                                        PUBLIC_FOLDER_URL + friend.profilePicture :
-                                        PUBLIC_FOLDER + "person/loading02.mp4"}
+                                    src={PUBLIC_FOLDER_URL + friend.profilePicture}
                                     alt=""
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}

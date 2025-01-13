@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 export default function Profile() {
 
-    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
 
     const [user, setUser] = useState({});
@@ -72,7 +72,7 @@ export default function Profile() {
                     <div className="profileRightTop">
                         <div className="profileCover">
                             <motion.img
-                                src={user.coverPicture ? PUBLIC_FOLDER_URL + user.coverPicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
+                                src={PUBLIC_FOLDER_URL + user.coverPicture}
                                 alt=""
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -80,7 +80,7 @@ export default function Profile() {
                                 className='profileCoverImg'
                             />
                             <motion.img
-                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
+                                src={PUBLIC_FOLDER_URL + user.profilePicture}
                                 alt=""
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
