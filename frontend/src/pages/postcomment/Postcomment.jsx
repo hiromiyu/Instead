@@ -58,7 +58,7 @@ export default function Postcomment({ comment, post }) {
     // }, [showMenu])
 
 
-    // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
 
     return (
@@ -66,7 +66,7 @@ export default function Postcomment({ comment, post }) {
             <div className='postCommentSidebar'>
                 <div>
                     <motion.img
-                        src={PUBLIC_FOLDER_URL + user.profilePicture}
+                        src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                         alt=''
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

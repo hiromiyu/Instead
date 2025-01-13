@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export default function Share() {
 
-    // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ export default function Share() {
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="shareTop">
                             <motion.img
-                                src={PUBLIC_FOLDER_URL + user.profilePicture}
+                                src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                                 alt=''
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}

@@ -91,7 +91,7 @@ export default function Post({ post }) {
                 <div>
                     <Link to={`/profile/${user.username}`}>
                         <motion.img
-                            src={PUBLIC_FOLDER_URL + user.profilePicture}
+                            src={user.profilePicture ? PUBLIC_FOLDER_URL + user.profilePicture : PUBLIC_FOLDER + "/person/loading02.mp4"}
                             alt=''
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
