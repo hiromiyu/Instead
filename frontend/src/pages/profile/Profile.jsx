@@ -95,8 +95,12 @@ export default function Profile() {
                                     {user.username !== currentUser.username && (
                                         <button className="followingButton" onClick={handleClick}
                                             style={{
-                                                color: followed ? "" : "black",
-                                                backgroundColor: followed ? "" : "white",
+                                                color: followed ? "white" : "black",
+                                                backgroundColor: followed ? "black" : "white",
+                                                fontsize: 14,
+                                                paddingInline: 16,
+                                                // border: 1,
+                                                // borderradius: 23,
 
                                             }}>
                                             {followed ? "Following" : "Follow"}

@@ -68,7 +68,8 @@
 }
 
 .shareButton {
-    border: none;
+    /* border: none; */
+    border: 1px solid gray;
     padding: 3px 17px;
     background-color: black;
     border-radius: 15px;

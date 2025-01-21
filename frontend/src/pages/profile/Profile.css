@@ -86,13 +86,14 @@
 }
 
 .followingButton {
+    height: 38px;
     font-size: 14px;
     font-weight: bold;
     padding: 0px 16px;
-    background-color: black;
+    /* background-color: black; */
     border: 1px solid gray;
     border-radius: 23px;
-    color: white;
+    /* color: white; */
     cursor: pointer;
     /* margin-right: 10px; */
 }
