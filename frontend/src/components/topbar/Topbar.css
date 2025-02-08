@@ -11,6 +11,15 @@
     z-index: 100;
 }
 
+.topbarContainer .nav-link {
+    color: white;
+    transition: color 0.3s;
+}
+
+.topbarContainer .nav-link.active {
+    color: #007BFF !important;
+}
+
 .topbarLeft {
     flex: 3;
 }
@@ -18,6 +27,7 @@
 .logo {
     font-size: 24px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* background-color: transparent; */
     color: white;
     font-weight: bold;
     margin-left: 20px;
@@ -28,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    color: white;
+    /* color: white; */
 }
 
 .topbarIconItems {
@@ -64,10 +74,10 @@
     object-fit: cover;
 }
 
-.sidebarIcon {
+.topbarIcon {
     font-size: 35px !important;
     margin-right: 10px;
-    background-color: #000;    
-    color: #fff;
+    /* background-color: transparent;     */
+    /* color: #fff; */
     padding: 0 0 0 10px;
  }

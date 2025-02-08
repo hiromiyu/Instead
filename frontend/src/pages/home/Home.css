@@ -6,8 +6,8 @@
 .homeIcon {
     font-size: 20px !important;
     margin-right: 10px;
-    background-color: #000;    
-    color: #fff;
+    background-color: transparent;    
+    /* color: #fff; */
     padding: 0 0 0 10px;
 }
 
