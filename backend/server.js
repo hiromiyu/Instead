@@ -54,6 +54,7 @@ app.post("/contact", async (req, res) => {
     }
 });
 
+app.use(express.urlencoded({ extended: true }));  // URLエンコードデータを受け取る
 app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
 app.use(cors(corsOptions), express.json());
 app.use("/api/users", cors(corsOptions), userRoute);
