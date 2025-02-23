@@ -11,9 +11,10 @@ const port = process.env.PORT || 4000;
 const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
+const axios = require("axios");
 
 const corsOptions = {
-    origin: "https://instead.vercel.app",
+    origin: ["https://instead.vercel.app", "https://assgin.pages.dev"],
     // origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
@@ -32,6 +33,26 @@ mongoose.connect(process.env.MONGOURL)
 // ミドルウェア
 
 app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
+
+// フォームデータを受け取ってGASにリレー
+app.post("/contact", async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+
+        // GASにPOSTリクエスト
+        await axios.post(process.env.GASURL, {
+            name: name,
+            email: email,
+            message: message
+        });
+
+        // フロントエンドに成功メッセージを返す
+        res.json({ success: true, message: "お問い合わせありがとうございました！" });
+    } catch (error) {
+        console.error("Error sending to GAS:", error);
+        res.status(500).json({ success: false, message: "送信に失敗しました" });
+    }
+});
 
 app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
 app.use(cors(corsOptions), express.json());
