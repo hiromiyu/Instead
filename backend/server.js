@@ -14,7 +14,7 @@ const cors = require("cors");
 const axios = require("axios");
 
 const corsOptions = {
-    origin: ["https://instead.vercel.app", "https://assgin.pages.dev"],
+    origin: ["https://instead.vercel.app", "https://assgin.pages.dev", process.env.GASURL],
     // origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
@@ -33,6 +33,16 @@ mongoose.connect(process.env.MONGOURL)
 // ミドルウェア
 
 app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
+
+app.use(express.urlencoded({ extended: true }));  // URLエンコードデータを受け取る
+app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
+app.use(cors(corsOptions), express.json());
+app.use("/api/users", cors(corsOptions), userRoute);
+app.use("/api/auth", cors(corsOptions), authRoute);
+app.use("/api/posts", cors(corsOptions), postRoute);
+app.use("/api/upload", cors(corsOptions), uploadRoute);
+app.use("/api/imgdelete", cors(corsOptions), imgdeleteRoute);
+app.use("/api/comment", cors(corsOptions), commentRoute);
 
 // フォームデータを受け取ってGASにリレー
 app.post("/contact", async (req, res) => {
@@ -53,15 +63,5 @@ app.post("/contact", async (req, res) => {
         res.status(500).json({ success: false, message: "送信に失敗しました" });
     }
 });
-
-app.use(express.urlencoded({ extended: true }));  // URLエンコードデータを受け取る
-app.use("/images", cors(corsOptions), express.static(path.join(__dirname, "public/images")));
-app.use(cors(corsOptions), express.json());
-app.use("/api/users", cors(corsOptions), userRoute);
-app.use("/api/auth", cors(corsOptions), authRoute);
-app.use("/api/posts", cors(corsOptions), postRoute);
-app.use("/api/upload", cors(corsOptions), uploadRoute);
-app.use("/api/imgdelete", cors(corsOptions), imgdeleteRoute);
-app.use("/api/comment", cors(corsOptions), commentRoute);
 
 app.listen(port, cors(corsOptions), () => console.log("サーバーが起動しました"));
