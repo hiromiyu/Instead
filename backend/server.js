@@ -54,6 +54,10 @@ app.post("/contact", async (req, res) => {
             name: name,
             email: email,
             message: message
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
 
         // フロントエンドに成功メッセージを返す
