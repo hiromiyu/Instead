@@ -49,6 +49,8 @@ app.post("/contact", async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
+        console.log({ name, email, message });
+
         const params = new URLSearchParams();
         params.append("name", name);
         params.append("email", email);
@@ -65,11 +67,13 @@ app.post("/contact", async (req, res) => {
         //     }
         // });
 
-        await axios.post(process.env.GASURL, params, {
+        const response = await axios.post(process.env.GASURL, params, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/x-www-form-urlencoded"
             }
         });
+
+        console.log("GAS response:", response.data);
 
         // フロントエンドに成功メッセージを返す
         res.json({ success: true, message: "お問い合わせありがとうございました！" });
