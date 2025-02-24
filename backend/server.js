@@ -48,9 +48,6 @@ app.use("/api/comment", cors(corsOptions), commentRoute);
 app.post("/contact", async (req, res) => {
     try {
         const { name, email, message } = req.body;
-
-        console.log({ name, email, message });
-
         const params = new URLSearchParams();
         params.append("name", name);
         params.append("email", email);
@@ -72,8 +69,6 @@ app.post("/contact", async (req, res) => {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         });
-
-        console.log("GAS response:", response.data);
 
         // フロントエンドにHTMLでメッセージを返す
         res.send(`
@@ -100,7 +95,7 @@ app.post("/contact", async (req, res) => {
             <body>
                 <h2>お問い合わせありがとうございます！</h2>
                 <p class="message">内容を確認の上、通常2営業日以内にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
-                <a href="/" class="button">ホームに戻る</a>
+                <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
             </body>
             </html>
         `);
@@ -131,7 +126,7 @@ app.post("/contact", async (req, res) => {
             <body>
                 <h2>エラーが発生しました</h2>
                 <p class="error">申し訳ありません。送信に失敗しました。<br>時間をおいて再度お試しください。</p>
-                <a href="/" class="button">ホームに戻る</a>
+                <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
             </body>
             </html>
         `);
