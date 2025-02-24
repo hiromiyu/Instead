@@ -71,65 +71,65 @@ app.post("/contact", async (req, res) => {
         });
 
         // フロントエンドにHTMLでメッセージを返す
-        res.send(`
-            <!DOCTYPE html>
-            <html lang="ja">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>お問い合わせ完了</title>
-                <style>
-                    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                    .message { font-size: 18px; color: #333; }
-                    .button { 
-                        display: inline-block; 
-                        margin-top: 20px; 
-                        padding: 10px 20px; 
-                        background-color: #007bff; 
-                        color: white; 
-                        text-decoration: none; 
-                        border-radius: 5px;
-                    }
-                </style>
-            </head>
-            <body>
-                <h2>お問い合わせありがとうございます！</h2>
-                <p class="message">内容を確認の上、通常2営業日以内にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
-                <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
-            </body>
-            </html>
-        `);
+        // res.send(`
+        //     <!DOCTYPE html>
+        //     <html lang="ja">
+        //     <head>
+        //         <meta charset="UTF-8">
+        //         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        //         <title>お問い合わせ完了</title>
+        //         <style>
+        //             body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        //             .message { font-size: 18px; color: #333; }
+        //             .button { 
+        //                 display: inline-block; 
+        //                 margin-top: 20px; 
+        //                 padding: 10px 20px; 
+        //                 background-color: #007bff; 
+        //                 color: white; 
+        //                 text-decoration: none; 
+        //                 border-radius: 5px;
+        //             }
+        //         </style>
+        //     </head>
+        //     <body>
+        //         <h2>お問い合わせありがとうございます！</h2>
+        //         <p class="message">内容を確認の上、通常2営業日以内にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
+        //         <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
+        //     </body>
+        //     </html>
+        // `);
     } catch (error) {
         console.error("Error sending to GAS:", error);
 
-        res.send(`
-            <!DOCTYPE html>
-            <html lang="ja">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>エラーが発生しました</title>
-                <style>
-                    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                    .error { font-size: 18px; color: red; }
-                    .button { 
-                        display: inline-block; 
-                        margin-top: 20px; 
-                        padding: 10px 20px; 
-                        background-color: #dc3545; 
-                        color: white; 
-                        text-decoration: none; 
-                        border-radius: 5px;
-                    }
-                </style>
-            </head>
-            <body>
-                <h2>エラーが発生しました</h2>
-                <p class="error">申し訳ありません。送信に失敗しました。<br>時間をおいて再度お試しください。</p>
-                <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
-            </body>
-            </html>
-        `);
+        // res.send(`
+        //     <!DOCTYPE html>
+        //     <html lang="ja">
+        //     <head>
+        //         <meta charset="UTF-8">
+        //         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        //         <title>エラーが発生しました</title>
+        //         <style>
+        //             body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        //             .error { font-size: 18px; color: red; }
+        //             .button { 
+        //                 display: inline-block; 
+        //                 margin-top: 20px; 
+        //                 padding: 10px 20px; 
+        //                 background-color: #dc3545; 
+        //                 color: white; 
+        //                 text-decoration: none; 
+        //                 border-radius: 5px;
+        //             }
+        //         </style>
+        //     </head>
+        //     <body>
+        //         <h2>エラーが発生しました</h2>
+        //         <p class="error">申し訳ありません。送信に失敗しました。<br>時間をおいて再度お試しください。</p>
+        //         <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
+        //     </body>
+        //     </html>
+        // `);
     }
 });
 
