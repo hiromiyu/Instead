@@ -49,12 +49,23 @@ app.post("/contact", async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
+        const params = new URLSearchParams();
+        params.append("name", name);
+        params.append("email", email);
+        params.append("message", message);
+
         // GASにPOSTリクエスト
-        await axios.post(process.env.GASURL, {
-            name: name,
-            email: email,
-            message: message
-        }, {
+        // await axios.post(process.env.GASURL, {
+        //     name: name,
+        //     email: email,
+        //     message: message
+        // }, {
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // });
+
+        await axios.post(process.env.GASURL, params, {
             headers: {
                 "Content-Type": "application/json"
             }
