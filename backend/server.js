@@ -70,6 +70,8 @@ app.post("/contact", async (req, res) => {
             }
         });
 
+        res.status(200).json({ success: true, message: "お問い合わせが完了しました" });
+
         // フロントエンドにHTMLでメッセージを返す
         // res.send(`
         //     <!DOCTYPE html>
@@ -101,6 +103,7 @@ app.post("/contact", async (req, res) => {
         // `);
     } catch (error) {
         console.error("Error sending to GAS:", error);
+        res.status(500).json({ success: false, message: "送信に失敗しました" });
 
         // res.send(`
         //     <!DOCTYPE html>
