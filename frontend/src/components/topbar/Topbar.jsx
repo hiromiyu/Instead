@@ -27,7 +27,7 @@ export default function Topbar() {
             <div className="topbarLeft">
                 <NavLink to="/" style={{ textDecoration: "none" }}
                     className={({ isActive }) => isActive ? "nav-link.active" : "nav-link"}>
-                    <span className='logo'>HOME</span>
+                    <p className='logo'>Home</p>
                     <Home className='homeIcon' />
                 </NavLink>
             </div>
