@@ -68,13 +68,16 @@
     margin: 0 10px 0 0;
 }
 
+.postImgWrapper {
+    max-width: 350px;
+    height: 100%;
+}
+
 .postImg {
-    margin-top: 10px;
     width: 100%;
     max-height: 700px;
     object-fit: contain;
-    border-radius: 20px;
-    /* border: 1px solid gray; */
+    border-radius: 10px;
 }
 
 .postBottom {

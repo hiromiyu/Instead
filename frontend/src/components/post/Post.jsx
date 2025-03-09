@@ -128,11 +128,13 @@ export default function Post({ post }) {
                     </div>
                     <div className="postCenter">
                         <p className="postText">{post.desc}</p>
-                        <motion.img style={{ border: post.img ? "1px solid #555" : "" }} src={PUBLIC_FOLDER_URL + post.img} alt=''
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.1 }}
-                            className='postImg' />
+                        <div className='postImgWrapper'>
+                            <motion.img style={{ border: post.img ? "1px solid gray" : "" }} src={PUBLIC_FOLDER_URL + post.img} alt=''
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
+                                className='postImg' />
+                        </div>
                     </div>
                     <div className="postBottom">
                         <div className="postBottomLeft">
