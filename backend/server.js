@@ -12,6 +12,9 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const axios = require("axios");
+const bodyParser = require("body-parser");
+const admin = require("./firebase");
+const jwt = require("jsonwebtoken");
 
 const corsOptions = {
     origin: ["https://instead.vercel.app", "https://assgin.pages.dev", process.env.GASURL],
@@ -44,6 +47,45 @@ app.use("/api/upload", cors(corsOptions), uploadRoute);
 app.use("/api/imgdelete", cors(corsOptions), imgdeleteRoute);
 app.use("/api/comment", cors(corsOptions), commentRoute);
 
+app.use(bodyParser.json());
+
+app.post("/verify-apple-token", async (req, res) => {
+    const { idToken } = req.body;
+
+    try {
+        // Appleの公開鍵取得
+        const appleKeysRes = await axios.get("https://appleid.apple.com/auth/keys");
+        const appleKeys = appleKeysRes.data.keys;
+
+        // ID Tokenを検証
+        const decoded = jwt.decode(idToken, { complete: true });
+        const kid = decoded.header.kid;
+        const key = appleKeys.find(k => k.kid === kid);
+
+        if (!key) {
+            return res.status(400).send("Invalid key ID");
+        }
+
+        // 公開鍵を使ってJWT検証
+        const publicKey = jwt.createPublicKey({
+            key: key,
+            format: "jwk",
+        });
+
+        jwt.verify(idToken, publicKey, { algorithms: ["RS256"] });
+
+        const uid = decoded.payload.sub;
+
+        // Firebaseのカスタムトークン作成
+        const firebaseToken = await admin.auth().createCustomToken(uid);
+
+        res.send({ firebaseToken });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Token verification failed");
+    }
+});
+
 // フォームデータを受け取ってGASにリレー
 app.post("/contact", async (req, res) => {
     try {
@@ -53,86 +95,15 @@ app.post("/contact", async (req, res) => {
         params.append("email", email);
         params.append("message", message);
 
-        // GASにPOSTリクエスト
-        // await axios.post(process.env.GASURL, {
-        //     name: name,
-        //     email: email,
-        //     message: message
-        // }, {
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // });
-
         const response = await axios.post(process.env.GASURL, params, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         });
-
         res.status(200).json({ success: true, message: "お問い合わせが完了しました" });
-
-        // フロントエンドにHTMLでメッセージを返す
-        // res.send(`
-        //     <!DOCTYPE html>
-        //     <html lang="ja">
-        //     <head>
-        //         <meta charset="UTF-8">
-        //         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        //         <title>お問い合わせ完了</title>
-        //         <style>
-        //             body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        //             .message { font-size: 18px; color: #333; }
-        //             .button { 
-        //                 display: inline-block; 
-        //                 margin-top: 20px; 
-        //                 padding: 10px 20px; 
-        //                 background-color: #007bff; 
-        //                 color: white; 
-        //                 text-decoration: none; 
-        //                 border-radius: 5px;
-        //             }
-        //         </style>
-        //     </head>
-        //     <body>
-        //         <h2>お問い合わせありがとうございます！</h2>
-        //         <p class="message">内容を確認の上、通常2営業日以内にご返信いたします。<br>今しばらくお待ちくださいませ。</p>
-        //         <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
-        //     </body>
-        //     </html>
-        // `);
     } catch (error) {
         console.error("Error sending to GAS:", error);
         res.status(500).json({ success: false, message: "送信に失敗しました" });
-
-        // res.send(`
-        //     <!DOCTYPE html>
-        //     <html lang="ja">
-        //     <head>
-        //         <meta charset="UTF-8">
-        //         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        //         <title>エラーが発生しました</title>
-        //         <style>
-        //             body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        //             .error { font-size: 18px; color: red; }
-        //             .button { 
-        //                 display: inline-block; 
-        //                 margin-top: 20px; 
-        //                 padding: 10px 20px; 
-        //                 background-color: #dc3545; 
-        //                 color: white; 
-        //                 text-decoration: none; 
-        //                 border-radius: 5px;
-        //             }
-        //         </style>
-        //     </head>
-        //     <body>
-        //         <h2>エラーが発生しました</h2>
-        //         <p class="error">申し訳ありません。送信に失敗しました。<br>時間をおいて再度お試しください。</p>
-        //         <a href="https://assgin.pages.dev" class="button">ホームに戻る</a>
-        //     </body>
-        //     </html>
-        // `);
     }
 });
 

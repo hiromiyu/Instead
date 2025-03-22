@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import "./Register.css"
 import { Link, useNavigate } from "react-router-dom";
 import apiClient from '../../lib/apiClient'
+import AppleSignIn from '../../components/appleSignInButton/AppleSignIn';
 
 export default function Register() {
 
@@ -42,6 +43,7 @@ export default function Register() {
                     <h2>An alternative to SNS app.</h2>
                     <h2 className="registerDesc">新規登録画面</h2>
                 </div>
+                <AppleSignIn />
                 <div className="registerRight">
                     <form className="registerBox" onSubmit={(e) => handleSubmit(e)}>
                         {/* <p className="registerMsg">新規登録はこちら</p> */}
