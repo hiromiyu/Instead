@@ -67,13 +67,17 @@ const AppleSignIn = () => {
             // });
 
             const response = await window.AppleID.auth.signIn();
+            console.log(response);
             const idToken = response.authorization.id_token;
+            console.log(idToken);
 
             const res = await axios.post(process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI, {
                 idToken,
             });
+            console.log(res);
 
             const { firebaseToken } = res.data;
+            console.log(firebaseToken);
 
             await signInWithCustomToken(auth, firebaseToken);
 

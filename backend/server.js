@@ -17,7 +17,7 @@ const admin = require("./firebase");
 const jwt = require("jsonwebtoken");
 
 const corsOptions = {
-    origin: ["https://instead.vercel.app", "https://assgin.pages.dev", process.env.GASURL],
+    origin: ["https://instead.vercel.app", "https://assgin.pages.dev", process.env.GASURL, "https://instead-86614.firebaseapp.com"],
     // origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
