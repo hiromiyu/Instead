@@ -17,14 +17,12 @@ const AppleLogin = () => {
             const response = await window.AppleID.auth.signIn();
             const idToken = response.authorization.id_token;
 
-            // ExpressにID Token送信
-            const res = await axios.post("http://localhost:4000/verify-apple-token", {
+            const res = await axios.post(process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI, {
                 idToken,
             });
 
             const { firebaseToken } = res.data;
 
-            // Firebaseログイン
             await signInWithCustomToken(auth, firebaseToken);
 
             alert("Signed in with Firebase!");
