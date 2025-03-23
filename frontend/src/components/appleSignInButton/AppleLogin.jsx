@@ -17,7 +17,7 @@ const AppleLogin = () => {
             const response = await window.AppleID.auth.signIn();
             const idToken = response.authorization.id_token;
 
-            const res = await axios.post(process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI, {
+            const res = await axios.post(process.env.REACT_APP_API_URL, {
                 idToken,
             });
 
