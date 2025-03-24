@@ -1,89 +1,81 @@
-import axios from "axios";
-import { signInWithCustomToken } from "firebase/auth";
-import { auth } from "../../firebase";
+// import { auth } from "../../firebase";
+// import { OAuthProvider, signInWithCredential } from "firebase/auth";
+import { useEffect } from "react";
 
 const AppleSignIn = () => {
+    useEffect(() => {
 
-    const metaTags = [
-        { name: "appleid-signin-client-id", content: process.env.REACT_APP_APPLE_SERVICES_ID },
-        { name: "appleid-signin-scope", content: "name email" },
-        { name: "appleid-signin-redirect-uri", content: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI },
-        { name: "appleid-signin-state", content: "some-state" },
-        { name: "appleid-signin-nonce", content: "random-nonce" },
-        { name: "appleid-signin-use-popup", content: "true" },
-    ];
+        const metaTags = [
+            { name: "appleid-signin-client-id", content: process.env.REACT_APP_APPLE_SERVICES_ID },
+            { name: "appleid-signin-scope", content: "name email" },
+            { name: "appleid-signin-redirect-uri", content: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI },
+            { name: "appleid-signin-state", content: "some-state" },
+            { name: "appleid-signin-nonce", content: "random-nonce" },
+            { name: "appleid-signin-use-popup", content: "true" },
+        ];
 
-    metaTags.forEach(({ name, content }) => {
-        const meta = document.createElement("meta");
-        meta.name = name;
-        meta.content = content;
-        document.head.appendChild(meta);
-    });
+        metaTags.forEach(({ name, content }) => {
+            const meta = document.createElement("meta");
+            meta.name = name;
+            meta.content = content;
+            document.head.appendChild(meta);
+        });
 
-    const script = document.createElement("script");
-    script.src = "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
-    script.async = true;
+        const script = document.createElement("script");
+        script.src = "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
+        script.async = true;
 
-    const handleAppleLogin = async () => {
-        try {
-            const response = await window.AppleID.auth.signIn();
-            console.log(response);
-            const idToken = response.authorization.id_token;
-            console.log(idToken);
+        script.onload = () => {
+            if (window.AppleID) {
+                window.AppleID.auth.init({
+                    clientId: process.env.REACT_APP_APPLE_SERVICES_ID,
+                    scope: "name email",
+                    redirectURI: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI,
+                    state: "some-state",
+                    nonce: "random-nonce",
+                    usePopup: true,
+                });
 
-            const res = await axios.post(process.env.REACT_APP_API_URL, {
-                idToken,
+                document
+                    .getElementById("appleid-signin")
+                    .addEventListener("click", () => {
+                        window.AppleID.auth
+                            .signIn()
+                            .then(async (response) => {
+                                console.log("Apple Sign In Success:", response);
+                                // const { authorization } = response;
+                                // const code = authorization.code;
+                                // const idToken = authorization.id_token;
+                                // const provider = new OAuthProvider("apple.com");
+                                // const credential = provider.credential({
+                                //     idToken, code
+                                // });
+
+                                // try {
+                                //     const result = await signInWithCredential(auth, credential);
+                                //     console.log("✅ Firebase SignIn Success!", result.user);
+                                // } catch (error) {
+                                //     console.error("❌ Firebase SignIn Failed:", error);
+                                // }
+                            })
+                            .catch((err) => {
+                                console.error("Apple Sign In Error:", err);
+                            });
+                    });
+            };
+        };
+
+        document.body.appendChild(script);
+        return () => {
+            script.remove();
+            metaTags.forEach(({ name }) => {
+                const el = document.querySelector(`meta[name="${name}"]`);
+                if (el) el.remove();
             });
-            console.log(res);
-
-            const { firebaseToken } = res.data;
-            console.log(firebaseToken);
-
-            await signInWithCustomToken(auth, firebaseToken);
-
-            alert("Signed in with Firebase!");
-        } catch (err) {
-            console.error(err);
-            alert("Sign in failed");
-        }
-
-
-        // document
-        //     .getElementById("appleid-signin")
-        //     .addEventListener("click", () => {
-        //         window.AppleID.auth
-        //             .signIn()
-        //             .then(async (response) => {
-        //                 console.log("Apple Sign In Success:", response);
-        //                 const { authorization } = response;
-        //                 const idToken = authorization.id_token;
-        //                 const provider = new OAuthProvider("apple.com");
-        //                 const credential = provider.credential({
-        //                     idToken,
-        //                 });
-
-        //                 try {
-        //                     const result = await signInWithCredential(auth, credential);
-        //                     console.log("✅ Firebase SignIn Success!", result.user);
-        //                 } catch (error) {
-        //                     console.error("❌ Firebase SignIn Failed:", error);
-        //                 }
-        //             })
-        //             .catch((err) => {
-        //                 console.error("Apple Sign In Error:", err);
-        //             });
-        //     });
-    }
-
-
-    document.body.appendChild(script);
+        };
+    }, []);
 
     return (
-        // script.remove();
-        // metaTags.forEach(({ name }) => {
-        //     const el = document.querySelector(`meta[name="${name}"]`);
-        //     if (el) el.remove();
-        // });
         <div className="flex justify-center items-center mt-4">
             <div
                 id="appleid-signin"
@@ -92,7 +84,7 @@ const AppleSignIn = () => {
                 data-type="sign in"
                 data-height="40"
                 style={{ transition: 'all 0.2s ease-in-out' }}
-                onClick={handleAppleLogin}
+                // onClick={handleAppleLogin}
                 onMouseOver={(e) => {
                     e.currentTarget.style.backgroundColor = '#333';
                     e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
