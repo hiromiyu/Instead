@@ -36,32 +36,32 @@ const AppleSignIn = () => {
                     usePopup: true,
                 });
 
-                document
-                    .getElementById("appleid-signin")
-                    .addEventListener("click", () => {
-                        window.AppleID.auth
-                            .signIn()
-                            .then(async (response) => {
-                                console.log("Apple Sign In Success:", response);
-                                // const { authorization } = response;
-                                // const code = authorization.code;
-                                // const idToken = authorization.id_token;
-                                // const provider = new OAuthProvider("apple.com");
-                                // const credential = provider.credential({
-                                //     idToken, code
-                                // });
+                // document
+                //     .getElementById("appleid-signin")
+                //     .addEventListener("click", () => {
+                //         window.AppleID.auth
+                //             .signIn()
+                //             .then(async (response) => {
+                //                 console.log("Apple Sign In Success:", response);
+                //                 const { authorization } = response;
+                //                 const code = authorization.code;
+                //                 const idToken = authorization.id_token;
+                //                 const provider = new OAuthProvider("apple.com");
+                //                 const credential = provider.credential({
+                //                     idToken, code
+                //                 });
 
-                                // try {
-                                //     const result = await signInWithCredential(auth, credential);
-                                //     console.log("✅ Firebase SignIn Success!", result.user);
-                                // } catch (error) {
-                                //     console.error("❌ Firebase SignIn Failed:", error);
-                                // }
-                            })
-                            .catch((err) => {
-                                console.error("Apple Sign In Error:", err);
-                            });
-                    });
+                //                 try {
+                //                     const result = await signInWithCredential(auth, credential);
+                //                     console.log("✅ Firebase SignIn Success!", result.user);
+                //                 } catch (error) {
+                //                     console.error("❌ Firebase SignIn Failed:", error);
+                //                 }
+                //             })
+                //             .catch((err) => {
+                //                 console.error("Apple Sign In Error:", err);
+                //             });
+                //     });
             };
         };
 
