@@ -52,15 +52,14 @@ const AppleSignIn = () => {
                 });
 
                 document.addEventListener('AppleIDSignInOnSuccess', async (event) => {
-                    console.log("Apple Sign In Success:", event.detail);
+                    // console.log("Apple Sign In Success:", event.detail);
 
                     // Appleから返された認証データを取得
                     const params = new URLSearchParams(event.detail);
                     const { authorization } = event.detail;
                     const code = authorization.code;
                     const idToken = authorization.id_token;
-                    const returnedState = params.get("state");
-                    console.log("Returned state:", returnedState);
+                    const returnedState = authorization.state;
 
                     // stateの検証
                     const savedState = localStorage.getItem("appleSignInState");
