@@ -80,6 +80,7 @@ const AppleSignIn = () => {
 
                     // nonceの検証
                     const decoded = jwtDecode(idToken);
+                    console.log("Decoded ID Token:", decoded);
                     const returnedNonce = decoded.nonce;
                     const savedNonce = localStorage.getItem("appleSignInNonce");
                     if (returnedNonce !== savedNonce) {
