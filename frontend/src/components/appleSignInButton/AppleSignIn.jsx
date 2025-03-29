@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { appleLoginCall } from "../../actionCalls";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
+import CryptoJS from "crypto-js";
 
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
@@ -15,9 +16,8 @@ const AppleSignIn = () => {
         };
 
         const generateSHA256Hash = (input) => {
-            return createHase("SHA-256")
-                .update(input)
-                .digest("hex");
+            return CryptoJS.SHA256(input)
+                .toString(CryptoJS.enc.Hex)
         };
 
         const state = generateRandomString();
