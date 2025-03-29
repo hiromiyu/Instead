@@ -82,7 +82,7 @@ const AppleSignIn = () => {
                     const decoded = jwtDecode(idToken);
                     console.log("Decoded ID Token:", decoded);
                     const returnedNonce = decoded.nonce;
-                    const savedNonce = localStorage.getItem("appleSignInNonce");
+                    const savedNonce = localStorage.getItem("appleSignInHashedNonce");
                     if (returnedNonce !== savedNonce) {
                         console.error("Invalid nonce");
                         return;
@@ -93,7 +93,7 @@ const AppleSignIn = () => {
                     const credential = provider.credential({
                         idToken,
                         code,
-                        rawNonce: savedNonce,
+                        rawNonce: rawNonce,
                     });
 
                     try {
