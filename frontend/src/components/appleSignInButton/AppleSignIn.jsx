@@ -82,7 +82,7 @@ const AppleSignIn = () => {
                     const credential = provider.credential({
                         idToken,
                         code,
-                        rawNonce: savedNonce,
+                        // rawNonce: savedNonce,
                     });
 
                     try {
