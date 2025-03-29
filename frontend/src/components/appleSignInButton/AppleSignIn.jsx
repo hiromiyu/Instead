@@ -101,12 +101,24 @@ const AppleSignIn = () => {
                         console.log("✅ Firebase SignIn Success!", result.user);
 
                         // 成功時の処理（例：ユーザー情報の保存、リダイレクトなど）
-                        // userContext.setUser(result.user);
-                        // navigate('/dashboard');
 
                         // ここでユーザー情報を取得して、必要に応じてサーバーに送信することができます
-                        await apiClient.post("/auth/apple/register", { username: result.user.displayName || `User_${result.user.uid.substring(0, 6)}`, email: result.user.email });
-                        await apiClient.post("/auth/apple/login", { username: result.user.displayName || `User_${result.user.uid.substring(0, 6)}`, email: result.user.email });
+                        // 例: ユーザー情報をAPIに送信
+                        try {
+                            const user = {
+                                username: result.user.displayName || `User_${result.user.uid.substring(0, 6)}`,
+                                email: result.user.email,
+                            };
+                            await apiClient.post("/auth/apple/register", user);
+                        } catch (error) {
+                            console.error("❌ API Call Failed:", error);
+                            // エラー処理
+                        }
+
+                        // localStorageからstateとnonceを削除
+                        localStorage.removeItem("appleSignInState");
+                        localStorage.removeItem("appleSignInNonce");
+                        localStorage.removeItem("appleSignInHashedNonce");
 
                         appleLoginCall(
                             {
@@ -114,11 +126,6 @@ const AppleSignIn = () => {
                             },
                             dispatch
                         );
-
-                        // localStorageからstateとnonceを削除
-                        localStorage.removeItem("appleSignInState");
-                        localStorage.removeItem("appleSignInNonce");
-                        localStorage.removeItem("appleSignInHashedNonce");
 
                     } catch (error) {
                         console.error("❌ Firebase SignIn Failed:", error);
