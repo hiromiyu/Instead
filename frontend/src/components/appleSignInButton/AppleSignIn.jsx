@@ -80,7 +80,6 @@ const AppleSignIn = () => {
 
                     // nonceの検証
                     const decoded = jwtDecode(idToken);
-                    console.log("Decoded ID Token:", decoded);
                     const returnedNonce = decoded.nonce;
                     const savedNonce = localStorage.getItem("appleSignInHashedNonce");
                     if (returnedNonce !== savedNonce) {
@@ -106,8 +105,8 @@ const AppleSignIn = () => {
                         // navigate('/dashboard');
 
                         // ここでユーザー情報を取得して、必要に応じてサーバーに送信することができます
-                        await apiClient.post("/auth/apple/register", { username: result.user.displayName, email: result.user.email });
-                        await apiClient.post("/auth/apple/login", { username: result.user.displayName, email: result.user.email });
+                        await apiClient.post("/auth/apple/register", { username: result.user.displayName || `User_${result.user.uid.substring(0, 6)}`, email: result.user.email });
+                        await apiClient.post("/auth/apple/login", { username: result.user.displayName || `User_${result.user.uid.substring(0, 6)}`, email: result.user.email });
 
                         appleLoginCall(
                             {
