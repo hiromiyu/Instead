@@ -3,7 +3,7 @@ import "./Login.css"
 import { loginCall } from '../../actionCalls';
 import { AuthContext } from '../../state/AuthContext';
 import { Link } from 'react-router-dom';
-import MyAppleSigninButton from '../../components/myAppleSignInButton/MyAppleSignInButton';
+import AppleSignIn from '../../components/appleSignInButton/AppleSignIn';
 
 export default function Login() {
     const email = useRef();
@@ -29,7 +29,7 @@ export default function Login() {
                     <h2>An alternative to SNS app.</h2>
                     <h2 className="loginDesc">ログイン画面</h2>
                 </div>
-                <MyAppleSigninButton />
+                <AppleSignIn />
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
                         {/* <p className="loginMsg">ログインはこちら</p> */}
