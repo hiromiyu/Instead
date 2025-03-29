@@ -60,6 +60,7 @@ const AppleSignIn = () => {
                     const code = authorization.code;
                     const idToken = authorization.id_token;
                     const returnedState = params.get("state");
+                    console.log("Returned state:", returnedState);
 
                     // stateの検証
                     const savedState = localStorage.getItem("appleSignInState");
