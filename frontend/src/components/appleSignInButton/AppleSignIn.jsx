@@ -14,18 +14,28 @@ const AppleSignIn = () => {
             return Math.random().toString(36).substring(2) + Date.now().toString(36);
         };
 
+        const generateSHA256Hash = (input) => {
+            return createHase("SHA-256")
+                .update(input)
+                .digest("hex");
+        };
+
         const state = generateRandomString();
-        const nonce = generateRandomString();
+        const rawNonce = generateRandomString();
+
+        // nonceをSHA256でハッシュ化
+        const hashedNonce = generateSHA256Hash(rawNonce);
 
         localStorage.setItem("appleSignInState", state);
-        localStorage.setItem("appleSignInNonce", nonce);
+        localStorage.setItem("appleSignInNonce", rawNonce);
+        localStorage.setItem("appleSignInHashedNonce", hashedNonce);
 
         const metaTags = [
             { name: "appleid-signin-client-id", content: process.env.REACT_APP_APPLE_SERVICES_ID },
             { name: "appleid-signin-scope", content: "name email" },
             { name: "appleid-signin-redirect-uri", content: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI },
             { name: "appleid-signin-state", content: state },
-            { name: "appleid-signin-nonce", content: nonce },
+            { name: "appleid-signin-nonce", content: hashedNonce },
             { name: "appleid-signin-use-popup", content: "true" },
         ];
 
@@ -47,7 +57,7 @@ const AppleSignIn = () => {
                     scope: "name email",
                     redirectURI: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI,
                     state: state,
-                    nonce: nonce,
+                    nonce: hashedNonce,
                     usePopup: true,
                 });
 
@@ -55,7 +65,7 @@ const AppleSignIn = () => {
                     // console.log("Apple Sign In Success:", event.detail);
 
                     // Appleから返された認証データを取得
-                    const params = new URLSearchParams(event.detail);
+                    // const params = new URLSearchParams(event.detail);
                     const { authorization } = event.detail;
                     const code = authorization.code;
                     const idToken = authorization.id_token;
@@ -82,7 +92,7 @@ const AppleSignIn = () => {
                     const credential = provider.credential({
                         idToken,
                         code,
-                        // rawNonce: savedNonce,
+                        rawNonce: savedNonce,
                     });
 
                     try {
@@ -108,8 +118,7 @@ const AppleSignIn = () => {
                         // localStorageからstateとnonceを削除
                         localStorage.removeItem("appleSignInState");
                         localStorage.removeItem("appleSignInNonce");
-
-
+                        localStorage.removeItem("appleSignInHashedNonce");
 
                     } catch (error) {
                         console.error("❌ Firebase SignIn Failed:", error);
