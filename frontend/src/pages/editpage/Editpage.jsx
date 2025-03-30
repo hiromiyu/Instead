@@ -5,6 +5,8 @@ import "./EditPage.css";
 import { useContext } from "react";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function EditPage() {
 
@@ -18,6 +20,7 @@ export default function EditPage() {
             await apiClient.delete(`/posts/${currentUser.username}/deleteall`);
             await apiClient.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
             localStorage.clear();
+            signOut(auth);
             window.location.reload();
         } catch (err) {
             console.log(err);
@@ -28,6 +31,7 @@ export default function EditPage() {
         try {
             navigate("/");
             localStorage.clear();
+            signOut(auth);
             window.location.reload();
         } catch (err) {
             console.log(err);
