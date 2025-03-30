@@ -27,11 +27,6 @@ const AppleSignIn = () => {
 
     const handleSuccess = useCallback(async (event) => {
 
-        // console.log("Apple Sign In Success:", event.detail);
-
-        // Appleから返された認証データを取得
-        // const params = new URLSearchParams(event.detail);
-
         localStorage.setItem("appleSignInState", state);
         localStorage.setItem("appleSignInNonce", rawNonce);
         localStorage.setItem("appleSignInHashedNonce", hashedNonce);
@@ -46,14 +41,12 @@ const AppleSignIn = () => {
             fullName = `${user.name.firstName} ${user.name.lastName}`;
         }
 
-        // stateの検証
         const savedState = localStorage.getItem("appleSignInState");
         if (returnedState !== savedState) {
             console.error("Invalid state");
             return;
         }
 
-        // nonceの検証
         const decoded = jwtDecode(idToken);
         const returnedNonce = decoded.nonce;
         const savedNonce = localStorage.getItem("appleSignInHashedNonce");
@@ -62,7 +55,6 @@ const AppleSignIn = () => {
             return;
         }
 
-        // Firebase認証プロバイダーを設定
         const provider = new OAuthProvider("apple.com");
         const credential = provider.credential({
             idToken,
@@ -71,14 +63,9 @@ const AppleSignIn = () => {
         });
 
         try {
-            // Firebase認証を実行
             const result = await signInWithCredential(auth, credential);
             console.log("✅ Firebase SignIn Success!", result.user);
 
-            // 成功時の処理（例：ユーザー情報の保存、リダイレクトなど）
-
-            // ここでユーザー情報を取得して、必要に応じてサーバーに送信することができます
-            // 例: ユーザー情報をAPIに送信
             try {
                 const user = {
                     username: fullName || `User_${result.user.uid.substring(0, 6)}`,
@@ -87,10 +74,8 @@ const AppleSignIn = () => {
                 await apiClient.post("/auth/apple/register", user);
             } catch (error) {
                 console.error("❌ API Call Failed:", error);
-                // エラー処理
             }
 
-            // localStorageからstateとnonceを削除
             localStorage.removeItem("appleSignInState");
             localStorage.removeItem("appleSignInNonce");
             localStorage.removeItem("appleSignInHashedNonce");
@@ -104,18 +89,16 @@ const AppleSignIn = () => {
 
         } catch (error) {
             console.error("❌ Firebase SignIn Failed:", error);
-            // エラー処理
         }
     }, [dispatch, state, hashedNonce, rawNonce]);
 
-    const handleError = (event) => {
-        console.error("Apple Sign In Error:", event.detail);
-        // エラー処理
-        // localStorageからstateとnonceを削除
-        localStorage.removeItem("appleSignInState");
-        localStorage.removeItem("appleSignInNonce");
-        localStorage.removeItem("appleSignInHashedNonce");
-    }
+    // const handleError = (event) => {
+    //     console.error("Apple Sign In Error:", event.detail);
+
+    //     localStorage.removeItem("appleSignInState");
+    //     localStorage.removeItem("appleSignInNonce");
+    //     localStorage.removeItem("appleSignInHashedNonce");
+    // }
 
     useEffect(() => {
 
@@ -142,7 +125,7 @@ const AppleSignIn = () => {
         document.body.appendChild(script);
 
         script.onload = () => {
-            if (!window.AppleID || !window.AppleID?.auth) {
+            if (window.AppleID) {
                 window.AppleID.auth.init({
                     clientId: process.env.REACT_APP_APPLE_SERVICES_ID,
                     scope: "name email",
@@ -156,7 +139,7 @@ const AppleSignIn = () => {
                 document.addEventListener('AppleIDSignInOnSuccess', handleSuccess);
 
                 // 認証エラーイベントリスナーを設定
-                document.addEventListener('AppleIDSignInOnFailure', handleError);
+                // document.addEventListener('AppleIDSignInOnFailure', handleError);
 
 
                 return () => {
@@ -167,7 +150,7 @@ const AppleSignIn = () => {
                     });
                     // イベントリスナーも削除
                     document.removeEventListener('AppleIDSignInOnSuccess', handleSuccess);
-                    document.removeEventListener('AppleIDSignInOnFailure', handleError);
+                    // document.removeEventListener('AppleIDSignInOnFailure', handleError);
                 };
             }
         };
