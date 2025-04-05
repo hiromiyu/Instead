@@ -6,6 +6,7 @@ import { appleLoginCall } from "../../actionCalls";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
 import CryptoJS from "crypto-js";
+import "./AppleSignIn.css";
 
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
@@ -158,15 +159,14 @@ const AppleSignIn = () => {
     }, [dispatch, handleSuccess, state, hashedNonce, rawNonce]);
 
     return (
-        <div className="flex justify-center items-center mt-4">
-            <div
-                id="appleid-signin"
-                data-color="white"
-                data-border="true"
-                data-type="sign in"
-                data-height="40"
-            >
-            </div>
+        <div
+            id="appleid-signin"
+            data-color="white"
+            data-border="true"
+            data-type="sign in"
+            data-height="40"
+            className="appleButton"
+        >
         </div>
     );
 };

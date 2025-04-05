@@ -1,0 +1,8 @@
+.appleButton {
+    transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.appleButton:active {
+    transform: scale(0.99);
+    filter: brightness(0.9);
+}
