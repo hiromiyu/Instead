@@ -25,6 +25,7 @@ export default function Editprofile() {
     const PUBLIC_FOLDER_URL = process.env.REACT_APP_PUBLIC_FOLDER_URL;
     const navigate = useNavigate();
     const { user: currentUser } = useContext(AuthContext);
+    const acountname = useRef();
     const desc = useRef();
     const [file, setFile] = useState(null);
     const [backimgfile, backimgsetFile] = useState(null);
@@ -35,6 +36,7 @@ export default function Editprofile() {
             navigate("/loading");
 
             const newUser = {
+                username: acountname.current.value,
                 userId: currentUser._id,
                 desc: desc.current.value,
             };
@@ -60,8 +62,12 @@ export default function Editprofile() {
                 }
             };
             try {
+                const data = JSON.parse(localStorage.getItem("user")) || {};
+                data.username = newUser.username;
+                localStorage.setItem("user", JSON.stringify(data));
                 await apiClient.put(`/users/${currentUser._id}`, newUser);
-                navigate(`/profile/${currentUser.username}`);
+                navigate(`/profile/${newUser.username}`);
+                window.location.reload();
             } catch (err) {
                 console.log(err);
             }
@@ -75,6 +81,7 @@ export default function Editprofile() {
         if (confirm) {
             navigate("/loading");
             const newUser = {
+                username: acountname.current.value,
                 userId: currentUser._id,
                 desc: desc.current.value,
             };
@@ -101,8 +108,12 @@ export default function Editprofile() {
             };
 
             try {
+                const data = JSON.parse(localStorage.getItem("user")) || {};
+                data.username = newUser.username;
+                localStorage.setItem("user", JSON.stringify(data));
                 await apiClient.put(`/users/${currentUser._id}`, newUser);
-                navigate(`/profile/${currentUser.username}`);
+                navigate(`/profile/${newUser.username}`);
+                window.location.reload();
             } catch (err) {
                 console.log(err);
             }
@@ -150,18 +161,30 @@ export default function Editprofile() {
                                 </div>
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <div className="editShareOptions">
-                                        <label className="editShareOption" htmlFor='file'>
-                                            <Image className='editShareIcon' htmlColor='gray' />
-                                            <span className="editShareOptionText">アイコン</span>
-                                            <input type="file" id='file' name='file' accept='.png, .jpeg, .jpg'
-                                                style={{ display: "none" }}
-                                                onChange={(e) => setFile(e.target.files[0])}
+                                        <div>
+                                            <label className="editShareOption" htmlFor='username'>
+                                                <span className="editShareOptionText">名前</span>
+                                            </label>
+                                            <textarea
+                                                id='username'
+                                                name='username'
+                                                placeholder='ユーザー名'
+                                                ref={acountname}
+                                                defaultValue={user.username}
                                             />
-                                        </label>
-                                        {file &&
-                                            <button className="editEditCancelImg" onClick={() => setFile(null)}>キャンセル</button>
-                                        }
-                                        <button className="editShareButton" type='submit'>保存</button>
+                                            <label className="editShareOption" htmlFor='file'>
+                                                <Image className='editShareIcon' htmlColor='gray' />
+                                                <span className="editShareOptionText">アイコン</span>
+                                                <input type="file" id='file' name='file' accept='.png, .jpeg, .jpg'
+                                                    style={{ display: "none" }}
+                                                    onChange={(e) => setFile(e.target.files[0])}
+                                                />
+                                            </label>
+                                            {file &&
+                                                <button className="editEditCancelImg" onClick={() => setFile(null)}>キャンセル</button>
+                                            }
+                                            <button className="editShareButton" type='submit'>保存</button>
+                                        </div>
                                     </div>
                                     <div className="editUserImg">
                                         {file ? <img src={URL.createObjectURL(file)} alt='' className='editProfileUserImg' />
