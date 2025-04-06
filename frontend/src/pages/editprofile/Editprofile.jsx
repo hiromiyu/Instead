@@ -31,45 +31,51 @@ export default function Editprofile() {
     const [backimgfile, backimgsetFile] = useState(null);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const confirm = window.confirm('保存しますか？');
-        if (confirm) {
-            navigate("/loading");
 
-            const newUser = {
-                username: acountname.current.value,
-                userId: currentUser._id,
-                desc: desc.current.value,
-            };
+        const text = acountname.current.value;
+        if (text.trim() === '') {
+            alert('名前を入力して下さい。')
+        } else {
+            const confirm = window.confirm('保存しますか？');
+            if (confirm) {
+                navigate("/loading");
 
-            if (file) {
+                const newUser = {
+                    username: acountname.current.value,
+                    userId: currentUser._id,
+                    desc: desc.current.value,
+                };
+
+                if (file) {
+                    try {
+                        //アイコン画像削除用APIを叩く
+                        await apiClient.delete(`/imgdelete/${currentUser._id}/deleteIcon`);
+                    } catch (err) {
+                        console.log(err);
+                    }
+
+                    const data = new FormData();
+                    const fileName = Date.now() + file.name;
+                    data.append("name", fileName);
+                    data.append("file", file);
+                    newUser.profilePicture = fileName;
+                    try {
+                        // 画像APIを叩く
+                        await apiClient.post("/upload", data);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                };
                 try {
-                    //アイコン画像削除用APIを叩く
-                    await apiClient.delete(`/imgdelete/${currentUser._id}/deleteIcon`);
+                    const data = JSON.parse(localStorage.getItem("user")) || {};
+                    data.username = newUser.username;
+                    localStorage.setItem("user", JSON.stringify(data));
+                    await apiClient.put(`/users/${currentUser._id}`, newUser);
+                    navigate(`/profile/${newUser.username}`);
+                    window.location.reload();
                 } catch (err) {
                     console.log(err);
                 }
-
-                const data = new FormData();
-                const fileName = Date.now() + file.name;
-                data.append("name", fileName);
-                data.append("file", file);
-                newUser.profilePicture = fileName;
-                try {
-                    // 画像APIを叩く
-                    await apiClient.post("/upload", data);
-                } catch (err) {
-                    console.log(err);
-                }
-            };
-            try {
-                const data = JSON.parse(localStorage.getItem("user")) || {};
-                data.username = newUser.username;
-                localStorage.setItem("user", JSON.stringify(data));
-                await apiClient.put(`/users/${currentUser._id}`, newUser);
-                navigate(`/profile/${newUser.username}`);
-                window.location.reload();
-            } catch (err) {
-                console.log(err);
             }
         }
     };
@@ -77,45 +83,50 @@ export default function Editprofile() {
     const backImghandleSubmit = async (e) => {
         e.preventDefault();
 
-        const confirm = window.confirm('保存しますか？');
-        if (confirm) {
-            navigate("/loading");
-            const newUser = {
-                username: acountname.current.value,
-                userId: currentUser._id,
-                desc: desc.current.value,
-            };
+        const text = acountname.current.value;
+        if (text.trim() === '') {
+            alert('名前を入力して下さい。')
+        } else {
+            const confirm = window.confirm('保存しますか？');
+            if (confirm) {
+                navigate("/loading");
+                const newUser = {
+                    username: acountname.current.value,
+                    userId: currentUser._id,
+                    desc: desc.current.value,
+                };
 
-            if (backimgfile) {
+                if (backimgfile) {
+                    try {
+                        //カバー画像削除用APIを叩く
+                        await apiClient.delete(`/imgdelete/${currentUser._id}/deleteCover`);
+                    } catch (err) {
+                        console.log(err);
+                    }
+
+                    const data = new FormData();
+                    const fileName = Date.now() + backimgfile.name;
+                    data.append("name", fileName);
+                    data.append("file", backimgfile);
+                    newUser.coverPicture = fileName;
+                    try {
+                        //画像APIを叩く
+                        await apiClient.post("/upload", data);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                };
+
                 try {
-                    //カバー画像削除用APIを叩く
-                    await apiClient.delete(`/imgdelete/${currentUser._id}/deleteCover`);
+                    const data = JSON.parse(localStorage.getItem("user")) || {};
+                    data.username = newUser.username;
+                    localStorage.setItem("user", JSON.stringify(data));
+                    await apiClient.put(`/users/${currentUser._id}`, newUser);
+                    navigate(`/profile/${newUser.username}`);
+                    window.location.reload();
                 } catch (err) {
                     console.log(err);
                 }
-
-                const data = new FormData();
-                const fileName = Date.now() + backimgfile.name;
-                data.append("name", fileName);
-                data.append("file", backimgfile);
-                newUser.coverPicture = fileName;
-                try {
-                    //画像APIを叩く
-                    await apiClient.post("/upload", data);
-                } catch (err) {
-                    console.log(err);
-                }
-            };
-
-            try {
-                const data = JSON.parse(localStorage.getItem("user")) || {};
-                data.username = newUser.username;
-                localStorage.setItem("user", JSON.stringify(data));
-                await apiClient.put(`/users/${currentUser._id}`, newUser);
-                navigate(`/profile/${newUser.username}`);
-                window.location.reload();
-            } catch (err) {
-                console.log(err);
             }
         }
     };
