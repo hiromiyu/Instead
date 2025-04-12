@@ -85,6 +85,8 @@ const AppleSignIn = () => {
 
     useEffect(() => {
 
+        const onSuccess = (event) => handleSuccess(event);
+
         if (initializedRef.current) return;
         initializedRef.current = true;
 
@@ -94,7 +96,7 @@ const AppleSignIn = () => {
 
         script.onload = () => {
             if (window.AppleID && !window.AppleID.__initialized) {
-                window.AppleID.__initialized = true;
+
 
                 window.AppleID.auth.init({
                     clientId: process.env.REACT_APP_APPLE_SERVICES_ID,
@@ -105,7 +107,9 @@ const AppleSignIn = () => {
                     usePopup: true,
                 });
 
-                document.addEventListener('AppleIDSignInOnSuccess', handleSuccess);
+                window.AppleID.__initialized = true;
+
+                document.addEventListener('AppleIDSignInOnSuccess', onSuccess);
             }
         };
 
@@ -113,7 +117,7 @@ const AppleSignIn = () => {
 
         return () => {
 
-            document.removeEventListener('AppleIDSignInOnSuccess', handleSuccess);
+            document.removeEventListener('AppleIDSignInOnSuccess', onSuccess);
         };
 
     }, [dispatch, handleSuccess, state, hashedNonce, rawNonce]);
