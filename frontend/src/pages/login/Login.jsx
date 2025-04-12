@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import "./Login.css"
 import { loginCall } from '../../actionCalls';
 import { AuthContext } from '../../state/AuthContext';
@@ -6,6 +6,19 @@ import { Link } from 'react-router-dom';
 import AppleSignIn from '../../components/appleSignInButton/AppleSignIn';
 
 export default function Login() {
+
+    useEffect(() => {
+        const hasReloaded = sessionStorage.getItem("hasReloaded");
+
+        if (!hasReloaded) {
+            sessionStorage.setItem("hasReloaded", "true");
+            window.location.reload();
+        } else {
+            sessionStorage.removeItem("hasReloaded"); // 次の遷移に備えてクリア
+        }
+    }, []);
+
+
     const email = useRef();
     const password = useRef();
     const { dispatch } = useContext(AuthContext);
