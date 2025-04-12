@@ -11,20 +11,6 @@ import useAppleAuthParams from "./useAppleAuthParams";
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
 
-    // const generateRandomString = () => {
-    //     return Math.random().toString(36).substring(2) + Date.now().toString(36);
-    // };
-
-    // const generateSHA256Hash = (input) => {
-    //     return CryptoJS.SHA256(input)
-    //         .toString(CryptoJS.enc.Hex)
-    // };
-
-    // const [state] = useState(() => generateRandomString());
-    // const [rawNonce] = useState(() => generateRandomString());
-
-    // const [hashedNonce] = useState(() => generateSHA256Hash(rawNonce));
-
     const { state, rawNonce, hashedNonce } = useAppleAuthParams();
 
     const initializedRef = useRef(false);
@@ -77,6 +63,10 @@ const AppleSignIn = () => {
                 }
             }
 
+            localStorage.removeItem("appleSignInState");
+            localStorage.removeItem("appleSignInNonce");
+            localStorage.removeItem("appleSignInHashedNonce");
+
             appleLoginCall(
                 {
                     email: result.user.email,
@@ -85,6 +75,9 @@ const AppleSignIn = () => {
             );
 
         } catch (error) {
+            localStorage.removeItem("appleSignInState");
+            localStorage.removeItem("appleSignInNonce");
+            localStorage.removeItem("appleSignInHashedNonce");
 
             console.error("❌ Firebase SignIn Failed:", error);
         }
