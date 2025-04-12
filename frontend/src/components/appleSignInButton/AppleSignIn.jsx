@@ -30,9 +30,9 @@ const AppleSignIn = () => {
 
     const handleSuccess = useCallback(async (event) => {
 
-        localStorage.setItem("appleSignInState", state);
-        localStorage.setItem("appleSignInNonce", rawNonce);
-        localStorage.setItem("appleSignInHashedNonce", hashedNonce);
+        // localStorage.setItem("appleSignInState", state);
+        // localStorage.setItem("appleSignInNonce", rawNonce);
+        // localStorage.setItem("appleSignInHashedNonce", hashedNonce);
 
         const { authorization, user } = event.detail;
         const code = authorization.code;
@@ -44,16 +44,19 @@ const AppleSignIn = () => {
             fullName = `${user.name.firstName} ${user.name.lastName}`;
         }
 
-        const savedState = localStorage.getItem("appleSignInState");
-        if (returnedState !== savedState) {
+        // const savedState = localStorage.getItem("appleSignInState");
+        // if (returnedState !== savedState) {
+        if (returnedState !== state) {
             console.error("Invalid state");
             return;
         }
 
         const decoded = jwtDecode(idToken);
         const returnedNonce = decoded.nonce;
-        const savedNonce = localStorage.getItem("appleSignInHashedNonce");
-        if (returnedNonce !== savedNonce) {
+        // const savedNonce = localStorage.getItem("appleSignInHashedNonce");
+
+        // if (returnedNonce !== savedNonce) {
+        if (returnedNonce !== hashedNonce) {
             console.error("Invalid nonce");
             return;
         }
@@ -81,9 +84,9 @@ const AppleSignIn = () => {
                 }
             }
 
-            localStorage.removeItem("appleSignInState");
-            localStorage.removeItem("appleSignInNonce");
-            localStorage.removeItem("appleSignInHashedNonce");
+            // localStorage.removeItem("appleSignInState");
+            // localStorage.removeItem("appleSignInNonce");
+            // localStorage.removeItem("appleSignInHashedNonce");
 
             appleLoginCall(
                 {
@@ -93,9 +96,9 @@ const AppleSignIn = () => {
             );
 
         } catch (error) {
-            localStorage.removeItem("appleSignInState");
-            localStorage.removeItem("appleSignInNonce");
-            localStorage.removeItem("appleSignInHashedNonce");
+            // localStorage.removeItem("appleSignInState");
+            // localStorage.removeItem("appleSignInNonce");
+            // localStorage.removeItem("appleSignInHashedNonce");
 
             console.error("❌ Firebase SignIn Failed:", error);
         }
