@@ -44,15 +44,6 @@ const AppleSignIn = () => {
         const idToken = authorization.id_token;
         const returnedState = authorization.state;
 
-        console.log("Apple SignIn Success:", authorization);
-        console.log("Apple SignIn Success:", user);
-        console.log("Apple SignIn Success:", code);
-        console.log("Apple SignIn Success:", idToken);
-        console.log("Apple SignIn Success:", returnedState);
-        console.log("Apple SignIn Success:", state);
-        console.log("Apple SignIn Success:", rawNonce);
-        console.log("Apple SignIn Success:", hashedNonce);
-
         let fullName = "";
         if (user && user.name) {
             fullName = `${user.name.firstName} ${user.name.lastName}`;

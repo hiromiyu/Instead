@@ -5,7 +5,7 @@ import "./EditPage.css";
 import { useContext } from "react";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
-import { signOut } from "firebase/auth";
+import { signOut, deleteUser } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export default function EditPage() {
@@ -14,13 +14,22 @@ export default function EditPage() {
 
     const { user: currentUser } = useContext(AuthContext);
 
-    const deleteUser = async () => {
+    const deleteAccount = async () => {
+        const user = auth.currentUser;
+        if (user) {
+            deleteUser(user)
+                .then(() => {
+                    console.log("User deleted successfully");
+                })
+                .catch((error) => {
+                    console.error("Error deleting user:", error);
+                });
+        }
         try {
             navigate("/");
             await apiClient.delete(`/posts/${currentUser.username}/deleteall`);
             await apiClient.delete(`/users/${currentUser._id}`, { data: { userId: currentUser._id } });
             localStorage.clear();
-            signOut(auth);
             window.location.reload();
         } catch (err) {
             console.log(err);
@@ -48,7 +57,7 @@ export default function EditPage() {
     const deleteMenu = () => {
         const confirm = window.confirm('OKを押すと全てのデータが削除され元には戻せません!\n本当に退会しますか？');
         if (confirm) {
-            deleteUser();
+            deleteAccount();
         }
     };
 
