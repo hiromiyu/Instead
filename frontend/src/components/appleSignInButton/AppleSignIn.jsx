@@ -11,13 +11,6 @@ import "./AppleSignIn.css";
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
 
-    useEffect(() => {
-        localStorage.removeItem("appleSignInState");
-        localStorage.removeItem("appleSignInNonce");
-        localStorage.removeItem("appleSignInHashedNonce");
-    }, []);
-
-
     const generateRandomString = () => {
         return Math.random().toString(36).substring(2) + Date.now().toString(36);
     };
