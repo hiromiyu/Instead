@@ -103,7 +103,10 @@ export default function Postcomment({ comment, post }) {
                     </div>
                     <div className="postCommentCenter">
                         <p className="postCommentText">{comment.desc}</p>
-                        <motion.img src={PUBLIC_FOLDER_URL + comment.img} alt=''
+                        <motion.img
+                            src={comment.img ? PUBLIC_FOLDER_URL + comment.img : ""}
+                            // src={PUBLIC_FOLDER_URL + comment.img}
+                            alt=''
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.1 }}
