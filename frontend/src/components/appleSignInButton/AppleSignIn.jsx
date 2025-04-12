@@ -1,5 +1,5 @@
 import { auth } from "../../firebase";
-import { OAuthProvider, signInWithCredential, onAuthStateChanged } from "firebase/auth";
+import { OAuthProvider, signInWithCredential } from "firebase/auth";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { appleLoginCall } from "../../actionCalls";
@@ -10,6 +10,13 @@ import "./AppleSignIn.css";
 
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
+
+    useEffect(() => {
+        localStorage.removeItem("appleSignInState");
+        localStorage.removeItem("appleSignInNonce");
+        localStorage.removeItem("appleSignInHashedNonce");
+    }, []);
+
 
     const generateRandomString = () => {
         return Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -43,20 +50,10 @@ const AppleSignIn = () => {
         }
 
         const savedState = localStorage.getItem("appleSignInState");
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log("User is signed in:", user);
-            } else {
-                if (returnedState !== savedState) {
-                    console.error("Invalid state");
-                    return;
-                }
-            }
-        });
-        // if (returnedState !== savedState) {
-        //     console.error("Invalid state");
-        //     return;
-        // }
+        if (returnedState !== savedState) {
+            console.error("Invalid state");
+            return;
+        }
 
         const decoded = jwtDecode(idToken);
         const returnedNonce = decoded.nonce;
@@ -77,22 +74,34 @@ const AppleSignIn = () => {
             const result = await signInWithCredential(auth, credential);
             console.log("✅ Firebase SignIn Success!", result.user);
 
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    console.log("User is signed in:", user);
-                } else {
-                    try {
-                        const user = {
-                            username: fullName || `User_${result.user.uid.substring(0, 6)}`,
-                            email: result.user.email,
-                        };
-                        await apiClient.post("/auth/apple/register", user);
-                    } catch (error) {
-                        console.error("❌ API Call Failed:", error);
-                    }
+            if (result?.additionalUserInfo?.isNewUser) {
+                try {
+                    const user = {
+                        username: fullName || `User_${result.user.uid.substring(0, 6)}`,
+                        email: result.user.email,
+                    };
+                    await apiClient.post("/auth/apple/register", user);
+                } catch (error) {
+                    console.error("❌ API Call Failed:", error);
                 }
             }
-            );
+
+            // onAuthStateChanged(auth, async (user) => {
+            //     if (user) {
+            //         console.log("User is signed in:", user);
+            //     } else {
+            //         try {
+            //             const user = {
+            //                 username: fullName || `User_${result.user.uid.substring(0, 6)}`,
+            //                 email: result.user.email,
+            //             };
+            //             await apiClient.post("/auth/apple/register", user);
+            //         } catch (error) {
+            //             console.error("❌ API Call Failed:", error);
+            //         }
+            //     }
+            // }
+            // );
 
             localStorage.removeItem("appleSignInState");
             localStorage.removeItem("appleSignInNonce");
