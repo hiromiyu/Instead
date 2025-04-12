@@ -1,6 +1,6 @@
 import { auth } from "../../firebase";
 import { OAuthProvider, signInWithCredential, getAdditionalUserInfo } from "firebase/auth";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { appleLoginCall } from "../../actionCalls";
 import { AuthContext } from "../../state/AuthContext";
@@ -25,6 +25,8 @@ const AppleSignIn = () => {
 
     // nonceをSHA256でハッシュ化
     const [hashedNonce] = useState(() => generateSHA256Hash(rawNonce));
+
+    const initializedRef = useRef(false);
 
     const handleSuccess = useCallback(async (event) => {
 
@@ -101,30 +103,37 @@ const AppleSignIn = () => {
 
     useEffect(() => {
 
-        const metaTags = [
-            { name: "appleid-signin-client-id", content: process.env.REACT_APP_APPLE_SERVICES_ID },
-            { name: "appleid-signin-scope", content: "name email" },
-            { name: "appleid-signin-redirect-uri", content: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI },
-            { name: "appleid-signin-state", content: state },
-            { name: "appleid-signin-nonce", content: hashedNonce },
-            { name: "appleid-signin-use-popup", content: "true" },
-        ];
+        // const metaTags = [
+        //     { name: "appleid-signin-client-id", content: process.env.REACT_APP_APPLE_SERVICES_ID },
+        //     { name: "appleid-signin-scope", content: "name email" },
+        //     { name: "appleid-signin-redirect-uri", content: process.env.REACT_APP_APPLE_SERVICES_REDIRECT_URI },
+        //     { name: "appleid-signin-state", content: state },
+        //     { name: "appleid-signin-nonce", content: hashedNonce },
+        //     { name: "appleid-signin-use-popup", content: "true" },
+        // ];
 
-        metaTags.forEach(({ name, content }) => {
-            const meta = document.createElement("meta");
-            meta.name = name;
-            meta.content = content;
-            document.head.appendChild(meta);
-        });
+        // metaTags.forEach(({ name, content }) => {
+        //     const meta = document.createElement("meta");
+        //     meta.name = name;
+        //     meta.content = content;
+        //     document.head.appendChild(meta);
+        // });
 
         // if (!document.querySelector("script[src='https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js']")) {
+
+        if (initializedRef.current) return;
+        initializedRef.current = true;
+
         const script = document.createElement("script");
         script.src = "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
         script.async = true;
-        document.body.appendChild(script);
+        // document.body.appendChild(script);
 
         script.onload = () => {
-            if (window.AppleID) {
+            // if (window.AppleID) {
+            if (window.AppleID && !window.AppleID.__initialized) {
+                window.AppleID.__initialized = true;
+
                 window.AppleID.auth.init({
                     clientId: process.env.REACT_APP_APPLE_SERVICES_ID,
                     scope: "name email",
@@ -134,25 +143,22 @@ const AppleSignIn = () => {
                     usePopup: true,
                 });
 
-
                 document.addEventListener('AppleIDSignInOnSuccess', handleSuccess);
-
-                // 認証エラーイベントリスナーを設定
-                // document.addEventListener('AppleIDSignInOnFailure', handleError);
-
-
-                return () => {
-                    script.remove();
-                    metaTags.forEach(({ name }) => {
-                        const el = document.querySelector(`meta[name="${name}"]`);
-                        if (el) el.remove();
-                    });
-                    // イベントリスナーも削除
-                    document.removeEventListener('AppleIDSignInOnSuccess', handleSuccess);
-                    // document.removeEventListener('AppleIDSignInOnFailure', handleError);
-                };
             }
         };
+
+        document.body.appendChild(script);
+
+        return () => {
+            // script.remove();
+            // metaTags.forEach(({ name }) => {
+            //     const el = document.querySelector(`meta[name="${name}"]`);
+            //     if (el) el.remove();
+            // });
+            document.removeEventListener('AppleIDSignInOnSuccess', handleSuccess);
+        };
+
+
         // }
     }, [dispatch, handleSuccess, state, hashedNonce, rawNonce]);
 
