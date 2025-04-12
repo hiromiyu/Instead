@@ -44,6 +44,15 @@ const AppleSignIn = () => {
         const idToken = authorization.id_token;
         const returnedState = authorization.state;
 
+        console.log("Apple SignIn Success:", authorization);
+        console.log("Apple SignIn Success:", user);
+        console.log("Apple SignIn Success:", code);
+        console.log("Apple SignIn Success:", idToken);
+        console.log("Apple SignIn Success:", returnedState);
+        console.log("Apple SignIn Success:", state);
+        console.log("Apple SignIn Success:", rawNonce);
+        console.log("Apple SignIn Success:", hashedNonce);
+
         let fullName = "";
         if (user && user.name) {
             fullName = `${user.name.firstName} ${user.name.lastName}`;
@@ -86,23 +95,6 @@ const AppleSignIn = () => {
                 }
             }
 
-            // onAuthStateChanged(auth, async (user) => {
-            //     if (user) {
-            //         console.log("User is signed in:", user);
-            //     } else {
-            //         try {
-            //             const user = {
-            //                 username: fullName || `User_${result.user.uid.substring(0, 6)}`,
-            //                 email: result.user.email,
-            //             };
-            //             await apiClient.post("/auth/apple/register", user);
-            //         } catch (error) {
-            //             console.error("❌ API Call Failed:", error);
-            //         }
-            //     }
-            // }
-            // );
-
             localStorage.removeItem("appleSignInState");
             localStorage.removeItem("appleSignInNonce");
             localStorage.removeItem("appleSignInHashedNonce");
@@ -122,14 +114,6 @@ const AppleSignIn = () => {
             console.error("❌ Firebase SignIn Failed:", error);
         }
     }, [dispatch, state, hashedNonce, rawNonce]);
-
-    // const handleError = (event) => {
-    //     console.error("Apple Sign In Error:", event.detail);
-
-    //     localStorage.removeItem("appleSignInState");
-    //     localStorage.removeItem("appleSignInNonce");
-    //     localStorage.removeItem("appleSignInHashedNonce");
-    // }
 
     useEffect(() => {
 
