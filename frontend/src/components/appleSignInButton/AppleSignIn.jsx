@@ -43,10 +43,20 @@ const AppleSignIn = () => {
         }
 
         const savedState = localStorage.getItem("appleSignInState");
-        if (returnedState !== savedState) {
-            console.error("Invalid state");
-            return;
-        }
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in:", user);
+            } else {
+                if (returnedState !== savedState) {
+                    console.error("Invalid state");
+                    return;
+                }
+            }
+        });
+        // if (returnedState !== savedState) {
+        //     console.error("Invalid state");
+        //     return;
+        // }
 
         const decoded = jwtDecode(idToken);
         const returnedNonce = decoded.nonce;
