@@ -72,7 +72,7 @@ const AppleSignIn = () => {
 
         try {
             const result = await signInWithCredential(auth, credential);
-            console.log("✅ Firebase SignIn Success!", result.user);
+            console.log("✅ Firebase SignIn Success!");
 
             if (getAdditionalUserInfo(result)?.isNewUser) {
                 try {
