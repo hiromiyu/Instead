@@ -34,8 +34,6 @@ const AppleSignIn = () => {
 
     const handleSuccess = useCallback(async (event) => {
 
-        window.location.reload();
-
         localStorage.setItem("appleSignInState", state);
         localStorage.setItem("appleSignInNonce", rawNonce);
         localStorage.setItem("appleSignInHashedNonce", hashedNonce);
