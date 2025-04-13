@@ -109,6 +109,7 @@ const AppleSignIn = () => {
 
                 window.AppleID.__initialized = true;
 
+                document.removeEventListener('AppleIDSignInOnSuccess', onSuccess);
                 document.addEventListener('AppleIDSignInOnSuccess', onSuccess);
             }
         };
