@@ -1,21 +1,44 @@
 import { auth } from "../../firebase";
 import { OAuthProvider, signInWithCredential, getAdditionalUserInfo } from "firebase/auth";
-import { useCallback, useContext, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { appleLoginCall } from "../../actionCalls";
 import { AuthContext } from "../../state/AuthContext";
 import apiClient from "../../lib/apiClient";
+import CryptoJS from "crypto-js";
 import "./AppleSignIn.css";
-import useAppleAuthParams from "./useAppleAuthParams";
 
 const AppleSignIn = () => {
     const { dispatch } = useContext(AuthContext);
 
-    const { state, rawNonce, hashedNonce } = useAppleAuthParams();
+    useEffect(() => {
+        localStorage.removeItem("appleSignInState");
+        localStorage.removeItem("appleSignInNonce");
+        localStorage.removeItem("appleSignInHashedNonce");
+    }, []);
 
-    const initializedRef = useRef(false);
+
+    const generateRandomString = () => {
+        return Math.random().toString(36).substring(2) + Date.now().toString(36);
+    };
+
+    const generateSHA256Hash = (input) => {
+        return CryptoJS.SHA256(input)
+            .toString(CryptoJS.enc.Hex)
+    };
+
+    const [state] = useState(() => generateRandomString());
+    const [rawNonce] = useState(() => generateRandomString());
+
+    const [hashedNonce] = useState(() => generateSHA256Hash(rawNonce));
 
     const handleSuccess = useCallback(async (event) => {
+
+        window.location.reload();
+
+        localStorage.setItem("appleSignInState", state);
+        localStorage.setItem("appleSignInNonce", rawNonce);
+        localStorage.setItem("appleSignInHashedNonce", hashedNonce);
 
         const { authorization, user } = event.detail;
         const code = authorization.code;
@@ -27,15 +50,16 @@ const AppleSignIn = () => {
             fullName = `${user.name.firstName} ${user.name.lastName}`;
         }
 
-        if (returnedState !== state) {
+        const savedState = localStorage.getItem("appleSignInState");
+        if (returnedState !== savedState) {
             console.error("Invalid state");
             return;
         }
 
         const decoded = jwtDecode(idToken);
         const returnedNonce = decoded.nonce;
-
-        if (returnedNonce !== hashedNonce) {
+        const savedNonce = localStorage.getItem("appleSignInHashedNonce");
+        if (returnedNonce !== savedNonce) {
             console.error("Invalid nonce");
             return;
         }
@@ -63,9 +87,9 @@ const AppleSignIn = () => {
                 }
             }
 
-            sessionStorage.removeItem("appleSignInState");
-            sessionStorage.removeItem("appleSignInNonce");
-            sessionStorage.removeItem("appleSignInHashedNonce");
+            localStorage.removeItem("appleSignInState");
+            localStorage.removeItem("appleSignInNonce");
+            localStorage.removeItem("appleSignInHashedNonce");
 
             appleLoginCall(
                 {
@@ -75,9 +99,9 @@ const AppleSignIn = () => {
             );
 
         } catch (error) {
-            sessionStorage.removeItem("appleSignInState");
-            sessionStorage.removeItem("appleSignInNonce");
-            sessionStorage.removeItem("appleSignInHashedNonce");
+            localStorage.removeItem("appleSignInState");
+            localStorage.removeItem("appleSignInNonce");
+            localStorage.removeItem("appleSignInHashedNonce");
 
             console.error("❌ Firebase SignIn Failed:", error);
         }
@@ -85,19 +109,13 @@ const AppleSignIn = () => {
 
     useEffect(() => {
 
-        const onSuccess = (event) => handleSuccess(event);
-
-        if (initializedRef.current) return;
-        initializedRef.current = true;
-
         const script = document.createElement("script");
         script.src = "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
         script.async = true;
+        document.body.appendChild(script);
 
         script.onload = () => {
-            if (window.AppleID && !window.AppleID.__initialized) {
-
-
+            if (window.AppleID) {
                 window.AppleID.auth.init({
                     clientId: process.env.REACT_APP_APPLE_SERVICES_ID,
                     scope: "name email",
@@ -107,20 +125,13 @@ const AppleSignIn = () => {
                     usePopup: true,
                 });
 
-                window.AppleID.__initialized = true;
+                document.addEventListener('AppleIDSignInOnSuccess', handleSuccess);
 
-                document.removeEventListener('AppleIDSignInOnSuccess', onSuccess);
-                document.addEventListener('AppleIDSignInOnSuccess', onSuccess);
+                return () => {
+                    document.removeEventListener('AppleIDSignInOnSuccess', handleSuccess);
+                };
             }
         };
-
-        document.body.appendChild(script);
-
-        return () => {
-
-            document.removeEventListener('AppleIDSignInOnSuccess', onSuccess);
-        };
-
     }, [dispatch, handleSuccess, state, hashedNonce, rawNonce]);
 
     return (

@@ -6,18 +6,6 @@ import AppleSignIn from '../../components/appleSignInButton/AppleSignIn';
 
 export default function Register() {
 
-    // useEffect(() => {
-    //     const hasReloaded = sessionStorage.getItem("hasReloaded");
-
-    //     if (!hasReloaded) {
-    //         sessionStorage.setItem("hasReloaded", "true");
-    //         window.location.reload();
-    //     } else {
-    //         sessionStorage.removeItem("hasReloaded");
-    //     }
-    // }, []);
-
-
     const username = useRef();
     const email = useRef();
     const password = useRef();
