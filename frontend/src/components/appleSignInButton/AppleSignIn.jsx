@@ -63,9 +63,9 @@ const AppleSignIn = () => {
                 }
             }
 
-            localStorage.removeItem("appleSignInState");
-            localStorage.removeItem("appleSignInNonce");
-            localStorage.removeItem("appleSignInHashedNonce");
+            sessionStorage.removeItem("appleSignInState");
+            sessionStorage.removeItem("appleSignInNonce");
+            sessionStorage.removeItem("appleSignInHashedNonce");
 
             appleLoginCall(
                 {
@@ -75,9 +75,9 @@ const AppleSignIn = () => {
             );
 
         } catch (error) {
-            localStorage.removeItem("appleSignInState");
-            localStorage.removeItem("appleSignInNonce");
-            localStorage.removeItem("appleSignInHashedNonce");
+            sessionStorage.removeItem("appleSignInState");
+            sessionStorage.removeItem("appleSignInNonce");
+            sessionStorage.removeItem("appleSignInHashedNonce");
 
             console.error("❌ Firebase SignIn Failed:", error);
         }

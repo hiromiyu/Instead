@@ -1,4 +1,5 @@
-import { useState } from "react";
+// useAppleAuthParams.ts
+import { useMemo } from "react";
 import CryptoJS from "crypto-js";
 
 const generateRandomString = () => {
@@ -10,26 +11,26 @@ const generateSHA256Hash = (input) => {
 };
 
 const useAppleAuthParams = () => {
-    const [state] = useState(() => {
-        const saved = localStorage.getItem("appleSignInState");
-        const value = saved || generateRandomString();
-        localStorage.setItem("appleSignInState", value);
-        return value;
-    });
+    const state = useMemo(() => {
+        const saved = sessionStorage.getItem("appleSignInState");
+        const generated = saved || generateRandomString();
+        sessionStorage.setItem("appleSignInState", generated);
+        return generated;
+    }, []);
 
-    const [rawNonce] = useState(() => {
-        const saved = localStorage.getItem("appleSignInNonce");
-        const value = saved || generateRandomString();
-        localStorage.setItem("appleSignInNonce", value);
-        return value;
-    });
+    const rawNonce = useMemo(() => {
+        const saved = sessionStorage.getItem("appleSignInNonce");
+        const generated = saved || generateRandomString();
+        sessionStorage.setItem("appleSignInNonce", generated);
+        return generated;
+    }, []);
 
-    const [hashedNonce] = useState(() => {
-        const saved = localStorage.getItem("appleSignInHashedNonce");
-        const value = saved || generateSHA256Hash(rawNonce);
-        localStorage.setItem("appleSignInHashedNonce", value);
-        return value;
-    });
+    const hashedNonce = useMemo(() => {
+        const saved = sessionStorage.getItem("appleSignInHashedNonce");
+        const generated = saved || generateSHA256Hash(rawNonce);
+        sessionStorage.setItem("appleSignInHashedNonce", generated);
+        return generated;
+    }, [rawNonce]);
 
     return { state, rawNonce, hashedNonce };
 };

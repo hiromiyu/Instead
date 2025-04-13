@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import "./Register.css"
 import { Link, useNavigate } from "react-router-dom";
 import apiClient from '../../lib/apiClient'
@@ -6,16 +6,16 @@ import AppleSignIn from '../../components/appleSignInButton/AppleSignIn';
 
 export default function Register() {
 
-    useEffect(() => {
-        const hasReloaded = sessionStorage.getItem("hasReloaded");
+    // useEffect(() => {
+    //     const hasReloaded = sessionStorage.getItem("hasReloaded");
 
-        if (!hasReloaded) {
-            sessionStorage.setItem("hasReloaded", "true");
-            window.location.reload();
-        } else {
-            sessionStorage.removeItem("hasReloaded"); // 次の遷移に備えてクリア
-        }
-    }, []);
+    //     if (!hasReloaded) {
+    //         sessionStorage.setItem("hasReloaded", "true");
+    //         window.location.reload();
+    //     } else {
+    //         sessionStorage.removeItem("hasReloaded");
+    //     }
+    // }, []);
 
 
     const username = useRef();
