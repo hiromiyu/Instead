@@ -30,7 +30,6 @@ export default function Comment({ post }) {
                     await apiClient.post("/comment", newComment);
                     // window.location.reload();
                 } catch (err) {
-                    console.log(err);
                 }
 
                 try {
@@ -38,7 +37,6 @@ export default function Comment({ post }) {
                     // window.location.reload();
                     navigate(`/profile/${currentUser.username}`);
                 } catch (err) {
-                    console.log(err);
                 }
             }
         }

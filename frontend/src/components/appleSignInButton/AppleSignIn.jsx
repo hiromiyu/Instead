@@ -50,7 +50,7 @@ const AppleSignIn = () => {
 
         const savedState = localStorage.getItem("appleSignInState");
         if (returnedState !== savedState) {
-            console.error("Invalid state");
+            // console.error("Invalid state");
             return;
         }
 
@@ -58,7 +58,7 @@ const AppleSignIn = () => {
         const returnedNonce = decoded.nonce;
         const savedNonce = localStorage.getItem("appleSignInHashedNonce");
         if (returnedNonce !== savedNonce) {
-            console.error("Invalid nonce");
+            // console.error("Invalid nonce");
             return;
         }
 
@@ -71,7 +71,7 @@ const AppleSignIn = () => {
 
         try {
             const result = await signInWithCredential(auth, credential);
-            console.log("✅ Firebase SignIn Success!");
+            // console.log("✅ Firebase SignIn Success!");
 
             if (getAdditionalUserInfo(result)?.isNewUser) {
                 try {
@@ -81,7 +81,6 @@ const AppleSignIn = () => {
                     };
                     await apiClient.post("/auth/apple/register", user);
                 } catch (error) {
-                    console.error("❌ API Call Failed:", error);
                 }
             }
 
@@ -101,7 +100,7 @@ const AppleSignIn = () => {
             localStorage.removeItem("appleSignInNonce");
             localStorage.removeItem("appleSignInHashedNonce");
 
-            console.error("❌ Firebase SignIn Failed:", error);
+            // console.error("❌ Firebase SignIn Failed:", error);
         }
     }, [dispatch, state, hashedNonce, rawNonce]);
 

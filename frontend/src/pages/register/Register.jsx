@@ -21,7 +21,6 @@ export default function Register() {
             passwordConfirmation.current.setCustomValidity("パスワードが違います。")
         } else {
             try {
-
                 const user = {
                     username: username.current.value,
                     email: email.current.value,
@@ -31,7 +30,6 @@ export default function Register() {
                 await apiClient.post("/auth/register", user)
                 navigate("/login");
             } catch (err) {
-                console.log(err);
             }
         }
     };

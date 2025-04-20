@@ -19,7 +19,7 @@ export default function Following() {
                 const friendList = await apiClient.get(`/users/friends/${currentUser._id}`);
                 setFriends(friendList.data);
             } catch (err) {
-                console.log(err);
+
             }
         };
         getFriends();
@@ -29,9 +29,8 @@ export default function Following() {
         <>
             <Topbar />
             {friends.map((friend) => (
-
-                <div className="homeFollowing">
-                    <Link to={"/profile/" + friend.username} key={friend._id}
+                <div className="homeFollowing" key={friend._id}>
+                    <Link to={"/profile/" + friend.username}
                         style={{ textDecoration: "none" }}>
                         <div className="followSidebar">
                             <div>
@@ -46,7 +45,7 @@ export default function Following() {
                             </div>
                         </div>
                     </Link>
-                    <Link to={"/profile/" + friend.username} key={friend._id}
+                    <Link to={"/profile/" + friend.username}
                         style={{ textDecoration: "none" }}>
                         <div className="followWrapper">
                             <div className="followTop">
@@ -54,7 +53,6 @@ export default function Following() {
                                     <span className="homeFollowingName">{friend.username}</span>
                                 </div>
                                 <div className="followTopRight">
-
                                 </div>
                             </div>
                             <span className="homeFollowingStatus">{friend.desc}</span>

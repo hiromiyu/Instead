@@ -54,7 +54,6 @@ export default function Share() {
                         //画像APIを叩く
                         await apiClient.post("/upload", data);
                     } catch (err) {
-                        console.log(err);
                     }
                 };
 
@@ -63,7 +62,6 @@ export default function Share() {
                     // window.location.reload();
                     navigate(`/profile/${currentUser.username}`);
                 } catch (err) {
-                    console.log(err);
                 }
             }
         }

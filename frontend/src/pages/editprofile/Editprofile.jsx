@@ -51,7 +51,6 @@ export default function Editprofile() {
                         //アイコン画像削除用APIを叩く
                         await apiClient.delete(`/imgdelete/${currentUser._id}/deleteIcon`);
                     } catch (err) {
-                        console.log(err);
                     }
 
                     const data = new FormData();
@@ -63,7 +62,6 @@ export default function Editprofile() {
                         // 画像APIを叩く
                         await apiClient.post("/upload", data);
                     } catch (err) {
-                        console.log(err);
                     }
                 };
                 try {
@@ -74,7 +72,6 @@ export default function Editprofile() {
                     navigate(`/profile/${newUser.username}`);
                     window.location.reload();
                 } catch (err) {
-                    console.log(err);
                 }
             }
         }
@@ -101,7 +98,6 @@ export default function Editprofile() {
                         //カバー画像削除用APIを叩く
                         await apiClient.delete(`/imgdelete/${currentUser._id}/deleteCover`);
                     } catch (err) {
-                        console.log(err);
                     }
 
                     const data = new FormData();
@@ -113,7 +109,6 @@ export default function Editprofile() {
                         //画像APIを叩く
                         await apiClient.post("/upload", data);
                     } catch (err) {
-                        console.log(err);
                     }
                 };
 
@@ -125,7 +120,6 @@ export default function Editprofile() {
                     navigate(`/profile/${newUser.username}`);
                     window.location.reload();
                 } catch (err) {
-                    console.log(err);
                 }
             }
         }

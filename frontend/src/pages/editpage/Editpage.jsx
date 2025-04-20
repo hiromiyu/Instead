@@ -32,7 +32,6 @@ export default function EditPage() {
             localStorage.clear();
             window.location.reload();
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -43,7 +42,6 @@ export default function EditPage() {
             signOut(auth);
             window.location.reload();
         } catch (err) {
-            console.log(err);
         }
     };
 

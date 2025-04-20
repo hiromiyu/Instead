@@ -54,7 +54,6 @@ export default function Profile() {
                 dispatch({ type: "FOLLOW", payload: user._id })
             }
         } catch (err) {
-            console.log(err);
 
             // エラー時に状態を元に戻す
             setFollowed(followed);

@@ -49,7 +49,6 @@ export default function Post({ post }) {
             // APIリクエスト
             await apiClient.put(`/posts/${post._id}/like`, { userId: currentUser._id });
         } catch (err) {
-            console.log(err);
 
             // エラー時に状態を元に戻す
             setLike((like) => (isLiked ? like + 1 : like - 1));
@@ -65,7 +64,6 @@ export default function Post({ post }) {
             // window.location.reload();
             navigate(`/profile/${currentUser.username}`);
         } catch (err) {
-            console.log(err);
         }
     };
 
