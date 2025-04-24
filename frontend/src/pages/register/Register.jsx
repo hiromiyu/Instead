@@ -37,9 +37,9 @@ export default function Register() {
         <div className='register'>
             <div className="registerWrapper">
                 <div className="registerLeft">
-                    <h3 className='registerLogo'>Instead</h3>
-                    <h2>An alternative to SNS app.</h2>
-                    <h2 className="registerDesc">新規登録画面</h2>
+                    <h3 className='registerLogo'>Instead SNS</h3>
+                    {/* <h2>An alternative to SNS app.</h2> */}
+                    {/* <h2 className="registerDesc">新規登録画面</h2> */}
                 </div>
                 <AppleSignIn />
                 <div className="registerRight">

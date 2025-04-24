@@ -26,9 +26,9 @@ export default function Login() {
         <div className='login'>
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <h3 className='loginLogo'>Instead</h3>
-                    <h2>An alternative to SNS app.</h2>
-                    <h2 className="loginDesc">ログイン画面</h2>
+                    <h3 className='loginLogo'>Instead SNS</h3>
+                    {/* <h2>An alternative to SNS app.</h2> */}
+                    {/* <h2 className="loginDesc">ログイン画面</h2> */}
                 </div>
                 <AppleSignIn />
                 <div className="loginRight">
