@@ -32,7 +32,7 @@ flex: 1;
     font-size: 40px;
     font-weight: 800;
     color: purple;
-    /* margin-bottom: 10px; */
+    margin-bottom: 10px;
 }
 
 .registerDesc {
@@ -43,8 +43,8 @@ flex: 1;
 }
 
 .registerBox {
-    height: 400px;
-    margin-top: 10px;
+    height: 350px;
+    margin-top: 20px;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
@@ -56,12 +56,12 @@ flex: 1;
 }
 
 .registerInput {
-    height: 50px;
+    height: 40px;
     border-radius: 10px;
     border: 1px solid gray;
     font-size: 18px;
     padding-left: 20px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 
 .registerInput:focus {
@@ -77,6 +77,7 @@ flex: 1;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 .registerForgot {
