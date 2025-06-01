@@ -45,8 +45,8 @@ export default function Register() {
                 <div className="registerRight">
                     <form className="registerBox" onSubmit={(e) => handleSubmit(e)}>
                         {/* <p className="registerMsg">新規登録はこちら</p> */}
-                        <input type="text" id='text' name='text' className='registerInput' placeholder='ユーザー名' required ref={username} />
-                        <input type="email" id='email' name='email' className='registerInput' placeholder='Eメール' required ref={email} />
+                        <input type="text" id='text' name='text' className='registerInput' placeholder='ユーザーネーム' required ref={username} />
+                        <input type="email" id='email' name='email' className='registerInput' placeholder='メールアドレス' required ref={email} />
                         <input type="password" name='password' className='registerInput' placeholder='パスワード' required minLength="6" ref={password} />
                         <input type="password" name='password' className='registerInput' placeholder='確認用パスワード' required minLength="6" ref={passwordConfirmation} />
                         <button className="registerButton" type='submit'>新規登録</button>

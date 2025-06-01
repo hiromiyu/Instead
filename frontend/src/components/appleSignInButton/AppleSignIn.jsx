@@ -134,7 +134,7 @@ const AppleSignIn = () => {
     return (
         <div
             id="appleid-signin"
-            data-color="white"
+            // data-color="white"
             data-border="true"
             data-type="sign in"
             data-height="40"

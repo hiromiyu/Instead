@@ -46,8 +46,8 @@ justify-content: center;
 .loginBox {
     height: 350px;
     margin-top: 20px;
-    padding: 20px;
-    background-color: white;
+    /* padding: 20px; */
+    /* background-color: white; */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -57,19 +57,19 @@ justify-content: center;
 }
 
 .emailInput {
-    height: 40px;
-    border-radius: 10px;
+    height: 35px;
+    border-radius: 5px;
     border: 1px solid gray;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 20px;
     /* margin-top: 35px; */
 }
 
 .passInput {
-    height: 40px;
-    border-radius: 10px;
+    height: 35px;
+    border-radius: 5px;
     border: 1px solid gray;
-    font-size: 18px;
+    font-size: 14px;
     padding-left: 20px;
     /* margin-bottom: 15px; */
 }
@@ -79,15 +79,15 @@ justify-content: center;
 }
 
 .loginButton {
-    height: 50px;
+    height: 35px;
     border-radius: 10px;
     border: none;
-    background-color: gray;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
+    /* background-color: gray; */
+    /* color: white; */
+    font-size: 16px;
+    /* font-weight: 500; */
     cursor: pointer;
-    margin-top: 120px;
+    margin-top: 130px;
 }
 
 .loginForgot {
@@ -97,15 +97,15 @@ justify-content: center;
 }
 
 .registerLoginButton {
-    height: 50px;
+    height: 35px;
     width: 100%;
     align-self: center;
     border-radius: 10px;
     border: none;
     background-color: purple;
     color: white;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 16px;
+    /* font-weight: 500; */
     cursor: pointer;
     margin-top: 15px;
 }
@@ -115,4 +115,18 @@ justify-content: center;
     font-weight: 550;
     font-size: 20px;
     margin: 10px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .emailInput {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .passInput {
+        background-color: #000;
+        color: #fff;
+    }
 }

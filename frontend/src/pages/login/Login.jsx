@@ -39,7 +39,7 @@ export default function Login() {
                             id='email'
                             name='email'
                             className='emailInput'
-                            placeholder='Eメール'
+                            placeholder='メールアドレス'
                             required
                             ref={email}
                         />

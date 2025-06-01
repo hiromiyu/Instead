@@ -6,3 +6,10 @@
     transform: scale(0.99);
     filter: brightness(0.9);
 }
+
+@media (prefers-color-scheme: dark) {
+    .appleButton {
+        background-color: #000;
+        color: #fff;
+    }
+}
