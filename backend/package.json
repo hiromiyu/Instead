@@ -27,6 +27,10 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.15"
+    "@types/cors": "^2.8.15",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "prettier": "^3.5.3"
   }
 }
