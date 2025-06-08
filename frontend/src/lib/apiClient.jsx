@@ -2,27 +2,27 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const apiClient = axios.create({
-    baseURL: process.env.REACT_APP_API_BASEURL,
+  baseURL: process.env.REACT_APP_API_BASEURL,
 });
 
 apiClient.interceptors.request.use(
-    (config) => {
-        return config;
-    }
-    , (error) => {
-        toast.error("通信エラーが発生しました。");
-        return Promise.reject(error);
-    }
+  config => {
+    return config;
+  },
+  error => {
+    toast.error('通信エラーが発生しました。');
+    return Promise.reject(error);
+  }
 );
 
 apiClient.interceptors.response.use(
-    (response) => {
-        return response;
-    }
-    , (error) => {
-        toast.error("通信エラーが発生しました。");
-        return Promise.reject(error);
-    }
+  response => {
+    return response;
+  },
+  error => {
+    toast.error('通信エラーが発生しました。');
+    return Promise.reject(error);
+  }
 );
 
 export default apiClient;

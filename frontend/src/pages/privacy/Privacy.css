@@ -1,10 +1,9 @@
 .editContainer {
-    display: flex;
+  display: flex;
 }
 
 .editRight {
-    flex: 10.5;
-    padding: 10px;
-    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
-
+  flex: 10.5;
+  padding: 10px;
+  font-family: 'ヒラギノ丸ゴ Pro W4', 'Hiragino Maru Gothic Pro', sans-serif;
 }

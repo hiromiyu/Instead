@@ -1,19 +1,19 @@
 .homeContainer {
-    display: flex;
-    /* background-color: #f8fcff; */
+  display: flex;
+  /* background-color: #f8fcff; */
 }
 
 .homeIcon {
-    font-size: 20px !important;
-    margin-right: 10px;
-    background-color: transparent;    
-    /* color: #fff; */
-    padding: 0 0 0 10px;
+  font-size: 20px !important;
+  margin-right: 10px;
+  background-color: transparent;
+  /* color: #fff; */
+  padding: 0 0 0 10px;
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-        color: #fff;
-    }
+  body {
+    background-color: #000;
+    color: #fff;
+  }
 }

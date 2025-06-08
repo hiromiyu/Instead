@@ -1,59 +1,61 @@
 .editProfile {
-    display: flex;
+  display: flex;
 }
 
 .editProfileRight {
-    flex: 10.5;
+  flex: 10.5;
 }
 
 .editProfileRightTop {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 }
 
 .editProfileCover {
-    height: 270px;
-    position: relative;
+  height: 270px;
+  position: relative;
 }
 
 .editProfileCoverImg {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .editProfileUserImg {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    /* margin: auto; */
-    top: 100px;
-    border: 3px solid white;
-    margin: 0 0 0 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* margin: auto; */
+  top: 100px;
+  border: 3px solid white;
+  margin: 0 0 0 10px;
 }
 
 .editShareOptionText {
-    font-size: 14px;
-    font-weight: 550;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 550;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
 }
 
 .editShareButtons {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .editShareButton {
-    /* border: none; */
-    border: 1px solid gray;
-    padding: 6px 17px;
-    background-color: black;
-    border-radius: 15px;
-    color: white;
-    cursor: pointer;
-    margin-right: 10px;
+  /* border: none; */
+  border: 1px solid gray;
+  padding: 6px 17px;
+  background-color: black;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 /* .editShareIconButtons {
@@ -62,52 +64,52 @@
 } */
 
 .editProfileInfo {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    padding: 10px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  padding: 10px 0;
 }
 
 .editProfileInfoTop {
-    display: flex;
-    justify-content: space-between;
-} 
+  display: flex;
+  justify-content: space-between;
+}
 
 .editProfileInfoName {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .editFollowButton {
-    /* border: none; */
-    /* border-radius: 20px; */
+  /* border: none; */
+  /* border-radius: 20px; */
 }
 
 .editProfileInfoDesc {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .editProfileRightBottom {
-    display: flex;
+  display: flex;
 }
 
 .editProfileEdit {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 5px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5px 5px 5px;
 }
 
 .editEditButton {
-    height: 25px;
-    margin-right: 15px;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 0 10px;
-    background-color: gray;
-    color: white;
+  height: 25px;
+  margin-right: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0 10px;
+  background-color: gray;
+  color: white;
 }
 
 /* .editShareInput {
@@ -115,56 +117,56 @@
 } */
 
 .editFollowButton {
-    font-weight: bold;
-    border: none;
-    padding: 6px 17px;
-    background-color: black;
-    border-radius: 15px;
-    color: white;
-    cursor: pointer;
-    margin-right: 20px;
+  font-weight: bold;
+  border: none;
+  padding: 6px 17px;
+  background-color: black;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .editFollowingButton {
-    font-weight: bold;
-    border-width: thin;
-    border: none;
-    padding: 6px 17px;
-    /* background-color: black; */
-    border-radius: 15px;
-    color: white;
-    cursor: pointer;
-    margin-right: 20px;
+  font-weight: bold;
+  border-width: thin;
+  border: none;
+  padding: 6px 17px;
+  /* background-color: black; */
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .editEditCancelImg {
-    /* position: absolute; */
-    margin: 0 10px 0 0;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.7;
+  /* position: absolute; */
+  margin: 0 10px 0 0;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .editShareOptions {
-    display: flex;
-    margin-left: 20px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .editShareOption {
-    display: flex;
-    align-items: center;
-    /* margin: 0 10px 0 0; */
-    margin-right: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* margin: 0 10px 0 0; */
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .editCoverShareIcon {
-    margin-right: 3px;
+  margin-right: 3px;
 }
 
 .editShareIcon {
-    margin-right: 3px;
+  margin-right: 3px;
 }
 
 /* .coverImg {

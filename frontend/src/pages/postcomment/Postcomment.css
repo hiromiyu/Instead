@@ -1,74 +1,74 @@
 .postComment {
-    width: 100%;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    /* border-color: gray; */
+  width: 100%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  /* border-color: gray; */
 }
 
 .postCommentSidebar {
-    display: flex;
-    margin: 10px;
+  display: flex;
+  margin: 10px;
 }
 
 .postCommentProfileImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .postCommentWrapper {
-    width: 100%;
-    padding: 0 10px 0 0;
+  width: 100%;
+  padding: 0 10px 0 0;
 }
 
 .postCommentTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .postCommentTopLeft {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .postCommentUsername {
-    font-size: 13px;
-    font-weight: 550;
-    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
+  font-size: 13px;
+  font-weight: 550;
+  font-family: 'ヒラギノ丸ゴ Pro W4', 'Hiragino Maru Gothic Pro', sans-serif;
 
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
-    margin: 0 10px;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
+  margin: 0 10px;
 }
 
 .postCommentDate {
-    font-size: 12px;
-    color: gray;
+  font-size: 12px;
+  color: gray;
 }
 
 .postCommentTopRight {
-    cursor: pointer;
-    color: gray;
+  cursor: pointer;
+  color: gray;
 }
 
 .postCommentText {
-    font-size: 12px;
-    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
+  font-size: 12px;
+  font-family: 'ヒラギノ丸ゴ Pro W4', 'Hiragino Maru Gothic Pro', sans-serif;
 
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
-    white-space: pre-wrap;
-    margin: 0 10px;
-    width: 100%;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
+  white-space: pre-wrap;
+  margin: 0 10px;
+  width: 100%;
 }
 
 .postCommentCenter {
-    margin: 0 10px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .postCommentImg {
-    margin-top: 10px;
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    border-radius: 10px;
+  margin-top: 10px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 10px;
 }

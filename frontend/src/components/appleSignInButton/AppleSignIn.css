@@ -1,15 +1,17 @@
 .appleButton {
-    transition: transform 0.1s ease, filter 0.1s ease;
+  transition:
+    transform 0.1s ease,
+    filter 0.1s ease;
 }
 
 .appleButton:active {
-    transform: scale(0.99);
-    filter: brightness(0.9);
+  transform: scale(0.99);
+  filter: brightness(0.9);
 }
 
 @media (prefers-color-scheme: dark) {
-    .appleButton {
-        background-color: #000;
-        color: #fff;
-    }
+  .appleButton {
+    background-color: #000;
+    color: #fff;
+  }
 }
