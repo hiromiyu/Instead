@@ -1,10 +1,10 @@
 // import { Chat, Notifications } from '@mui/icons-material'
-import React, { useContext, useEffect, useState } from 'react';
-import './Topbar.css';
-import { NavLink } from 'react-router-dom';
-import { AuthContext } from '../../state/AuthContext';
 import { Home, Person, Settings } from '@mui/icons-material';
+import { useContext, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import apiClient from '../../lib/apiClient';
+import { AuthContext } from '../../state/AuthContext';
+import './Topbar.css';
 
 export default function Topbar() {
   const [user, setUser] = useState({});
@@ -25,7 +25,7 @@ export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <p className="logo">Home</p>
+                  {/* <p className="logo">タイムライン</p> */}
         <NavLink
           to="/"
           style={{ textDecoration: 'none' }}
@@ -33,7 +33,7 @@ export default function Topbar() {
             isActive ? 'nav-link.active' : 'nav-link'
           }
         >
-          <Home className="homeIcon" />
+          <Home className="topbarIcon" />
         </NavLink>
       </div>
       <NavLink
