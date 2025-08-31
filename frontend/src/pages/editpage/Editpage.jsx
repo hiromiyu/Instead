@@ -1,14 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 // import Sidebar from "../../components/sidebar/Sidebar";
-import Topbar from '../../components/topbar/Topbar';
-import './EditPage.css';
+import { deleteUser, signOut } from 'firebase/auth';
 import { useContext } from 'react';
-import { AuthContext } from '../../state/AuthContext';
-import apiClient from '../../lib/apiClient';
-import { signOut, deleteUser } from 'firebase/auth';
+import Topbar from '../../components/topbar/Topbar';
 import { auth } from '../../firebase';
+import apiClient from '../../lib/apiClient';
+import { AuthContext } from '../../state/AuthContext';
+import './EditPage.css';
 
 export default function EditPage() {
+  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { user: currentUser } = useContext(AuthContext);
@@ -30,17 +31,22 @@ export default function EditPage() {
       await apiClient.delete(`/users/${currentUser._id}`, {
         data: { userId: currentUser._id },
       });
+      await apiClient.post('/auth/logout');
       localStorage.clear();
-      window.location.reload();
+      signOut(auth);
+      dispatch({ type: 'LOGIN_START' });
+      // window.location.reload();
     } catch (err) {}
   };
 
-  const logout = () => {
+  const logout = async () => {
     try {
       navigate('/');
+      await apiClient.post('/auth/logout');
       localStorage.clear();
       signOut(auth);
-      window.location.reload();
+      dispatch({ type: 'LOGIN_START' });
+      // window.location.reload();
     } catch (err) {}
   };
 

@@ -1,13 +1,12 @@
-import React, { useContext, useRef } from 'react';
-import Topbar from '../../components/topbar/Topbar';
-import TimeLine from '../../components/timeline/TimeLine';
-import './Profile.css';
-import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { AuthContext } from '../../state/AuthContext';
-import apiClient from '../../lib/apiClient';
-import Linkify from 'linkify-react';
 import { motion } from 'framer-motion';
+import Linkify from 'linkify-react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import TimeLine from '../../components/timeline/TimeLine';
+import Topbar from '../../components/topbar/Topbar';
+import apiClient from '../../lib/apiClient';
+import { AuthContext } from '../../state/AuthContext';
+import './Profile.css';
 
 export default function Profile() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_BASEURL,
+  withCredentials: true,
 });
 
 apiClient.interceptors.request.use(

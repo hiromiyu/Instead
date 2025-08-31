@@ -15,6 +15,7 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const admin = require('./firebase');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const corsOptions = {
   origin: [
@@ -43,6 +44,9 @@ mongoose
 
 app.get('/', cors(corsOptions), (req, res) => res.send('Hello World!'));
 
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); // URLエンコードデータを受け取る
 app.use(
   '/images',
@@ -56,8 +60,6 @@ app.use('/api/posts', cors(corsOptions), postRoute);
 app.use('/api/upload', cors(corsOptions), uploadRoute);
 app.use('/api/imgdelete', cors(corsOptions), imgdeleteRoute);
 app.use('/api/comment', cors(corsOptions), commentRoute);
-
-app.use(bodyParser.json());
 
 app.post('/verify-apple-token', async (req, res) => {
   const { idToken } = req.body;
