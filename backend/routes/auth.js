@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'None',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -99,7 +99,7 @@ router.post('/logout', (req, res) => {
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: true, // 本番は true
-    sameSite: 'none', // 本番で secure:true の場合は "none"
+    sameSite: 'None', // 本番で secure:true の場合は "none"
   });
   res.status(200).json({ message: 'Logged out' });
 });
